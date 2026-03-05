@@ -133,17 +133,15 @@ struct CloudSyncService {
         }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
         if let token = KeychainHelper.load(forKey: KeychainHelper.authTokenKey) {
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         } else if let deviceId = KeychainHelper.load(forKey: KeychainHelper.deviceIdKey) {
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             request.httpBody = try? JSONSerialization.data(withJSONObject: ["deviceId": deviceId])
         } else {
             completion(.failure(NSError(domain: "CloudSync", code: -1, userInfo: [NSLocalizedDescriptionKey: "Sync first to get a share link"])))
             return
-        }
-        if request.httpBody == nil {
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         }
 
         URLSession.shared.dataTask(with: request) { data, response, error in
@@ -156,7 +154,10 @@ struct CloudSyncService {
                 DispatchQueue.main.async { completion(.failure(NSError(domain: "CloudSync", code: code, userInfo: [NSLocalizedDescriptionKey: "Could not create link"]))) }
                 return
             }
-            struct ShareResponse: Codable { let link: String }
+            struct ShareResponse: Codable {
+                let token: String
+                let link: String
+            }
             if let decoded = try? JSONDecoder().decode(ShareResponse.self, from: data) {
                 DispatchQueue.main.async { completion(.success(decoded.link)) }
             } else {

@@ -58,7 +58,10 @@ struct UrgeMomentView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Close") { dismiss() }
+                    Button(action: { dismiss() }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundStyle(.secondary)
+                    }
                 }
             }
             .onReceive(timer) { _ in
@@ -216,7 +219,10 @@ struct UrgeMomentView: View {
                 UrgeSurfingGuideView()
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
-                            Button("Close") { showUrgeSurfing = false }
+                            Button(action: { showUrgeSurfing = false }) {
+                                Image(systemName: "xmark.circle.fill")
+                                    .foregroundStyle(.secondary)
+                            }
                         }
                     }
             }

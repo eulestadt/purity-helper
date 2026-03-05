@@ -236,7 +236,7 @@ struct CloudAuthView: View {
                     Button(isSignUp ? "Create account" : "Log in") {
                         performAuth()
                     }
-                    .disabled(loading || email.isEmpty || password.count < 8)
+                    .disabled(loading || email.isEmpty || (isSignUp ? password.count < 8 : password.isEmpty))
                     Toggle("I already have an account", isOn: Binding(
                         get: { !isSignUp },
                         set: { isSignUp = !$0 }
