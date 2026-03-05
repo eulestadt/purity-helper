@@ -181,6 +181,7 @@ struct AddVerseSearchSheet: View {
         )
         modelContext.insert(mVerse)
         try? modelContext.save()
+        Task { @MainActor in AutoSyncManager.shared.performBackgroundSync(modelContext: modelContext) }
         
         // Use a generic success haptic
         let generator = UINotificationFeedbackGenerator()

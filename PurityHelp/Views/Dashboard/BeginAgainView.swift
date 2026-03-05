@@ -28,7 +28,7 @@ struct BeginAgainView: View {
         "Profound Loneliness",
         "Exhaustion",
         "Unresolved Anger",
-        "Acedia / Boredom",
+        "Boredom",
         "Scrolling without purpose"
     ]
     
@@ -106,7 +106,7 @@ struct BeginAgainView: View {
                 .font(.largeTitle.weight(.semibold))
                 .foregroundStyle(.white)
             
-            Text("The journey toward a pure heart continues. Do not be surprised by weakness; be surprised by His endless mercy.")
+            Text("The journey toward a pure heart continues.")
                 .font(.body)
                 .foregroundStyle(.white.opacity(0.9))
                 .multilineTextAlignment(.center)
@@ -279,6 +279,7 @@ struct BeginAgainView: View {
         }
         
         try? modelContext.save()
+        Task { @MainActor in AutoSyncManager.shared.performBackgroundSync(modelContext: modelContext) }
         onComplete()
         dismiss()
     }

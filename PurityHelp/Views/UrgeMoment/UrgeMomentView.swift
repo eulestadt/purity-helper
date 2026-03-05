@@ -280,6 +280,7 @@ struct UrgeMomentView: View {
         let log = UrgeLog(outcome: "held_firm")
         modelContext.insert(log)
         try? modelContext.save()
+        Task { @MainActor in AutoSyncManager.shared.performBackgroundSync(modelContext: modelContext) }
     }
 
     private func recordQuickAction(_ title: String) {

@@ -157,6 +157,7 @@ struct ExamenView: View {
         let journal = JournalEntry(type: .examen, moodOutcome: howWasToday)
         modelContext.insert(journal)
         try? modelContext.save()
+        Task { @MainActor in AutoSyncManager.shared.performBackgroundSync(modelContext: modelContext) }
     }
 }
 

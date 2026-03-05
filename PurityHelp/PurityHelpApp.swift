@@ -10,6 +10,8 @@ import SwiftData
 
 @main
 struct PurityHelpApp: App {
+    @Environment(\.scenePhase) private var scenePhase
+    
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             StreakRecord.self,
@@ -36,6 +38,13 @@ struct PurityHelpApp: App {
         WindowGroup {
             ContentView()
                 .modelContainer(sharedModelContainer)
+                .onChange(of: scenePhase) { oldPhase, newPhase in
+                    if newPhase == .background {
+                        Task { @MainActor in
+                            AutoSyncManager.shared.performBackgroundSync(modelContext: sharedModelContainer.mainContext)
+                        }
+                    }
+                }
         }
     }
 }

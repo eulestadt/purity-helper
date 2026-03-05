@@ -47,6 +47,7 @@ struct IfThenPlansView: View {
             modelContext.delete(plans[i])
         }
         try? modelContext.save()
+        Task { @MainActor in AutoSyncManager.shared.performBackgroundSync(modelContext: modelContext) }
     }
 }
 
@@ -94,6 +95,7 @@ struct AddIfThenPlanView: View {
                         let plan = IfThenPlan(trigger: trigger, action: action, order: 0)
                         modelContext.insert(plan)
                         try? modelContext.save()
+                        Task { @MainActor in AutoSyncManager.shared.performBackgroundSync(modelContext: modelContext) }
                         dismiss()
                     }
                     .disabled(trigger.isEmpty || action.isEmpty)

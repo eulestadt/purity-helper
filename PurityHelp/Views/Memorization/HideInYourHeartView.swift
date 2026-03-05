@@ -94,11 +94,13 @@ struct HideInYourHeartView: View {
     private func removeVerse(_ verse: MemorizedVerse) {
         modelContext.delete(verse)
         try? modelContext.save()
+        Task { @MainActor in AutoSyncManager.shared.performBackgroundSync(modelContext: modelContext) }
     }
     
     private func unlearnVerse(_ verse: MemorizedVerse) {
         verse.status = "none"
         try? modelContext.save()
+        Task { @MainActor in AutoSyncManager.shared.performBackgroundSync(modelContext: modelContext) }
     }
 }
 
@@ -183,6 +185,7 @@ struct MemorizeLearnView: View {
             modelContext.insert(m)
         }
         try? modelContext.save()
+        Task { @MainActor in AutoSyncManager.shared.performBackgroundSync(modelContext: modelContext) }
     }
 }
 

@@ -49,6 +49,7 @@ struct MissionView: View {
             modelContext.insert(m)
         }
         try? modelContext.save()
+        Task { @MainActor in AutoSyncManager.shared.performBackgroundSync(modelContext: modelContext) }
     }
 }
 

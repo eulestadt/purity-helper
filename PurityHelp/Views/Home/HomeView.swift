@@ -316,6 +316,7 @@ private var treeProgressCard: some View {
                         Button("I guarded my thoughts today") {
                             service.recordPureThoughtsCheck(record: record, guarded: true, modelContext: modelContext)
                             try? modelContext.save()
+                            Task { @MainActor in AutoSyncManager.shared.performBackgroundSync(modelContext: modelContext) }
                         }
                         .buttonStyle(.borderedProminent)
                         Button("No (reset)") {
@@ -398,18 +399,21 @@ private var treeProgressCard: some View {
         let service = StreakService()
         service.resetPornography(record: record, modelContext: modelContext)
         try? modelContext.save()
+        Task { @MainActor in AutoSyncManager.shared.performBackgroundSync(modelContext: modelContext) }
     }
 
     private func resetMasturbation(_ record: StreakRecord) {
         let service = StreakService()
         service.resetMasturbation(record: record, modelContext: modelContext)
         try? modelContext.save()
+        Task { @MainActor in AutoSyncManager.shared.performBackgroundSync(modelContext: modelContext) }
     }
 
     private func resetPureThoughts(_ record: StreakRecord) {
         let service = StreakService()
         service.resetPureThoughts(record: record, modelContext: modelContext)
         try? modelContext.save()
+        Task { @MainActor in AutoSyncManager.shared.performBackgroundSync(modelContext: modelContext) }
     }
 
     private func useStreakFreeze() {
