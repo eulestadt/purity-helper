@@ -336,7 +336,7 @@ app.get('/share/:token', async (req, res) => {
     </div>
   </div>
 </body>
-</html>\`;
+</html>`;
   return res.type('html').send(html);
 });
 
@@ -365,7 +365,7 @@ async function init() {
   } catch (e) {
     console.error('DB connection or schema initialization failed:', e.message);
   }
-  app.listen(PORT, () => console.log(`Purity Help API listening on port ${ PORT } `));
+  app.listen(PORT, () => console.log(`Purity Help API listening on port ${PORT} `));
 }
 
 init();
