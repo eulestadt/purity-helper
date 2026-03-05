@@ -44,7 +44,7 @@ struct VigilExtendedTabView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(action: {
-                        appState.showExtendedVigil = false
+                        dismiss()
                     }) {
                         Image(systemName: "xmark.circle.fill")
                             .foregroundStyle(.secondary)
