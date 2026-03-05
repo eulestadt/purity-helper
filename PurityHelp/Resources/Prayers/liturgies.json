@@ -1,0 +1,67 @@
+[
+  {
+    "id": "bcp_collect_purity",
+    "tradition": "Anglican",
+    "triggerFilter": ["Lust", "Porneia", "Boredom", "Acedia", "Anger", "Ogre", "Loneliness", "Lype"],
+    "timeFilter": ["Morning", "Day", "Night"],
+    "prayerText": "Almighty God, unto whom all hearts are open, all desires known, and from whom no secrets are hid: Cleanse the thoughts of our hearts by the inspiration of thy Holy Spirit, that we may perfectly love thee, and worthily magnify thy holy Name; through Christ our Lord. Amen.",
+    "citation": "The Book of Common Prayer (1979) - The Collect for Purity"
+  },
+  {
+    "id": "bcp_ash_wednesday",
+    "tradition": "Anglican",
+    "triggerFilter": ["Porneia", "Lust", "Anger", "Ogre"],
+    "timeFilter": ["Morning", "Day", "Night"],
+    "prayerText": "Almighty and everlasting God, you hate nothing you have made and forgive the sins of all who are penitent: Create and make in us new and contrite hearts, that we, worthily lamenting our sins and acknowledging our wretchedness, may obtain of you, the God of all mercy, perfect remission and forgiveness; through Jesus Christ our Lord. Amen.",
+    "citation": "The Book of Common Prayer (1979) - The Ash Wednesday Collect"
+  },
+  {
+    "id": "bcp_night_perils",
+    "tradition": "Anglican",
+    "triggerFilter": ["Lust", "Porneia", "Boredom", "Acedia", "Loneliness", "Lype"],
+    "timeFilter": ["Night"],
+    "prayerText": "Lighten our darkness, we beseech thee, O Lord; and by thy great mercy defend us from all perils and dangers of this night; for the love of thy only Son, our Savior Jesus Christ. Amen.",
+    "citation": "The Book of Common Prayer (1662 & 1979) - The Collect for Aid against Perils"
+  },
+  {
+    "id": "orthodox_compline_visit",
+    "tradition": "Orthodox",
+    "triggerFilter": ["Lust", "Porneia", "Boredom", "Acedia", "Anger", "Ogre", "Loneliness", "Lype"],
+    "timeFilter": ["Night"],
+    "prayerText": "Lord, visit this place and drive far from it all the snares of the enemy. Let Your holy angels dwell here to keep us in peace, and let Your blessing be upon us always. Through Christ our Lord. Amen.",
+    "citation": "Eastern Orthodox Compline - 'Visit this place, O Lord'"
+  },
+  {
+    "id": "orthodox_jesus_prayer",
+    "tradition": "Orthodox",
+    "triggerFilter": ["Lust", "Porneia", "Boredom", "Acedia", "Anger", "Ogre", "Loneliness", "Lype"],
+    "timeFilter": ["Morning", "Day", "Night"],
+    "prayerText": "Lord Jesus Christ, Son of God, have mercy on me, a sinner.",
+    "citation": "The Jesus Prayer (Traditional)"
+  },
+  {
+    "id": "catholic_st_michael",
+    "tradition": "Catholic",
+    "triggerFilter": ["Lust", "Porneia", "Boredom", "Acedia", "Anger", "Ogre", "Loneliness", "Lype"],
+    "timeFilter": ["Morning", "Day", "Night"],
+    "prayerText": "St. Michael the Archangel, defend us in battle. Be our defense against the wickedness and snares of the Devil. May God rebuke him, we humbly pray, and do thou, O Prince of the heavenly hosts, by the power of God, thrust into hell Satan, and all the evil spirits, who prowl about the world seeking the ruin of souls. Amen.",
+    "citation": "Prayer to St. Michael the Archangel"
+  },
+  {
+    "id": "bcp_litany",
+    "tradition": "Ecumenical",
+    "type": "call_and_response",
+    "triggerFilter": ["Lust", "Porneia", "Boredom", "Acedia", "Anger", "Ogre", "Loneliness", "Lype"],
+    "timeFilter": ["Morning", "Day", "Night"],
+    "calls": [
+      "From all blindness of heart; from pride, vainglory, and hypocrisy; from envy, hatred, and malice; and from all want of charity,",
+      "From all inordinate and sinful affections; and from all the deceits of the world, the flesh, and the devil,",
+      "From hardness of heart, and contempt of thy Word and commandment,",
+      "By the mystery of thy holy Incarnation; by thy holy Nativity and submission to the Law; by thy Baptism, Fasting, and Temptation,",
+      "By thine Agony and Bloody Sweat; by thy Cross and Passion; by thy precious Death and Burial; by thy glorious Resurrection and Ascension; and by the Coming of the Holy Ghost,",
+      "In all time of our tribulation; in all time of our prosperity; in the hour of death, and in the day of judgment,"
+    ],
+    "response": "Good Lord, deliver us.",
+    "citation": "The Book of Common Prayer (1979) - Excerpts from The Great Litany"
+  }
+]

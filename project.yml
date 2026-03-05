@@ -1,0 +1,27 @@
+name: PurityHelp
+options:
+  bundleIdPrefix: com.purityhelp
+targets:
+  PurityHelp:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    appIcon: AppIcon
+    sources:
+      - path: PurityHelp
+    settings:
+      CODE_SIGN_STYLE: Automatic
+      INFOPLIST_KEY_UILaunchScreen_Generation: YES
+      ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+      GENERATE_INFOPLIST_FILE: YES
+      PRODUCT_BUNDLE_IDENTIFIER: com.purityhelp.app
+      SWIFT_VERSION: "5.0"
+      TARGETED_DEVICE_FAMILY: "1,2,6"
+      MARKETING_VERSION: "1.0"
+      CURRENT_PROJECT_VERSION: "1"
+      INFOPLIST_KEY_UIBackgroundModes: [remote-notification]
+      SUPPORTS_MACCATALYST: YES
+      DERIVED_FILE_DIR: $(TEMP_DIR)/DerivedSources
+      CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION: YES
+
+

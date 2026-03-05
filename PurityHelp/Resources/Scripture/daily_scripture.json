@@ -1,0 +1,17 @@
+[
+  {"id": "mt5_8", "reference": "Matthew 5:8", "text": "Blessed are the pure in heart, for they shall see God.", "category": "Core"},
+  {"id": "ps51_12", "reference": "Psalm 51:12", "text": "Create in me a clean heart, O God, and put a new and right spirit within me.", "category": "Core"},
+  {"id": "ps51_10", "reference": "Psalm 51:10", "text": "Create in me a clean heart, O God.", "category": "Purity"},
+  {"id": "prov4_23", "reference": "Proverbs 4:23", "text": "Keep your heart with all vigilance; for from it flow the springs of life.", "category": "Temptation"},
+  {"id": "1cor10_13", "reference": "1 Corinthians 10:13", "text": "God is faithful, and he will not let you be tempted beyond your strength, but with the temptation will also provide the way of escape.", "category": "Temptation"},
+  {"id": "mt26_41", "reference": "Matthew 26:41", "text": "Watch and pray that you may not enter into temptation; the spirit indeed is willing, but the flesh is weak.", "category": "Temptation"},
+  {"id": "phil4_13", "reference": "Philippians 4:13", "text": "I can do all things in him who strengthens me.", "category": "Grace"},
+  {"id": "2cor12_9", "reference": "2 Corinthians 12:9", "text": "My grace is sufficient for you, for my power is made perfect in weakness.", "category": "Grace"},
+  {"id": "lam3_22", "reference": "Lamentations 3:22-23", "text": "The steadfast love of the Lord never ceases, his mercies never come to an end; they are new every morning.", "category": "Mercy"},
+  {"id": "2cor5_17", "reference": "2 Corinthians 5:17", "text": "If any one is in Christ, he is a new creation; the old has passed away, behold, the new has come.", "category": "Mercy"},
+  {"id": "james1_12", "reference": "James 1:12", "text": "Blessed is the man who endures trial, for when he has stood the test he will receive the crown of life.", "category": "Perseverance"},
+  {"id": "heb12_1", "reference": "Hebrews 12:1", "text": "Let us run with perseverance the race that is set before us, looking to Jesus.", "category": "Perseverance"},
+  {"id": "ps119_11", "reference": "Psalm 119:11", "text": "I have laid up thy word in my heart, that I might not sin against thee.", "category": "Memorization"},
+  {"id": "1cor6_19", "reference": "1 Corinthians 6:19-20", "text": "Your body is a temple of the Holy Spirit... So glorify God in your body.", "category": "Body"},
+  {"id": "rom12_1", "reference": "Romans 12:1", "text": "Present your bodies as a living sacrifice, holy and acceptable to God.", "category": "Body"}
+]
