@@ -115,7 +115,7 @@ struct CloudSyncSettingsView: View {
         }
         .navigationTitle("Cloud sync")
         .onAppear {
-            baseURL = CloudSyncService.baseURL ?? ""
+            baseURL = CloudSyncService.baseURL ?? "https://purity-helper-api.onrender.com"
             if syncEnabled && !baseURL.isEmpty {
                 generateShareLink()
             }

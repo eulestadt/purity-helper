@@ -50,6 +50,16 @@ function sanitizePayload(body) {
   return out;
 }
 
+function escapeHtml(unsafe) {
+  if (unsafe == null) return '';
+  return String(unsafe)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 // POST /auth/signup — email + password; create user, return JWT
 app.post('/auth/signup', async (req, res) => {
   const email = typeof req.body?.email === 'string' ? req.body.email.trim().toLowerCase() : '';
@@ -190,7 +200,7 @@ app.get('/share/:token', async (req, res) => {
   if (wantsJson) {
     return res.json(payload);
   }
-  const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Purity Help – Progress</title></head><body style="font-family:system-ui;max-width:480px;margin:1rem auto;padding:1rem;"><h1>Progress summary</h1><p>Days of purity (pornography): ${payload.pornographyDays ?? '—'}</p><p>Days of purity (masturbation): ${payload.masturbationDays ?? '—'}</p>${payload.pureThoughtsDays != null ? `<p>Days guarding thoughts: ${payload.pureThoughtsDays}</p>` : ''}<p>Urge moments logged: ${payload.urgeMomentsCount ?? '—'}</p>${payload.hoursReclaimed > 0 ? `<p>Hours reclaimed: ${payload.hoursReclaimed}</p>` : ''}<p><small>Last updated: ${payload.lastUpdated || '—'}</small></p></body></html>`;
+  const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Purity Help – Progress</title></head><body style="font-family:system-ui;max-width:480px;margin:1rem auto;padding:1rem;"><h1>Progress summary</h1><p>Days of purity (pornography): ${escapeHtml(payload.pornographyDays) || '—'}</p><p>Days of purity (masturbation): ${escapeHtml(payload.masturbationDays) || '—'}</p>${payload.pureThoughtsDays != null ? `<p>Days guarding thoughts: ${escapeHtml(payload.pureThoughtsDays)}</p>` : ''}<p>Urge moments logged: ${escapeHtml(payload.urgeMomentsCount) || '—'}</p>${payload.hoursReclaimed > 0 ? `<p>Hours reclaimed: ${escapeHtml(payload.hoursReclaimed)}</p>` : ''}<p><small>Last updated: ${escapeHtml(payload.lastUpdated) || '—'}</small></p></body></html>`;
   return res.type('html').send(html);
 });
 
