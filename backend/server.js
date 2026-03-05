@@ -205,20 +205,21 @@ app.get('/share/:token', async (req, res) => {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Purity Help – Partner Progress</title>
   <style>
     :root {
-      --bg: #000000;
-      --card-bg: #1c1c1e;
+      --bg: #1a2639;
+      --bg-bottom: #33261a;
+      --card-bg: rgba(255, 255, 255, 0.05);
       --text: #ffffff;
       --secondary-text: #a1a1a6;
-      --accent: #0a84ff;
+      --accent: #5e5ce6;
       --danger: #ff453a;
-      --success: #32d74b;
+      --success: #30d158;
     }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      background: linear-gradient(to bottom, var(--bg), var(--bg-bottom));
+      background-attachment: fixed;
       color: var(--text);
       margin: 0;
       padding: 0;
@@ -257,6 +258,8 @@ app.get('/share/:token', async (req, res) => {
     }
     .card {
       background-color: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 16px;
       padding: 24px 16px;
       display: flex;
@@ -264,7 +267,7 @@ app.get('/share/:token', async (req, res) => {
       align-items: center;
       justify-content: center;
       text-align: center;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
     }
     .card-wide {
       grid-column: 1 / -1;
@@ -421,6 +424,30 @@ app.get('/share/:token', async (req, res) => {
     </div>
     ` : ''}
     
+    ${payload.models?.resetRecords?.length > 0 ? `
+    <div class="list-section">
+      <div class="list-header">Begin Again (Timers Reset)</div>
+      ${payload.models.resetRecords
+        .sort((a, b) => b.date - a.date)
+        .slice(0, 10)
+        .map(reset => {
+          const d = new Date(reset.date * 1000).toLocaleString(undefined, { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+          let capType = reset.type ? reset.type.charAt(0).toUpperCase() + reset.type.slice(1) : 'Unknown';
+
+          return `
+          <div class="item-card">
+            <div class="item-date">${d}</div>
+            <div class="item-title">Begin Again: ${escapeHtml(capType)}</div>
+            <div class="item-body" style="opacity: 0.9;">
+              ${reset.triggerTag ? `<strong>Autopsy:</strong> ${escapeHtml(reset.triggerTag)}<br>` : ''}
+              ${reset.optionalNote ? `<strong>Confession:</strong> <em>"${escapeHtml(reset.optionalNote)}"</em>` : ''}
+            </div>
+          </div>
+          `;
+        }).join('')}
+    </div>
+    ` : ''}
+
     <div class="footer">
       Last synced: ${escapeHtml(payload.lastUpdated) || 'Never'}
     </div>

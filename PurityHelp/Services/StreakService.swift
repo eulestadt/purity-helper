@@ -89,24 +89,24 @@ final class StreakService {
         record.updatedAt = .now
     }
 
-    func resetPornography(record: StreakRecord, modelContext: ModelContext) {
+    func resetPornography(record: StreakRecord, modelContext: ModelContext, note: String? = nil, tag: String? = nil) {
         record.pornographyStreakDays = 0
         record.pornographyLastResetDate = todayStart()
-        modelContext.insert(ResetRecord(type: .pornography, date: .now))
+        modelContext.insert(ResetRecord(type: .pornography, date: .now, optionalNote: note, triggerTag: tag))
         record.updatedAt = .now
     }
 
-    func resetMasturbation(record: StreakRecord, modelContext: ModelContext) {
+    func resetMasturbation(record: StreakRecord, modelContext: ModelContext, note: String? = nil, tag: String? = nil) {
         record.masturbationStreakDays = 0
         record.masturbationLastResetDate = todayStart()
-        modelContext.insert(ResetRecord(type: .masturbation, date: .now))
+        modelContext.insert(ResetRecord(type: .masturbation, date: .now, optionalNote: note, triggerTag: tag))
         record.updatedAt = .now
     }
 
-    func resetPureThoughts(record: StreakRecord, modelContext: ModelContext) {
+    func resetPureThoughts(record: StreakRecord, modelContext: ModelContext, note: String? = nil, tag: String? = nil) {
         record.pureThoughtsStreakDays = 0
         record.pureThoughtsLastResetDate = todayStart()
-        modelContext.insert(ResetRecord(type: .pureThoughts, date: .now))
+        modelContext.insert(ResetRecord(type: .pureThoughts, date: .now, optionalNote: note, triggerTag: tag))
         record.updatedAt = .now
     }
 

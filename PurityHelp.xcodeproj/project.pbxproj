@@ -70,6 +70,7 @@
 		F83B30777BDAC7DC165C44C5 /* sapling.png in Resources */ = {isa = PBXBuildFile; fileRef = 95DE081F4FCFB35EC7264981 /* sapling.png */; };
 		F969D37A0B84ADA3ED2E81BD /* tree.png in Resources */ = {isa = PBXBuildFile; fileRef = 5262377B9E30BC42AE371855 /* tree.png */; };
 		FACFE1A189606CC26624160A /* UrgeLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94340DA12EDFCAF96016841 /* UrgeLog.swift */; };
+B1B2C3D4E5F67890CAFEBABE /* BeginAgainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F67890CAFEBABE /* BeginAgainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -137,6 +138,7 @@
 		F4C0A324E6A838B3D7A0BD57 /* MeditateOnWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditateOnWordView.swift; sourceTree = "<group>"; };
 		F693F908C65C4B73D2287D45 /* StreakService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakService.swift; sourceTree = "<group>"; };
 		F8897E312355B378357E5A48 /* ScriptureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptureService.swift; sourceTree = "<group>"; };
+A1B2C3D4E5F67890CAFEBABE /* BeginAgainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Dashboard/BeginAgainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -303,6 +305,7 @@
 		A1592F506EC5D5A6BD032BDD /* PurityHelp */ = {
 			isa = PBXGroup;
 			children = (
+A1B2C3D4E5F67890CAFEBABE /* BeginAgainView.swift */,
 				AD85AD8B74C02D7CCE582668 /* ContentView.swift */,
 				CA9B605C52ACB91726FD730B /* Media.xcassets */,
 				31806D44F76B06B7BD8F048F /* PurityHelpApp.swift */,
@@ -458,6 +461,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+B1B2C3D4E5F67890CAFEBABE /* BeginAgainView.swift in Sources */,
 				802A0CF11ACE5FBD871B2EE0 /* AddVerseSearchSheet.swift in Sources */,
 				1931B377420D0BB18C5B07C8 /* AntirrhetikosView.swift in Sources */,
 				B6065B3D7F50682C68E4B904 /* AppTheme.swift in Sources */,

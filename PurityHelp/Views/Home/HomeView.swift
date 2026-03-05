@@ -11,6 +11,7 @@ import UIKit
 
 struct HomeView: View {
     @Binding var showUrgeMoment: Bool
+    @State private var beginAgainType: ResetType? = nil
     @Environment(\.modelContext) private var modelContext
     @Query private var streakRecords: [StreakRecord]
     @Query private var missions: [UserMission]
@@ -70,6 +71,13 @@ struct HomeView: View {
                                 .shadow(radius: 5)
                         }
                         .padding()
+                    }
+                }
+            }
+            .sheet(item: $beginAgainType) { type in
+                if let record = streakRecord {
+                    BeginAgainView(record: record, resetType: type) {
+                        // No-op, refresh handled by Observation
                     }
                 }
             }
@@ -275,15 +283,15 @@ private var treeProgressCard: some View {
     private var streakCardsSection: some View {
         VStack(spacing: 12) {
             if let record = streakRecord {
-                StreakCard(title: "Days of purity (pornography)", days: record.pornographyStreakDays, onReset: {
-                    withAnimation { resetPornography(record) }
+                StreakCard(title: "Days of purity (pornography)", days: record.pornographyStreakDays, onBeginAgain: {
+                    beginAgainType = .pornography
                 }, onFreeze: useStreakFreeze)
-                StreakCard(title: "Days of purity (masturbation)", days: record.masturbationStreakDays, onReset: {
-                    withAnimation { resetMasturbation(record) }
+                StreakCard(title: "Days of purity (masturbation)", days: record.masturbationStreakDays, onBeginAgain: {
+                    beginAgainType = .masturbation
                 }, onFreeze: useStreakFreeze)
                 if record.pureThoughtsEnabled {
-                    StreakCard(title: "Days guarding thoughts", days: record.pureThoughtsStreakDays, onReset: {
-                        withAnimation { resetPureThoughts(record) }
+                    StreakCard(title: "Days guarding thoughts", days: record.pureThoughtsStreakDays, onBeginAgain: {
+                        beginAgainType = .pureThoughts
                     }, onFreeze: useStreakFreeze)
                 }
             }
@@ -311,8 +319,7 @@ private var treeProgressCard: some View {
                         }
                         .buttonStyle(.borderedProminent)
                         Button("No (reset)") {
-                            service.recordPureThoughtsCheck(record: record, guarded: false, modelContext: modelContext)
-                            try? modelContext.save()
+                            beginAgainType = .pureThoughts
                         }
                         .buttonStyle(.bordered)
                         .tint(.red)
@@ -415,10 +422,9 @@ private var treeProgressCard: some View {
 struct StreakCard: View {
     let title: String
     let days: Int
-    let onReset: () -> Void
+    let onBeginAgain: () -> Void
     var onFreeze: (() -> Void)? = nil
 
-    @State private var showResetConfirm = false
     private var freezesRemaining: Int {
         let key = "streakFreezesRemaining"
         let resetsKey = "streakFreezeMonth"
@@ -446,22 +452,23 @@ struct StreakCard: View {
                     .fontWeight(.semibold)
             }
             Spacer()
-            Button("Reset", role: .destructive) {
-                showResetConfirm = true
+            Button("Begin again", role: .destructive) {
+                onBeginAgain()
             }
             .font(.subheadline)
+            
+            if freezesRemaining > 0, let onFreeze {
+                 Button {
+                     onFreeze()
+                 } label: {
+                     Image(systemName: "snowflake")
+                 }
+                 .tint(.cyan)
+                 .padding(.leading, 8)
+            }
         }
         .padding()
         .glassCard(cornerRadius: 12)
-        .confirmationDialog("Reset streak?", isPresented: $showResetConfirm) {
-            Button("Begin again", role: .destructive, action: onReset)
-            if freezesRemaining > 0, let onFreeze {
-                Button("Use a freeze (\(freezesRemaining) left this month)", action: onFreeze)
-            }
-            Button("Cancel", role: .cancel) {}
-        } message: {
-            Text("The journey toward a pure heart continues. Begin again.")
-        }
     }
 }
 

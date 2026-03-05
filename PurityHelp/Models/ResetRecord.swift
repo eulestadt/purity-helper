@@ -8,10 +8,12 @@
 import Foundation
 import SwiftData
 
-enum ResetType: String, Codable {
+enum ResetType: String, Codable, Identifiable {
     case pornography
     case masturbation
     case pureThoughts
+    
+    var id: Self { self }
 }
 
 @Model

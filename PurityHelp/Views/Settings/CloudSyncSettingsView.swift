@@ -15,10 +15,11 @@ struct CloudSyncSettingsView: View {
     @Query private var urgeLogs: [UrgeLog]
 
     @AppStorage("cloudSyncEnabled") private var syncEnabled = false
-    @AppStorage("partnerName") private var partnerName = "Partner"
+    @AppStorage("accountabilityTerm") private var accountabilityTerm = "Brotherhood"
+    @AppStorage("partnerName") private var partnerName = ""
     @AppStorage("shareExamens") private var shareExamens = false
-    
-    @State private var baseURL: String = ""
+    @AppStorage("shareUrges") private var shareUrges = true
+    @AppStorage("shareRelapses") private var shareRelapses = false
     @State private var shareLink: String?
     @State private var syncError: String?
     @State private var showAuth = false
@@ -29,165 +30,221 @@ struct CloudSyncSettingsView: View {
     private var streakRecord: StreakRecord? { streakRecords.first }
 
     var body: some View {
-        Form {
-            Section {
-                Toggle(isOn: $syncEnabled) {
-                    Label("Enable Partner Sync", systemImage: "person.2.fill")
-                }
-                .onChange(of: syncEnabled) { _, on in
-                    if on { pushFullData() }
-                }
-                
-                if syncEnabled {
-                    TextField("Partner's Name (e.g. John)", text: $partnerName)
-                        .textInputAutocapitalization(.words)
-                }
-            } header: {
-                Text("Accountability Partner")
-            } footer: {
-                if syncEnabled {
-                    Text("We'll use this name throughout the app.")
-                } else {
-                    Text("Turn this on to share your progress via a secure web link.")
-                }
-            }
-
-            if syncEnabled {
-                Section {
-                    Toggle(isOn: $shareExamens) {
-                        Label("Share Daily Examens", systemImage: "lock.open.fill")
+        ZStack {
+            PurityBackground().ignoresSafeArea()
+            
+            ScrollView {
+                VStack(spacing: 24) {
+                    
+                    // MARK: - Accountability Setup
+                    VStack(alignment: .leading, spacing: 16) {
+                        Picker("Accountability Type", selection: $accountabilityTerm) {
+                            Text("Brotherhood").tag("Brotherhood")
+                            Text("Sisterhood").tag("Sisterhood")
+                            Text("Walk Together").tag("Walk Together")
+                        }
+                        .pickerStyle(.segmented)
+                        .padding(.bottom, 8)
+                        
+                        Toggle(isOn: $syncEnabled) {
+                            Text("Enable Shared Walk")
+                                .font(.headline)
+                        }
+                        .tint(.blue)
+                        
+                        Text("Invite someone you trust to walk this path with you. They will be able to view a secure summary of your journey.")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                        
+                        if syncEnabled {
+                            Divider().background(Color.white.opacity(0.1))
+                            
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text("Walking with:")
+                                    .font(.subheadline)
+                                
+                                TextField("e.g. Felix", text: $partnerName)
+                                    .textInputAutocapitalization(.words)
+                                    .padding()
+                                    .background(Color.white.opacity(0.1))
+                                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                                
+                                Text("We'll use this name throughout the app to remind you who is standing with you.")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
                     }
-                } header: {
-                    Text("Privacy Controls")
-                } footer: {
-                    Text("When ON, your private Daily Examen reflections will be uploaded and visible on the Share Link portal.")
-                }
-                
-                Section {
-                    if let link = shareLink {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text("Your secure link:")
+                    .padding()
+                    .glassCard(cornerRadius: 16)
+                    
+                    // MARK: - Privacy Controls
+                    if syncEnabled {
+                        VStack(alignment: .leading, spacing: 16) {
+                            Text("Privacy Controls")
+                                .font(.headline)
+                            
+                            Toggle(isOn: $shareExamens) {
+                                Text("Share Examen Details")
+                            }
+                            .tint(.blue)
+                            Text("When ON, your \(accountabilityTerm) can read the written reflections of your Daily Examens.")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
-                            Text(link)
-                                .font(.callout)
-                                .lineLimit(2)
-                                .textSelection(.enabled)
-                        }
-                        .padding(.vertical, 4)
-                        
-                        HStack(spacing: 12) {
-                            Button {
-                                UIPasteboard.general.string = link
-                            } label: {
-                                Label("Copy", systemImage: "doc.on.doc")
-                                    .frame(maxWidth: .infinity)
-                            }
-                            .buttonStyle(.bordered)
-                            .tint(.blue)
                             
-                            Button {
-                                regenerateLink()
-                            } label: {
-                                Label("Regenerate", systemImage: "arrow.2.squarepath")
-                                    .frame(maxWidth: .infinity)
+                            Divider().background(Color.white.opacity(0.1))
+                            
+                            Toggle(isOn: $shareUrges) {
+                                Text("Share Urge Log Details")
                             }
-                            .buttonStyle(.bordered)
-                            .tint(.red)
+                            .tint(.blue)
+                            Text("When ON, they can see exactly what triggers you faced and the tools you used to fight them off.")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                            
+                            Divider().background(Color.white.opacity(0.1))
+                            
+                            Toggle(isOn: $shareRelapses) {
+                                Text("Share Relapse Reflections")
+                            }
+                            .tint(.blue)
+                            Text("Note: Your \(accountabilityTerm) will always see your current \"Days of Purity\" count. Turning this ON allows them to read your private \"Begin Again\" recovery notes when a reset occurs.")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
                         }
-                        .padding(.vertical, 4)
-                    } else {
-                        Button {
-                            generateShareLink()
-                        } label: {
-                            Label("Get Link for \(partnerName)", systemImage: "link")
+                        .padding()
+                        .glassCard(cornerRadius: 16)
+                        
+                        // MARK: - Share Link
+                        VStack(alignment: .leading, spacing: 16) {
+                            Text("Share Link")
+                                .font(.headline)
+                            
+                            if let link = shareLink, let url = URL(string: link) {
+                                ShareLink(item: url, subject: Text("Walk with me on PurityHelp"), message: Text("Here is the secure link to my PurityHelp journey dashboard.")) {
+                                    Label("Share my progress link", systemImage: "square.and.arrow.up")
+                                        .font(.headline)
+                                        .frame(maxWidth: .infinity)
+                                        .padding()
+                                        .background(Color.blue)
+                                        .foregroundStyle(.white)
+                                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                                        .shadow(color: .blue.opacity(0.3), radius: 5, y: 2)
+                                }
+                                
+                                Button {
+                                    regenerateLink()
+                                } label: {
+                                    Label("Generate a new link", systemImage: "arrow.triangle.2.circlepath")
+                                        .font(.subheadline)
+                                        .frame(maxWidth: .infinity)
+                                        .padding(.vertical, 8)
+                                        .foregroundStyle(.secondary)
+                                }
+                                
+                            } else {
+                                Button {
+                                    generateShareLink()
+                                } label: {
+                                    Label("Generate Link", systemImage: "link")
+                                        .frame(maxWidth: .infinity)
+                                        .padding()
+                                        .background(Color.blue)
+                                        .foregroundStyle(.white)
+                                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                                }
+                                .disabled(isGeneratingLink)
+                            }
                         }
-                        .disabled(isGeneratingLink || baseURL.isEmpty)
+                        .padding()
+                        .glassCard(cornerRadius: 16)
                     }
-                } header: {
-                    Text("Share Link")
-                } footer: {
-                    Text("Anyone with this link can view your progress summary. Regenerating it will instantly disable the old link.")
-                }
-                
-                Section {
-                    TextField("Server URL", text: $baseURL)
-                        .textInputAutocapitalization(.never)
-                        .keyboardType(.URL)
-                        .onChange(of: baseURL) { _, v in
-                            CloudSyncService.baseURL = v.isEmpty ? nil : v
-                        }
-                } header: {
-                    Text("API Configuration")
-                } footer: {
-                    Text("e.g. https://purity-helper-api.onrender.com (no trailing slash)")
-                }
-
-                Section {
-                    if isLoggedIn {
-                        Button(role: .destructive) {
-                            KeychainHelper.delete(forKey: KeychainHelper.authTokenKey)
-                            isLoggedIn = false
-                        } label: {
-                            Label("Log out", systemImage: "rectangle.portrait.and.arrow.right")
-                        }
-                    } else {
-                        Button {
-                            showAuth = true
-                        } label: {
-                            Label("Create account / Log in", systemImage: "person.crop.circle.badge.plus")
-                        }
-                        .sheet(isPresented: $showAuth) {
-                            CloudAuthView(isLoggedIn: $isLoggedIn)
-                        }
-                    }
-                } footer: {
-                    Text("Accounts are completely optional. Your data backs up safely to the cloud server even if you don't create an account, but logging in allows you to tie that data to a password so you can recover it across devices if you delete the app.")
-                }
-                
-                Section {
-                    Button {
-                        pushFullData()
-                    } label: {
-                        Label("Push library to cloud", systemImage: "arrow.up.doc.fill")
-                    }
-                    .disabled(isSyncing || baseURL.isEmpty)
                     
-                    Button(role: .destructive) {
-                        pullFullData()
-                    } label: {
-                        Label("Pull library from cloud", systemImage: "arrow.down.doc.fill")
-                    }
-                    .disabled(isSyncing || baseURL.isEmpty)
-                    
-                    if let err = syncError {
-                        Text(err)
-                            .foregroundStyle(err.contains("successful") ? .green : .red)
+                    // MARK: - Cloud Backup
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("Secure Your Journey (Cloud Backup)")
+                            .font(.headline)
+                        
+                        Button {
+                            pushFullData()
+                        } label: {
+                            Label("Back up my journey", systemImage: "icloud.and.arrow.up.fill")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                        .disabled(isSyncing)
+                        
+                        Text("We'll save a snapshot of your progress to the secure cloud.")
                             .font(.caption)
+                            .foregroundStyle(.secondary)
+                        
+                        Divider().background(Color.white.opacity(0.1))
+                        
+                        Button {
+                            pullFullData()
+                        } label: {
+                            Label("Restore from backup", systemImage: "arrow.clockwise.icloud.fill")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                        .disabled(isSyncing)
+                        
+                        Text("Retrieve your previous progress. This will replace your current device data with your last saved backup.")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                        
+                        if let err = syncError {
+                            Text(err)
+                                .foregroundStyle(err.contains("successful") ? .green : .red)
+                                .font(.caption)
+                        }
                     }
-                } header: {
-                    Text("Manual Sync")
-                } footer: {
-                    Text("Warning: Pulling from the cloud will completely overwrite all local device data.")
+                    .padding()
+                    .glassCard(cornerRadius: 16)
+                    
+                    // MARK: - Account Access
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("Account")
+                            .font(.headline)
+                        
+                        if isLoggedIn {
+                            Button {
+                                KeychainHelper.delete(forKey: KeychainHelper.authTokenKey)
+                                isLoggedIn = false
+                            } label: {
+                                Text("Sign Out")
+                                    .foregroundStyle(.indigo.opacity(0.8))
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                        } else {
+                            Button {
+                                showAuth = true
+                            } label: {
+                                Label("Create Account / Log In", systemImage: "person.crop.circle.badge.plus")
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                            .sheet(isPresented: $showAuth) {
+                                CloudAuthView(isLoggedIn: $isLoggedIn)
+                            }
+                        }
+                    }
+                    .padding()
+                    .glassCard(cornerRadius: 16)
                 }
+                .padding()
             }
         }
-        .navigationTitle("Partner Sync")
+        .navigationTitle(accountabilityTerm)
+        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            baseURL = CloudSyncService.baseURL ?? "https://purity-helper-api.onrender.com"
+            CloudSyncService.baseURL = "https://purity-helper-api.onrender.com"
             isLoggedIn = KeychainHelper.load(forKey: KeychainHelper.authTokenKey) != nil
-            if syncEnabled && !baseURL.isEmpty {
+            if syncEnabled {
                 generateShareLink()
             }
         }
     }
 
     private func pushFullData() {
-        guard !baseURL.isEmpty else {
-            syncError = "Set base URL first."
-            return
-        }
-        CloudSyncService.baseURL = baseURL.isEmpty ? nil : baseURL
+        CloudSyncService.baseURL = "https://purity-helper-api.onrender.com"
         isSyncing = true
         syncError = nil
         do {
@@ -197,6 +254,23 @@ struct CloudSyncSettingsView: View {
             // Apply Privacy Controls
             if !shareExamens {
                 fullModels.examenEntries = []
+            }
+            if !shareUrges {
+                fullModels.urgeLogs = fullModels.urgeLogs.map { log in
+                    var safeLog = log
+                    safeLog.replaceActivityUsed = nil
+                    safeLog.quickActionUsed = nil
+                    safeLog.optionalNote = nil
+                    return safeLog
+                }
+            }
+            if !shareRelapses {
+                fullModels.resetRecords = fullModels.resetRecords.map { reset in
+                    var safeReset = reset
+                    safeReset.optionalNote = nil
+                    safeReset.triggerTag = nil
+                    return safeReset
+                }
             }
             
             let r = streakRecord
@@ -226,11 +300,7 @@ struct CloudSyncSettingsView: View {
     }
 
     private func pullFullData() {
-        guard !baseURL.isEmpty else {
-            syncError = "Set base URL first."
-            return
-        }
-        CloudSyncService.baseURL = baseURL.isEmpty ? nil : baseURL
+        CloudSyncService.baseURL = "https://purity-helper-api.onrender.com"
         isSyncing = true
         syncError = nil
         
@@ -256,8 +326,7 @@ struct CloudSyncSettingsView: View {
     }
 
     private func generateShareLink() {
-        guard !baseURL.isEmpty else { return }
-        CloudSyncService.baseURL = baseURL
+        CloudSyncService.baseURL = "https://purity-helper-api.onrender.com"
         isGeneratingLink = true
         CloudSyncService.createShareLink { result in
             isGeneratingLink = false
