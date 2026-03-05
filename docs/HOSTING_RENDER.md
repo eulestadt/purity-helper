@@ -8,7 +8,7 @@ This guide walks through hosting the **optional** Purity Help backend on [Render
 
 - A **PostgreSQL** database on Render (stores users, sync payloads, share tokens).
 - A **Web Service** (Node.js) that serves the API (auth, sync, share).
-- A public HTTPS URL (e.g. `https://purity-help-api.onrender.com`) that you enter in the app under **Settings → Cloud sync → API base URL**.
+- A public HTTPS URL (e.g. `https://purity-helper-api.onrender.com`) that you enter in the app under **Settings → Cloud sync → API base URL**.
 
 ---
 
@@ -33,7 +33,7 @@ This guide walks through hosting the **optional** Purity Help backend on [Render
 5. Wait until the instance is **Available**.
 6. Open the database and go to the **Info** tab.
 7. Copy **Internal Database URL** (use this when the API runs on Render).  
-postgresql://purity_help_db_user:5mS6GGZVcCChKmAc5YSkSWMhYYMMmXA3@dpg-d6kd36fkijhs73ffqdag-a/purity_help_db
+
 
 
    If you ever run the API outside Render, use **External Database URL** instead.  
@@ -61,7 +61,7 @@ When you deploy the Web Service in Step 3, the server will automatically check i
 
    | Field | Value |
    |-------|--------|
-   | **Name** | e.g. `purity-help-api` |
+   | **Name** | e.g. `purity-helper-api` |
    | **Region** | Same as (or near) your PostgreSQL for lower latency. |
    | **Root Directory** | `backend` — **important**: set this if your repo root is the iOS app. Leave blank if the repo root is already the backend. |
    | **Runtime** | Node |
@@ -80,7 +80,7 @@ When you deploy the Web Service in Step 3, the server will automatically check i
 
 5. Click **Create Web Service**. Render will clone the repo, run `npm install` in `backend/`, then `npm start`.
 
-6. After the first deploy, note the service URL (e.g. `https://purity-help-api.onrender.com`). If you didn’t set `BASE_URL` yet, go to **Environment** → edit `BASE_URL` → set it to that URL (no trailing slash) → Save. Redeploy if needed.
+6. After the first deploy, note the service URL (e.g. `https://purity-helper-api.onrender.com`). If you didn’t set `BASE_URL` yet, go to **Environment** → edit `BASE_URL` → set it to that URL (no trailing slash) → Save. Redeploy if needed.
 
 ---
 
@@ -90,7 +90,7 @@ When you deploy the Web Service in Step 3, the server will automatically check i
 2. Open in a browser or with `curl`:
 
    ```bash
-   curl https://YOUR-SERVICE-NAME.onrender.com/health
+   curl https://purity-helper-api.onrender.com/health
    ```
 
    You should see: `{"ok":true}`.
@@ -104,7 +104,7 @@ If you get 503 or connection errors, wait a minute (free tier may be spinning up
 1. On the device or simulator, open **Purity Help** → **Settings** → **Cloud sync (optional)**.
 2. Turn **Sync to cloud** on.
 3. In **API base URL**, enter your Web Service URL **with no trailing slash**, e.g.:
-   - `https://purity-help-api.onrender.com`
+   - `https://purity-helper-api.onrender.com`
 4. Save. The app will use `{baseUrl}/sync`, `{baseUrl}/me`, `{baseUrl}/share`, and the auth endpoints.
 
 Users can optionally **Create account / Log in** so their data can be restored after reinstall via **GET /me**.
@@ -153,7 +153,7 @@ Users can optionally **Create account / Log in** so their data can be restored a
   - Normal for signup with an existing email; use login instead.
 
 - **Share link returns 404 or wrong host**  
-  - Set `BASE_URL` to the exact Web Service URL (e.g. `https://purity-help-api.onrender.com`) and redeploy.
+  - Set `BASE_URL` to the exact Web Service URL (e.g. `https://purity-helper-api.onrender.com`) and redeploy.
 
 ---
 
