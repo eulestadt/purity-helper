@@ -32,6 +32,16 @@ struct UrgeInsightsView: View {
         let count: Int
     }
     
+    private struct DayActionKey: Hashable {
+        let date: Date
+        let action: String
+    }
+    
+    private struct HourActionKey: Hashable {
+        let hour: Int
+        let action: String
+    }
+    
     private var chartData: [AggregatedData] {
         var data: [AggregatedData] = []
         let calendar = Calendar.current
@@ -43,26 +53,26 @@ struct UrgeInsightsView: View {
             guard let twoWeeksAgo = calendar.date(byAdding: .day, value: -13, to: today) else { return [] }
             
             let filteredLogs = logs.filter { $0.date >= twoWeeksAgo }
-            let groupedByDayAndAction = Dictionary(grouping: filteredLogs) { log -> (Date, String) in
+            let groupedByDayAndAction = Dictionary(grouping: filteredLogs) { log -> DayActionKey in
                 let day = calendar.startOfDay(for: log.date)
                 let action = log.quickActionUsed ?? log.replaceActivityUsed ?? "Held Firm"
-                return (day, action)
+                return DayActionKey(date: day, action: action)
             }
             
-            for ((day, action), logs) in groupedByDayAndAction {
-                data.append(AggregatedData(date: day, hour: nil, action: action, count: logs.count))
+            for (key, logs) in groupedByDayAndAction {
+                data.append(AggregatedData(date: key.date, hour: nil, action: key.action, count: logs.count))
             }
             
         case .hours:
             // Aggregate over 24 hours
-            let groupedByHourAndAction = Dictionary(grouping: logs) { log -> (Int, String) in
+            let groupedByHourAndAction = Dictionary(grouping: logs) { log -> HourActionKey in
                 let hour = calendar.component(.hour, from: log.date)
                 let action = log.quickActionUsed ?? log.replaceActivityUsed ?? "Held Firm"
-                return (hour, action)
+                return HourActionKey(hour: hour, action: action)
             }
             
-            for ((hour, action), logs) in groupedByHourAndAction {
-                data.append(AggregatedData(date: nil, hour: hour, action: action, count: logs.count))
+            for (key, logs) in groupedByHourAndAction {
+                data.append(AggregatedData(date: nil, hour: key.hour, action: key.action, count: logs.count))
             }
         }
         

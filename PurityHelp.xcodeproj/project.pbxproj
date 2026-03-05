@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -122,7 +122,7 @@
 		C302A35708601BD6197AF4FC /* stories.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stories.json; sourceTree = "<group>"; };
 		C9883B1E685C99CCA0AD5978 /* AddVerseSearchSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVerseSearchSheet.swift; sourceTree = "<group>"; };
 		CA9B605C52ACB91726FD730B /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
-		CAB90357455875198B30E482 /* PurityHelp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = PurityHelp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAB90357455875198B30E482 /* PurityHelp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PurityHelp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDE81B404C400168C6436037 /* AntirrhetikosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntirrhetikosView.swift; sourceTree = "<group>"; };
 		CDF44F3127ABDC9E81C107BB /* ResetRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetRecord.swift; sourceTree = "<group>"; };
 		D0E60032B79A848CEDD89C1D /* daily_scripture.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = daily_scripture.json; sourceTree = "<group>"; };
@@ -423,7 +423,6 @@
 			);
 			mainGroup = C2896707B2CF49CABE2C1077;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -525,10 +524,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DERIVED_FILE_DIR = "$(TEMP_DIR)/DerivedSources";
+				DEVELOPMENT_TEAM = Y9T4RA62V7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIBackgroundModes = (
-					"remote-notification",
-				);
+				INFOPLIST_KEY_UIBackgroundModes = "remote-notification";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -553,10 +551,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DERIVED_FILE_DIR = "$(TEMP_DIR)/DerivedSources";
+				DEVELOPMENT_TEAM = Y9T4RA62V7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIBackgroundModes = (
-					"remote-notification",
-				);
+				INFOPLIST_KEY_UIBackgroundModes = "remote-notification";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
