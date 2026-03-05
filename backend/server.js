@@ -291,6 +291,53 @@ app.get('/share/:token', async (req, res) => {
       margin-top: 40px;
       opacity: 0.6;
     }
+    .list-section {
+      margin-top: 40px;
+    }
+    .list-header {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--text);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 8px;
+    }
+    .item-card {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+      text-align: left;
+    }
+    .item-date {
+      font-size: 12px;
+      color: var(--secondary-text);
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+    .item-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .item-body {
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.5;
+      margin-top: 8px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .badge-success { background: rgba(50,215,75,0.2); color: var(--success); }
+    .badge-danger { background: rgba(255,69,58,0.2); color: var(--danger); }
+    .badge-accent { background: rgba(10,132,255,0.2); color: var(--accent); }
   </style>
 </head>
 <body>
@@ -330,6 +377,49 @@ app.get('/share/:token', async (req, res) => {
       </div>
       ` : ''}
     </div>
+
+    ${payload.models?.urgeLogs?.length > 0 ? `
+    <div class="list-section">
+      <div class="list-header">Recent Urge Data</div>
+      ${payload.models.urgeLogs
+        .sort((a, b) => b.date - a.date)
+        .slice(0, 10)
+        .map(log => {
+          const d = new Date(log.date * 1000).toLocaleString(undefined, { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+          const outcomeBadge = log.outcome === 'defeated_urges' ? '<span class="badge badge-success">Defeated</span>' : '<span class="badge badge-danger">Relapsed</span>';
+          return `
+          <div class="item-card">
+            <div class="item-date">${d}</div>
+            <div class="item-title">${escapeHtml(log.replaceActivityUsed || log.quickActionUsed || 'Fought Urge')} ${outcomeBadge}</div>
+            ${log.optionalNote ? `<div class="item-body"><em>"${escapeHtml(log.optionalNote)}"</em></div>` : ''}
+          </div>
+          `;
+        }).join('')}
+    </div>
+    ` : ''}
+
+    ${payload.models?.examenEntries?.length > 0 ? `
+    <div class="list-section">
+      <div class="list-header">Daily Examens</div>
+      ${payload.models.examenEntries
+        .sort((a, b) => b.date - a.date)
+        .slice(0, 7)
+        .map(entry => {
+          const d = new Date(entry.date * 1000).toLocaleString(undefined, { weekday: 'long', month: 'short', day: 'numeric' });
+          let bodyHtml = '';
+          if (entry.howWasToday) bodyHtml += `<strong>How was today?</strong><br>${escapeHtml(entry.howWasToday)}<br><br>`;
+          if (entry.step1Thanks) bodyHtml += `<strong>Gratitude</strong><br>${escapeHtml(entry.step1Thanks)}<br><br>`;
+          if (entry.step5Resolve) bodyHtml += `<strong>Resolve</strong><br>${escapeHtml(entry.step5Resolve)}`;
+
+          return `
+          <div class="item-card">
+            <div class="item-date">${d}</div>
+            <div class="item-body">${bodyHtml}</div>
+          </div>
+          `;
+        }).join('')}
+    </div>
+    ` : ''}
     
     <div class="footer">
       Last synced: ${escapeHtml(payload.lastUpdated) || 'Never'}
@@ -347,10 +437,10 @@ async function init() {
     // Check if the users table exists. If not, auto-run the schema.
     const checkRes = await pool.query(`
       SELECT EXISTS(
-    SELECT FROM information_schema.tables 
+                  SELECT FROM information_schema.tables 
         WHERE table_schema = 'public' 
         AND table_name = 'users'
-  );
+                );
   `);
 
     if (!checkRes.rows[0].exists) {

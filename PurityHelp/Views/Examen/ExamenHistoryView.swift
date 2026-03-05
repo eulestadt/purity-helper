@@ -10,6 +10,7 @@ import SwiftData
 
 struct ExamenHistoryView: View {
     @Query(sort: \ExamenEntry.date, order: .reverse) private var entries: [ExamenEntry]
+    @State private var selectedEntry: ExamenEntry?
 
     var body: some View {
         ZStack {
@@ -17,7 +18,9 @@ struct ExamenHistoryView: View {
             ScrollView {
                 VStack(spacing: 16) {
                     ForEach(entries) { entry in
-                        NavigationLink(destination: ExamenEntryDetailView(entry: entry)) {
+                        Button {
+                            selectedEntry = entry
+                        } label: {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(entry.date.formatted(date: .abbreviated, time: .omitted))
                                     .font(.headline)
@@ -45,11 +48,15 @@ struct ExamenHistoryView: View {
             }
         }
         .navigationTitle("Past examens")
+        .sheet(item: $selectedEntry) { entry in
+            ExamenEntryDetailView(entry: entry)
+        }
     }
 }
 
 struct ExamenEntryDetailView: View {
     let entry: ExamenEntry
+    @Environment(\.dismiss) private var dismiss
 
     private let stepLabels = ["Give thanks", "Ask for light", "Examine the day", "Seek forgiveness", "Resolve to change"]
 
@@ -59,9 +66,15 @@ struct ExamenEntryDetailView: View {
             
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
-                    Text(entry.date.formatted(date: .long, time: .shortened))
-                        .font(.caption.weight(.semibold))
-                        .foregroundStyle(.secondary)
+                    HStack {
+                        Text(entry.date.formatted(date: .long, time: .shortened))
+                            .font(.headline.weight(.bold))
+                            .foregroundStyle(.primary)
+                        Spacer()
+                        Button("Done") { dismiss() }
+                            .buttonStyle(.bordered)
+                            .buttonBorderShape(.capsule)
+                    }
 
                     if let how = entry.howWasToday, !how.isEmpty {
                         Text("How was today?")
@@ -95,7 +108,8 @@ struct ExamenEntryDetailView: View {
                 .padding()
             }
         }
-        .navigationTitle("Examen")
+        .presentationDetents([.medium, .large])
+        .presentationDragIndicator(.visible)
     }
 
     private func stepText(for index: Int) -> String? {

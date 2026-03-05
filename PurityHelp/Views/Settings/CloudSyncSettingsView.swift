@@ -15,6 +15,9 @@ struct CloudSyncSettingsView: View {
     @Query private var urgeLogs: [UrgeLog]
 
     @AppStorage("cloudSyncEnabled") private var syncEnabled = false
+    @AppStorage("partnerName") private var partnerName = "Partner"
+    @AppStorage("shareExamens") private var shareExamens = false
+    
     @State private var baseURL: String = ""
     @State private var shareLink: String?
     @State private var syncError: String?
@@ -28,36 +31,132 @@ struct CloudSyncSettingsView: View {
     var body: some View {
         Form {
             Section {
-                Toggle("Partner Sharing (Web Portal)", isOn: $syncEnabled)
-                    .onChange(of: syncEnabled) { _, on in
-                        if on { pushFullData() }
-                    }
+                Toggle(isOn: $syncEnabled) {
+                    Label("Enable Partner Sync", systemImage: "person.2.fill")
+                }
+                .onChange(of: syncEnabled) { _, on in
+                    if on { pushFullData() }
+                }
+                
+                if syncEnabled {
+                    TextField("Partner's Name (e.g. John)", text: $partnerName)
+                        .textInputAutocapitalization(.words)
+                }
             } header: {
-                Text("Partner Sharing")
+                Text("Accountability Partner")
             } footer: {
-                Text("Optional. Only turn this on if you want to share your progress via a web link.")
+                if syncEnabled {
+                    Text("We'll use this name throughout the app.")
+                } else {
+                    Text("Turn this on to share your progress via a secure web link.")
+                }
             }
 
             if syncEnabled {
                 Section {
-                    TextField("API base URL", text: $baseURL)
+                    Toggle(isOn: $shareExamens) {
+                        Label("Share Daily Examens", systemImage: "lock.open.fill")
+                    }
+                } header: {
+                    Text("Privacy Controls")
+                } footer: {
+                    Text("When ON, your private Daily Examen reflections will be uploaded and visible on the Share Link portal.")
+                }
+                
+                Section {
+                    if let link = shareLink {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Your secure link:")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                            Text(link)
+                                .font(.callout)
+                                .lineLimit(2)
+                                .textSelection(.enabled)
+                        }
+                        .padding(.vertical, 4)
+                        
+                        HStack(spacing: 12) {
+                            Button {
+                                UIPasteboard.general.string = link
+                            } label: {
+                                Label("Copy", systemImage: "doc.on.doc")
+                                    .frame(maxWidth: .infinity)
+                            }
+                            .buttonStyle(.bordered)
+                            .tint(.blue)
+                            
+                            Button {
+                                regenerateLink()
+                            } label: {
+                                Label("Regenerate", systemImage: "arrow.2.squarepath")
+                                    .frame(maxWidth: .infinity)
+                            }
+                            .buttonStyle(.bordered)
+                            .tint(.red)
+                        }
+                        .padding(.vertical, 4)
+                    } else {
+                        Button {
+                            generateShareLink()
+                        } label: {
+                            Label("Get Link for \(partnerName)", systemImage: "link")
+                        }
+                        .disabled(isGeneratingLink || baseURL.isEmpty)
+                    }
+                } header: {
+                    Text("Share Link")
+                } footer: {
+                    Text("Anyone with this link can view your progress summary. Regenerating it will instantly disable the old link.")
+                }
+                
+                Section {
+                    TextField("Server URL", text: $baseURL)
                         .textInputAutocapitalization(.never)
                         .keyboardType(.URL)
                         .onChange(of: baseURL) { _, v in
                             CloudSyncService.baseURL = v.isEmpty ? nil : v
                         }
+                } header: {
+                    Text("API Configuration")
                 } footer: {
-                    Text("e.g. https://your-api.onrender.com (no trailing slash)")
+                    Text("e.g. https://purity-helper-api.onrender.com (no trailing slash)")
                 }
 
                 Section {
-                    Button("Push full library to Cloud") {
+                    if isLoggedIn {
+                        Button(role: .destructive) {
+                            KeychainHelper.delete(forKey: KeychainHelper.authTokenKey)
+                            isLoggedIn = false
+                        } label: {
+                            Label("Log out", systemImage: "rectangle.portrait.and.arrow.right")
+                        }
+                    } else {
+                        Button {
+                            showAuth = true
+                        } label: {
+                            Label("Create account / Log in", systemImage: "person.crop.circle.badge.plus")
+                        }
+                        .sheet(isPresented: $showAuth) {
+                            CloudAuthView(isLoggedIn: $isLoggedIn)
+                        }
+                    }
+                } footer: {
+                    Text("Accounts are completely optional. Your data backs up safely to the cloud server even if you don't create an account, but logging in allows you to tie that data to a password so you can recover it across devices if you delete the app.")
+                }
+                
+                Section {
+                    Button {
                         pushFullData()
+                    } label: {
+                        Label("Push library to cloud", systemImage: "arrow.up.doc.fill")
                     }
                     .disabled(isSyncing || baseURL.isEmpty)
                     
-                    Button("Pull full library from Cloud") {
+                    Button(role: .destructive) {
                         pullFullData()
+                    } label: {
+                        Label("Pull library from cloud", systemImage: "arrow.down.doc.fill")
                     }
                     .disabled(isSyncing || baseURL.isEmpty)
                     
@@ -66,62 +165,14 @@ struct CloudSyncSettingsView: View {
                             .foregroundStyle(err.contains("successful") ? .green : .red)
                             .font(.caption)
                     }
-                } footer: {
-                    Text("Pulling from cloud will completely overwrite local device data.")
-                }
-
-                Section {
-                    if isLoggedIn {
-                        Button("Log out", role: .destructive) {
-                            KeychainHelper.delete(forKey: KeychainHelper.authTokenKey)
-                            isLoggedIn = false
-                        }
-                    } else {
-                        Button("Create account / Log in") {
-                            showAuth = true
-                        }
-                        .sheet(isPresented: $showAuth) {
-                            CloudAuthView(isLoggedIn: $isLoggedIn)
-                        }
-                    }
-                } footer: {
-                    Text("Create account to recover your progress if you reinstall. Optional—sync works without an account.")
-                }
-
-                Section {
-                    Text("Share your progress with someone.")
-                        .font(.subheadline)
-                    Text("Anyone with this link can view your progress summary. Only share it with someone you trust. They can open it in the app or in a browser.")
-                        .font(.caption)
-                        
-                    if let link = shareLink {
-                        Text(link)
-                            .font(.caption)
-                            .lineLimit(2)
-                        HStack {
-                            Button("Copy link") {
-                                UIPasteboard.general.string = link
-                            }
-                            .buttonStyle(.bordered)
-                            Button("Regenerate link") {
-                                regenerateLink()
-                            }
-                            .buttonStyle(.bordered)
-                        }
-                    } else {
-                        Button("Get link for your partner") {
-                            generateShareLink()
-                        }
-                        .disabled(isGeneratingLink || baseURL.isEmpty)
-                    }
                 } header: {
-                    Text("Link for your partner")
+                    Text("Manual Sync")
                 } footer: {
-                    Text("Regenerate creates a new link; the old link will stop working.")
+                    Text("Warning: Pulling from the cloud will completely overwrite all local device data.")
                 }
             }
         }
-        .navigationTitle("Cloud sync")
+        .navigationTitle("Partner Sync")
         .onAppear {
             baseURL = CloudSyncService.baseURL ?? "https://purity-helper-api.onrender.com"
             isLoggedIn = KeychainHelper.load(forKey: KeychainHelper.authTokenKey) != nil
@@ -141,7 +192,12 @@ struct CloudSyncSettingsView: View {
         syncError = nil
         do {
             let engine = FullSyncEngine(context: modelContext)
-            let fullModels = try engine.exportFullData()
+            var fullModels = try engine.exportFullData()
+            
+            // Apply Privacy Controls
+            if !shareExamens {
+                fullModels.examenEntries = []
+            }
             
             let r = streakRecord
             let minutesPerDay = UserDefaults.standard.object(forKey: "minutesPerDayReclaimed") as? Int ?? 30

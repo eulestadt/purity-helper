@@ -51,7 +51,12 @@ final class BibleAPIService {
             // Handle exact reference results (passages) FIRST
             if let passages = searchResult.data.passages, !passages.isEmpty {
                 let passageResults = passages.map { passageResponse -> ScriptureVerse in
-                    let noNumbers = passageResponse.content.replacingOccurrences(of: "<span[^>]*class=\"v\"[^>]*>.*?</span>", with: "", options: .regularExpression)
+                    let noHeaders = passageResponse.content
+                        .replacingOccurrences(of: "<p class=\"s.+?>.*?</p>", with: "", options: .regularExpression)
+                        .replacingOccurrences(of: "<div class=\"s.+?>.*?</div>", with: "", options: .regularExpression)
+                    
+                    let noNumbers = noHeaders.replacingOccurrences(of: "<span[^>]*class=\"v\"[^>]*>.*?</span>", with: "", options: .regularExpression)
+                    
                     let cleanText = noNumbers
                         .replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
                         .replacingOccurrences(of: "&#182;", with: "")
@@ -75,7 +80,12 @@ final class BibleAPIService {
             // Handle keyword search results (verses) if no exact passage was found
             if let verses = searchResult.data.verses {
                 let verseResults = verses.map { verseResponse -> ScriptureVerse in
-                    let noNumbers = verseResponse.text.replacingOccurrences(of: "<span[^>]*class=\"v\"[^>]*>.*?</span>", with: "", options: .regularExpression)
+                    let noHeaders = verseResponse.text
+                        .replacingOccurrences(of: "<p class=\"s.+?>.*?</p>", with: "", options: .regularExpression)
+                        .replacingOccurrences(of: "<div class=\"s.+?>.*?</div>", with: "", options: .regularExpression)
+                        
+                    let noNumbers = noHeaders.replacingOccurrences(of: "<span[^>]*class=\"v\"[^>]*>.*?</span>", with: "", options: .regularExpression)
+                    
                     let cleanText = noNumbers
                         .replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
                         .replacingOccurrences(of: "&#182;", with: "")
