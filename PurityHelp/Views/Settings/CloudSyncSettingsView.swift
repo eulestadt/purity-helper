@@ -29,7 +29,7 @@ struct CloudSyncSettingsView: View {
             Section {
                 Toggle("Partner Sharing (Web Portal)", isOn: $syncEnabled)
                     .onChange(of: syncEnabled) { _, on in
-                        if on { triggerSync() }
+                        if on { pushFullData() }
                     }
             } header: {
                 Text("Partner Sharing")
@@ -50,15 +50,23 @@ struct CloudSyncSettingsView: View {
                 }
 
                 Section {
-                    Button("Sync now") {
-                        triggerSync()
+                    Button("Push full library to Cloud") {
+                        pushFullData()
                     }
                     .disabled(isSyncing || baseURL.isEmpty)
+                    
+                    Button("Pull full library from Cloud") {
+                        pullFullData()
+                    }
+                    .disabled(isSyncing || baseURL.isEmpty)
+                    
                     if let err = syncError {
                         Text(err)
-                            .foregroundStyle(.red)
+                            .foregroundStyle(err.contains("successful") ? .green : .red)
                             .font(.caption)
                     }
+                } footer: {
+                    Text("Pulling from cloud will completely overwrite local device data.")
                 }
 
                 Section {
@@ -114,29 +122,70 @@ struct CloudSyncSettingsView: View {
         }
     }
 
-    private func triggerSync() {
-        guard let r = streakRecord, !baseURL.isEmpty else {
+    private func pushFullData() {
+        guard !baseURL.isEmpty else {
             syncError = "Set base URL first."
             return
         }
         CloudSyncService.baseURL = baseURL.isEmpty ? nil : baseURL
         isSyncing = true
         syncError = nil
-        let minutesPerDay = UserDefaults.standard.object(forKey: "minutesPerDayReclaimed") as? Int ?? 30
-        let hours = (r.effectiveBehavioralStreak * minutesPerDay) / 60
-        let payload = CloudSyncService.buildPayload(
-            pornographyDays: r.pornographyStreakDays,
-            masturbationDays: r.masturbationStreakDays,
-            pureThoughtsDays: r.pureThoughtsStreakDays,
-            pureThoughtsEnabled: r.pureThoughtsEnabled,
-            urgeCount: urgeLogs.count,
-            hoursReclaimed: hours > 0 ? hours : nil
-        )
-        CloudSyncService.sync(payload: payload) { result in
+        do {
+            let engine = FullSyncEngine(context: modelContext)
+            let fullModels = try engine.exportFullData()
+            
+            let r = streakRecord
+            let minutesPerDay = UserDefaults.standard.object(forKey: "minutesPerDayReclaimed") as? Int ?? 30
+            let hours = ((r?.effectiveBehavioralStreak ?? 0) * minutesPerDay) / 60
+            
+            let payload = CloudSyncService.buildPayload(
+                pornographyDays: r?.pornographyStreakDays ?? 0,
+                masturbationDays: r?.masturbationStreakDays ?? 0,
+                pureThoughtsDays: r?.pureThoughtsStreakDays ?? 0,
+                pureThoughtsEnabled: r?.pureThoughtsEnabled ?? false,
+                urgeCount: urgeLogs.count,
+                hoursReclaimed: hours > 0 ? hours : nil,
+                fullModels: fullModels
+            )
+            CloudSyncService.sync(payload: payload) { result in
+                isSyncing = false
+                switch result {
+                case .success: syncError = "Push successful!"
+                case .failure(let e): syncError = e.localizedDescription
+                }
+            }
+        } catch {
+            isSyncing = false
+            syncError = "Export failed: \(error.localizedDescription)"
+        }
+    }
+
+    private func pullFullData() {
+        guard !baseURL.isEmpty else {
+            syncError = "Set base URL first."
+            return
+        }
+        CloudSyncService.baseURL = baseURL.isEmpty ? nil : baseURL
+        isSyncing = true
+        syncError = nil
+        
+        CloudSyncService.fetchMe { result in
             isSyncing = false
             switch result {
-            case .success: syncError = nil
-            case .failure(let e): syncError = e.localizedDescription
+            case .success(let payload):
+                if let models = payload.models {
+                    do {
+                        let engine = FullSyncEngine(context: modelContext)
+                        try engine.importFullData(models)
+                        syncError = "Pull successful!"
+                    } catch {
+                        syncError = "Import failed: \(error.localizedDescription)"
+                    }
+                } else {
+                    syncError = "No full data found on server."
+                }
+            case .failure(let e):
+                syncError = e.localizedDescription
             }
         }
     }
