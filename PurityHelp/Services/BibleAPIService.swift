@@ -54,11 +54,19 @@ final class BibleAPIService {
                     let noNumbers = passageResponse.content.replacingOccurrences(of: "<span[^>]*class=\"v\"[^>]*>.*?</span>", with: "", options: .regularExpression)
                     let cleanText = noNumbers
                         .replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
+                        .replacingOccurrences(of: "&#182;", with: "")
+                        .replacingOccurrences(of: "¶", with: "")
                         .replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
                         .trimmingCharacters(in: .whitespacesAndNewlines)
                     return ScriptureVerse(id: passageResponse.id, reference: passageResponse.reference, text: cleanText, translation: translationName)
                 }
-                results.append(contentsOf: passageResults)
+                
+                // Deduplicate passages by text to prevent the API returning 4 of the same verse
+                for passage in passageResults {
+                    if !results.contains(where: { $0.text == passage.text }) {
+                        results.append(passage)
+                    }
+                }
                 
                 // If we found an exact passage, return immediately to ignore fuzzy keyword matches
                 return results
@@ -70,11 +78,19 @@ final class BibleAPIService {
                     let noNumbers = verseResponse.text.replacingOccurrences(of: "<span[^>]*class=\"v\"[^>]*>.*?</span>", with: "", options: .regularExpression)
                     let cleanText = noNumbers
                         .replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
+                        .replacingOccurrences(of: "&#182;", with: "")
+                        .replacingOccurrences(of: "¶", with: "")
                         .replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
                         .trimmingCharacters(in: .whitespacesAndNewlines)
                     return ScriptureVerse(id: verseResponse.id, reference: verseResponse.reference, text: cleanText, translation: translationName)
                 }
-                results.append(contentsOf: verseResults)
+                
+                // Deduplicate verses by text
+                for verse in verseResults {
+                    if !results.contains(where: { $0.text == verse.text }) {
+                        results.append(verse)
+                    }
+                }
             }
             
             return results
