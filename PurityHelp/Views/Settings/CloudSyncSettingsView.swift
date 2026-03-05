@@ -19,6 +19,7 @@ struct CloudSyncSettingsView: View {
     @State private var shareLink: String?
     @State private var syncError: String?
     @State private var showAuth = false
+    @State private var isLoggedIn = false
     @State private var isSyncing = false
     @State private var isGeneratingLink = false
 
@@ -70,11 +71,18 @@ struct CloudSyncSettingsView: View {
                 }
 
                 Section {
-                    Button("Create account / Log in") {
-                        showAuth = true
-                    }
-                    .sheet(isPresented: $showAuth) {
-                        CloudAuthView()
+                    if isLoggedIn {
+                        Button("Log out", role: .destructive) {
+                            KeychainHelper.delete(forKey: KeychainHelper.authTokenKey)
+                            isLoggedIn = false
+                        }
+                    } else {
+                        Button("Create account / Log in") {
+                            showAuth = true
+                        }
+                        .sheet(isPresented: $showAuth) {
+                            CloudAuthView()
+                        }
                     }
                 } footer: {
                     Text("Create account to recover your progress if you reinstall. Optional—sync works without an account.")
@@ -116,8 +124,14 @@ struct CloudSyncSettingsView: View {
         .navigationTitle("Cloud sync")
         .onAppear {
             baseURL = CloudSyncService.baseURL ?? "https://purity-helper-api.onrender.com"
+            isLoggedIn = KeychainHelper.load(forKey: KeychainHelper.authTokenKey) != nil
             if syncEnabled && !baseURL.isEmpty {
                 generateShareLink()
+            }
+        }
+        .onChange(of: showAuth) { _, isShowing in
+            if !isShowing {
+                isLoggedIn = KeychainHelper.load(forKey: KeychainHelper.authTokenKey) != nil
             }
         }
     }
