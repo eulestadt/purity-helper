@@ -84,7 +84,10 @@ struct AddIfThenPlanView: View {
             .navigationTitle("New plan")
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
+                    Button(action: { dismiss() }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundStyle(.secondary)
+                    }
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {

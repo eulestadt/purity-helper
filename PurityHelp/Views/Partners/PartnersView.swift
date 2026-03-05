@@ -98,7 +98,10 @@ struct PartnersView: View {
             .navigationTitle("Add partner")
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { showAddPartner = false }
+                    Button(action: { showAddPartner = false }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundStyle(.secondary)
+                    }
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Add") {

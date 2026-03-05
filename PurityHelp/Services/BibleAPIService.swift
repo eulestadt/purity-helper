@@ -48,7 +48,23 @@ final class BibleAPIService {
             
             var results: [ScriptureVerse] = []
             
-            // Handle keyword search results (verses)
+            // Handle exact reference results (passages) FIRST
+            if let passages = searchResult.data.passages, !passages.isEmpty {
+                let passageResults = passages.map { passageResponse -> ScriptureVerse in
+                    let noNumbers = passageResponse.content.replacingOccurrences(of: "<span[^>]*class=\"v\"[^>]*>.*?</span>", with: "", options: .regularExpression)
+                    let cleanText = noNumbers
+                        .replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
+                        .replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
+                        .trimmingCharacters(in: .whitespacesAndNewlines)
+                    return ScriptureVerse(id: passageResponse.id, reference: passageResponse.reference, text: cleanText, translation: translationName)
+                }
+                results.append(contentsOf: passageResults)
+                
+                // If we found an exact passage, return immediately to ignore fuzzy keyword matches
+                return results
+            }
+            
+            // Handle keyword search results (verses) if no exact passage was found
             if let verses = searchResult.data.verses {
                 let verseResults = verses.map { verseResponse -> ScriptureVerse in
                     let noNumbers = verseResponse.text.replacingOccurrences(of: "<span[^>]*class=\"v\"[^>]*>.*?</span>", with: "", options: .regularExpression)
@@ -59,19 +75,6 @@ final class BibleAPIService {
                     return ScriptureVerse(id: verseResponse.id, reference: verseResponse.reference, text: cleanText, translation: translationName)
                 }
                 results.append(contentsOf: verseResults)
-            }
-            
-            // Handle exact reference results (passages)
-            if let passages = searchResult.data.passages {
-                let passageResults = passages.map { passageResponse -> ScriptureVerse in
-                    let noNumbers = passageResponse.content.replacingOccurrences(of: "<span[^>]*class=\"v\"[^>]*>.*?</span>", with: "", options: .regularExpression)
-                    let cleanText = noNumbers
-                        .replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
-                        .replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
-                        .trimmingCharacters(in: .whitespacesAndNewlines)
-                    return ScriptureVerse(id: passageResponse.id, reference: passageResponse.reference, text: cleanText, translation: translationName)
-                }
-                results.append(contentsOf: passageResults)
             }
             
             return results
