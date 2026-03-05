@@ -28,7 +28,8 @@ struct SettingsView: View {
                 PurityBackground()
                 Form {
                     Section {
-                        NavigationLink("Personal mission / Why", destination: MissionView())
+                        NavigationLink("My Anchor", destination: MissionView())
+                        NavigationLink("If–Then plans", destination: IfThenPlansView())
                     } header: {
                         Text("Mission")
                     }
@@ -88,10 +89,7 @@ struct SettingsView: View {
                 }
 
                 Section {
-                    NavigationLink("Cloud sync (optional)", destination: CloudSyncSettingsView())
-                    NavigationLink("Partners", destination: PartnersView())
-                    NavigationLink("If–Then plans", destination: IfThenPlansView())
-                    NavigationLink("Shareable progress", destination: ShareableProgressView())
+                    NavigationLink("Walking Together", destination: CloudSyncSettingsView())
                 }
 
                 Section {

@@ -389,7 +389,7 @@ app.get('/share/:token', async (req, res) => {
         .slice(0, 10)
         .map(log => {
           const d = new Date(log.date * 1000).toLocaleString(undefined, { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
-          const outcomeBadge = log.outcome === 'defeated_urges' ? '<span class="badge badge-success">Defeated</span>' : '<span class="badge badge-danger">Relapsed</span>';
+          const outcomeBadge = '<span class="badge badge-success">Defeated</span>';
           return `
           <div class="item-card">
             <div class="item-date">${d}</div>

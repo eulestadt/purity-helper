@@ -16,6 +16,7 @@ struct CloudSyncSettingsView: View {
 
     @AppStorage("cloudSyncEnabled") private var syncEnabled = false
     @AppStorage("accountabilityTerm") private var accountabilityTerm = "Brotherhood"
+    private var partnersLabel: String { accountabilityTerm == "Brotherhood" ? "Brothers" : (accountabilityTerm == "Sisterhood" ? "Sisters" : "Partners") }
     @AppStorage("partnerName") private var partnerName = ""
     @AppStorage("shareExamens") private var shareExamens = false
     @AppStorage("shareUrges") private var shareUrges = true
@@ -121,7 +122,7 @@ struct CloudSyncSettingsView: View {
                                 .font(.headline)
                             
                             if let link = shareLink, let url = URL(string: link) {
-                                ShareLink(item: url, subject: Text("Walk with me on PurityHelp"), message: Text("Here is the secure link to my PurityHelp journey dashboard.")) {
+                                ShareLink(item: url) {
                                     Label("Share my progress link", systemImage: "square.and.arrow.up")
                                         .font(.headline)
                                         .frame(maxWidth: .infinity)
@@ -141,6 +142,23 @@ struct CloudSyncSettingsView: View {
                                         .padding(.vertical, 8)
                                         .foregroundStyle(.secondary)
                                 }
+                                
+                                Divider().background(Color.white.opacity(0.1))
+                                
+                                NavigationLink(destination: PartnersView()) {
+                                    HStack {
+                                        Text("Walking with \(partnersLabel)")
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
+                                            .foregroundStyle(.secondary)
+                                            .font(.footnote)
+                                    }
+                                    .font(.headline)
+                                    .padding()
+                                    .background(Color.white.opacity(0.1))
+                                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                                }
+                                .foregroundStyle(.white)
                                 
                             } else {
                                 Button {
@@ -256,21 +274,10 @@ struct CloudSyncSettingsView: View {
                 fullModels.examenEntries = []
             }
             if !shareUrges {
-                fullModels.urgeLogs = fullModels.urgeLogs.map { log in
-                    var safeLog = log
-                    safeLog.replaceActivityUsed = nil
-                    safeLog.quickActionUsed = nil
-                    safeLog.optionalNote = nil
-                    return safeLog
-                }
+                fullModels.urgeLogs = []
             }
             if !shareRelapses {
-                fullModels.resetRecords = fullModels.resetRecords.map { reset in
-                    var safeReset = reset
-                    safeReset.optionalNote = nil
-                    safeReset.triggerTag = nil
-                    return safeReset
-                }
+                fullModels.resetRecords = []
             }
             
             let r = streakRecord
