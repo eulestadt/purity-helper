@@ -149,47 +149,13 @@ struct AddVerseSearchSheet: View {
         
         Task {
             do {
-                // 1. Initial search with selected translation
-                var allResults = try await bibleAPIService.searchVerses(
+                // Initial search with selected translation
+                let allResults = try await bibleAPIService.searchVerses(
                     query: trimmedQuery,
                     bibleId: selectedTranslation.rawValue,
                     translationName: selectedTranslation.displayName
                 )
                 
-                // 2. Fallback: If results are sparse (< 5), search other major versions
-                if allResults.count < 5 {
-                    let fallbackTranslations = BibleTranslation.allCases.filter { $0 != selectedTranslation && $0 != .grc }
-                    
-                    try await withThrowingTaskGroup(of: [ScriptureVerse].self) { group in
-                        for translation in fallbackTranslations {
-                            group.addTask {
-                                try await bibleAPIService.searchVerses(
-                                    query: trimmedQuery,
-                                    bibleId: translation.rawValue,
-                                    translationName: translation.displayName
-                                )
-                            }
-                        }
-                        
-                        for try await results in group {
-                            allResults.append(contentsOf: results)
-                        }
-                    }
-                }
-                
-                // 3. Update UI
-                await MainActor.run {
-                    // Deduplicate by ID and Translation name to be safe
-                    var uniqueResults: [ScriptureVerse] = []
-                    var seen = Set<String>()
-                    
-                    for res in allResults {
-                        let key = "\(res.id)-\(res.translation ?? "")"
-                        if !seen.contains(key) {
-                            uniqueResults.append(res)
-                            seen.insert(key)
-                        }
-                    }
                     
                     self.searchResults = uniqueResults
                     self.isSearching = false
