@@ -20,7 +20,14 @@ enum KeychainHelper {
             kSecValueData as String: data
         ]
         SecItemDelete(query as CFDictionary)
-        SecItemAdd(query as CFDictionary, nil)
+        let status = SecItemAdd(query as CFDictionary, nil)
+        
+        // Fallback to UserDefaults if Keychain fails (common in Simulator without entitlements)
+        if status != errSecSuccess {
+            UserDefaults.standard.set(value, forKey: "fallback_\(key)")
+        } else {
+            UserDefaults.standard.removeObject(forKey: "fallback_\(key)")
+        }
     }
 
     static func load(forKey key: String) -> String? {
@@ -33,8 +40,13 @@ enum KeychainHelper {
         ]
         var result: AnyObject?
         let status = SecItemCopyMatching(query as CFDictionary, &result)
-        guard status == errSecSuccess, let data = result as? Data else { return nil }
-        return String(data: data, encoding: .utf8)
+        
+        if status == errSecSuccess, let data = result as? Data, let str = String(data: data, encoding: .utf8) {
+            return str
+        }
+        
+        // Fallback wrapper
+        return UserDefaults.standard.string(forKey: "fallback_\(key)")
     }
 
     static func delete(forKey key: String) {
@@ -44,6 +56,7 @@ enum KeychainHelper {
             kSecAttrAccount as String: key
         ]
         SecItemDelete(query as CFDictionary)
+        UserDefaults.standard.removeObject(forKey: "fallback_\(key)")
     }
 
     static let authTokenKey = "authToken"

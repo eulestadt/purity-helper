@@ -188,7 +188,7 @@ app.get('/share/:token', async (req, res) => {
   }
   const r = await pool.query(
     `SELECT sd.payload FROM share_tokens st
-     JOIN sync_data sd ON sd.user_id = st.user_id
+     LEFT JOIN sync_data sd ON sd.user_id = st.user_id
      WHERE st.token = $1`,
     [token]
   );

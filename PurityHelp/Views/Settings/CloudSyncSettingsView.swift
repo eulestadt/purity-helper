@@ -81,7 +81,7 @@ struct CloudSyncSettingsView: View {
                             showAuth = true
                         }
                         .sheet(isPresented: $showAuth) {
-                            CloudAuthView()
+                            CloudAuthView(isLoggedIn: $isLoggedIn)
                         }
                     }
                 } footer: {
@@ -127,11 +127,6 @@ struct CloudSyncSettingsView: View {
             isLoggedIn = KeychainHelper.load(forKey: KeychainHelper.authTokenKey) != nil
             if syncEnabled && !baseURL.isEmpty {
                 generateShareLink()
-            }
-        }
-        .onChange(of: showAuth) { _, isShowing in
-            if !isShowing {
-                isLoggedIn = KeychainHelper.load(forKey: KeychainHelper.authTokenKey) != nil
             }
         }
     }
@@ -225,6 +220,7 @@ struct CloudSyncSettingsView: View {
 
 struct CloudAuthView: View {
     @Environment(\.dismiss) private var dismiss
+    @Binding var isLoggedIn: Bool
     @State private var email = ""
     @State private var password = ""
     @State private var isSignUp = true
@@ -299,6 +295,7 @@ struct CloudAuthView: View {
                     return
                 }
                 KeychainHelper.save(token, forKey: KeychainHelper.authTokenKey)
+                isLoggedIn = true
                 dismiss()
             }
         }.resume()
@@ -307,7 +304,6 @@ struct CloudAuthView: View {
 
 #Preview {
     NavigationStack {
-        CloudSyncSettingsView()
-            .modelContainer(for: [StreakRecord.self, UrgeLog.self], inMemory: true)
+        CloudAuthView(isLoggedIn: .constant(false))
     }
 }

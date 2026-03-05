@@ -156,8 +156,8 @@ struct AddVerseSearchSheet: View {
                     translationName: selectedTranslation.displayName
                 )
                 
-                    
-                    self.searchResults = uniqueResults
+                await MainActor.run {
+                    self.searchResults = allResults
                     self.isSearching = false
                 }
             } catch {
