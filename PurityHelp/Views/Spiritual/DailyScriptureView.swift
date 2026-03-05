@@ -14,7 +14,7 @@ struct DailyScriptureView: View {
         VStack(alignment: .leading, spacing: 16) {
             Text(verse.reference)
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                
             Text(verse.text)
                 .font(.body)
         }

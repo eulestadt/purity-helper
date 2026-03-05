@@ -67,7 +67,7 @@ private struct WhatHelpedBlock: View {
                 HStack(alignment: .top, spacing: 8) {
                     Text("•")
                         .font(.body)
-                        .foregroundStyle(.secondary)
+                        
                     MarkdownText(source: line)
                         .font(.body)
                 }
@@ -136,7 +136,7 @@ struct StoriesOfHopeView: View {
                 VStack(alignment: .leading, spacing: 14) {
                     Text("Categories")
                         .font(.caption.weight(.semibold))
-                        .foregroundStyle(.secondary)
+                        
 
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 8) {
@@ -158,7 +158,7 @@ struct StoriesOfHopeView: View {
 
                     Text("Stories")
                         .font(.caption.weight(.semibold))
-                        .foregroundStyle(.secondary)
+                        
 
                     ForEach(stories) { story in
                         Button {
@@ -169,7 +169,7 @@ struct StoriesOfHopeView: View {
                                     .font(.headline)
                                 Text(story.summary)
                                     .font(.caption)
-                                    .foregroundStyle(.secondary)
+                                    
                                     .lineLimit(2)
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -198,7 +198,7 @@ struct StoryDetailView: View {
                 if let tradition = story.tradition, !tradition.isEmpty {
                     Text(tradition)
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        
                 }
                 MarkdownText(source: story.summary)
                     .font(.body)
@@ -243,7 +243,7 @@ private struct StoryDetailSheet: View {
                     if let tradition = story.tradition, !tradition.isEmpty {
                         Text(tradition)
                             .font(.caption)
-                            .foregroundStyle(.secondary)
+                            
                     }
                     MarkdownText(source: story.summary)
                         .font(.body)

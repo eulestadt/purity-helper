@@ -57,7 +57,7 @@ struct MeditateOnWordView: View {
                 .fontWeight(.semibold)
             Text(prompt)
                 .font(.body)
-                .foregroundStyle(.secondary)
+                
 
             if step == 0 {
                 NavigationLink(destination: HideInYourHeartView()) {
@@ -71,7 +71,7 @@ struct MeditateOnWordView: View {
                     .multilineTextAlignment(.leading)
                 Text(verse.reference)
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    
             }
 
             HStack {
@@ -101,14 +101,14 @@ struct MeditateOnWordView: View {
             HStack(spacing: 8) {
                 Image(systemName: "heart.text.square.fill")
                     .font(.title2)
-                    .foregroundStyle(.secondary)
+                    
                 Text("Hide in your heart")
                     .font(.title2)
                     .fontWeight(.semibold)
             }
             Text("Repeat the verse slowly 2–3 times; then try saying it without looking.")
                 .font(.subheadline)
-                .foregroundStyle(.secondary)
+                
 
             if memorizeShowText {
                 Text(verse.text)
@@ -116,7 +116,7 @@ struct MeditateOnWordView: View {
                     .multilineTextAlignment(.leading)
                 Text(verse.reference)
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    
                 Button("Tap when you want to try without looking") {
                     memorizeShowText = false
                     saveMemorizationProgress(status: "learning")
@@ -127,7 +127,7 @@ struct MeditateOnWordView: View {
                     .font(.headline)
                 Text("Say the verse from memory.")
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    
                 Button("Show verse again") {
                     memorizeShowText = true
                 }

@@ -44,7 +44,7 @@ struct ReciteVerseView: View {
                                             .font(.headline)
                                         Text(verse.text)
                                             .font(.caption)
-                                            .foregroundStyle(.secondary)
+                                            
                                             .lineLimit(2)
                                     }
                                 }
@@ -58,8 +58,8 @@ struct ReciteVerseView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(action: { dismiss() }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundStyle(.secondary)
+                        Image(systemName: "xmark").font(.headline).padding(6).background(Color(uiColor: .tertiarySystemFill), in: Circle())
+                            
                     }
                 }
             }
@@ -85,7 +85,7 @@ struct ReciteVerseDetailView: View {
             } else {
                 Text("Say it from memory.")
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    
                 Button("Show verse") {
                     showText = true
                 }

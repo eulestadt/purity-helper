@@ -110,7 +110,7 @@ struct HomeView: View {
                 .multilineTextAlignment(.center)
             Text("(Mt 5:8)")
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                
         }
         .frame(maxWidth: .infinity)
         .padding(.top, 14)
@@ -122,10 +122,10 @@ struct HomeView: View {
             VStack(alignment: .leading, spacing: 6) {
                 Text("Daily Scripture")
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    
                 Text(verse.reference)
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    
                 Text(verse.text)
                     .font(.body)
             }
@@ -140,7 +140,7 @@ struct HomeView: View {
         VStack(alignment: .leading, spacing: 6) {
             Text("Your why")
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                
             Text(missionText)
                 .font(.body)
                 .foregroundStyle(.primary)
@@ -159,7 +159,7 @@ private var treeProgressCard: some View {
         VStack(alignment: .leading, spacing: 6) {
             Text("Purity Tree")
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                
             Text("\(stage.label) (\(days) days)")
                 .font(.title3.weight(.bold))
         }
@@ -236,7 +236,7 @@ private var treeProgressCard: some View {
             VStack(spacing: 1) {
                 Image(systemName: "clock.arrow.circlepath")
                     .font(.title2)
-                    .foregroundStyle(.secondary)
+                    
                 
                 Text("\(hours)")
                     .font(.system(size: 36, weight: .bold, design: .rounded))
@@ -246,7 +246,7 @@ private var treeProgressCard: some View {
                 
                 Text("HOURS RECLAIMED")
                     .font(.system(size: 10, weight: .bold))
-                    .foregroundStyle(.secondary)
+                    
                     .multilineTextAlignment(.center)
                     .lineLimit(1) 
                     .minimumScaleFactor(0.6)
@@ -303,7 +303,7 @@ private var treeProgressCard: some View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Did you guard your thoughts today?")
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        
                     HStack(spacing: 12) {
                         Button("I guarded my thoughts today") {
                             service.recordPureThoughtsCheck(record: record, guarded: true, modelContext: modelContext)
@@ -440,7 +440,7 @@ struct StreakCard: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(title)
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    
                 Text("\(days)")
                     .font(.title2)
                     .fontWeight(.semibold)

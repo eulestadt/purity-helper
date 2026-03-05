@@ -31,7 +31,7 @@ struct WisdomOfTheAgesView: View {
                         .font(.body)
                     Text(q.source)
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        
                 }
                 .padding(.vertical, 8)
             }

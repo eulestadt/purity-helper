@@ -54,7 +54,7 @@ struct DangerZoneView: View {
                         Text(r.resetType?.rawValue ?? r.type)
                         Spacer()
                         Text(r.date.formatted(date: .abbreviated, time: .shortened))
-                            .foregroundStyle(.secondary)
+                            
                     }
                 }
             } header: {

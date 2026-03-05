@@ -135,17 +135,17 @@ struct UrgeInsightsView: View {
                     HStack {
                         Text("Peak Struggle Time")
                         Spacer()
-                        Text(peakStruggleTime).foregroundStyle(.secondary)
+                        Text(peakStruggleTime)
                     }
                     HStack {
                         Text("Most Used Tool")
                         Spacer()
-                        Text(topAction).foregroundStyle(.secondary)
+                        Text(topAction)
                     }
                     HStack {
                         Text("Total Victories")
                         Spacer()
-                        Text("\(logs.count)").foregroundStyle(.secondary)
+                        Text("\(logs.count)")
                     }
                 } header: {
                     Text("Your Patterns")
@@ -169,7 +169,7 @@ struct UrgeInsightsView: View {
                     if logs.isEmpty {
                         Text("No logs yet. Use the 'Urge' button when struggling to build your insights.")
                             .font(.caption)
-                            .foregroundStyle(.secondary)
+                            
                             .frame(maxWidth: .infinity, alignment: .center)
                             .padding()
                     } else {
@@ -186,14 +186,14 @@ struct UrgeInsightsView: View {
                     Section {
                         if selectedLogs.isEmpty {
                             Text("No victories recorded during this time.")
-                                .foregroundStyle(.secondary)
+                                
                         } else {
                             ForEach(selectedLogs) { log in
                                 HStack {
                                     VStack(alignment: .leading, spacing: 2) {
                                         Text(log.date.formatted(date: .abbreviated, time: .shortened))
                                             .font(.caption)
-                                            .foregroundStyle(.secondary)
+                                            
                                         let action = log.quickActionUsed ?? log.replaceActivityUsed ?? "Held Firm"
                                         Text(action)
                                             .font(.subheadline.bold())

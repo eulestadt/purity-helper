@@ -46,8 +46,8 @@ struct VigilExtendedTabView: View {
                     Button(action: {
                         dismiss()
                     }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundStyle(.secondary)
+                        Image(systemName: "xmark").font(.headline).padding(6).background(Color(uiColor: .tertiarySystemFill), in: Circle())
+                            
                     }
                 }
             }

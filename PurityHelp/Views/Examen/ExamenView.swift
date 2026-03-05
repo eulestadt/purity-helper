@@ -51,7 +51,7 @@ struct ExamenView: View {
                 .fontWeight(.semibold)
             Text(prompt)
                 .font(.body)
-                .foregroundStyle(.secondary)
+                
 
             textFieldForStep(step)
 

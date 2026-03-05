@@ -21,11 +21,11 @@ struct ExamenHistoryView: View {
                         if let how = entry.howWasToday, !how.isEmpty {
                             Text(how)
                                 .font(.caption)
-                                .foregroundStyle(.secondary)
+                                
                         } else if let first = entry.step1Thanks, !first.isEmpty {
                             Text(first)
                                 .font(.caption)
-                                .foregroundStyle(.secondary)
+                                
                                 .lineLimit(1)
                         }
                     }
@@ -47,12 +47,12 @@ struct ExamenEntryDetailView: View {
             VStack(alignment: .leading, spacing: 16) {
                 Text(entry.date.formatted(date: .long, time: .shortened))
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    
 
                 if let how = entry.howWasToday, !how.isEmpty {
                     Text("How was today?")
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        
                     Text(how)
                         .font(.body)
                 }
@@ -63,7 +63,7 @@ struct ExamenEntryDetailView: View {
                         VStack(alignment: .leading, spacing: 4) {
                             Text(label)
                                 .font(.caption)
-                                .foregroundStyle(.secondary)
+                                
                             Text(t)
                                 .font(.body)
                         }

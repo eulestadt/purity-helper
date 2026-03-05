@@ -77,7 +77,7 @@ struct AudioSanctuaryView: View {
     }
     
     private func setupAudio() {
-        if let asset = NSDataAsset(name: "watchfulness_guided-2.mp3") { // Matches exact dataset name from find_by_name
+        if let asset = NSDataAsset(name: "watchfulness_guided") {
             do {
                 audioPlayer = try AVAudioPlayer(data: asset.data)
                 audioPlayer?.prepareToPlay()

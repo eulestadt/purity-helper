@@ -93,7 +93,7 @@ struct CloudSyncSettingsView: View {
                         .font(.subheadline)
                     Text("Anyone with this link can view your progress summary. Only share it with someone you trust. They can open it in the app or in a browser.")
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        
                     if let link = shareLink {
                         Text(link)
                             .font(.caption)
@@ -258,8 +258,8 @@ struct CloudAuthView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(action: { dismiss() }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundStyle(.secondary)
+                        Image(systemName: "xmark").font(.headline).padding(6).background(Color(uiColor: .tertiarySystemFill), in: Circle())
+                            
                     }
                 }
             }

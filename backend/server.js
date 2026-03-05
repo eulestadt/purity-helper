@@ -200,7 +200,143 @@ app.get('/share/:token', async (req, res) => {
   if (wantsJson) {
     return res.json(payload);
   }
-  const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Purity Help – Progress</title></head><body style="font-family:system-ui;max-width:480px;margin:1rem auto;padding:1rem;"><h1>Progress summary</h1><p>Days of purity (pornography): ${escapeHtml(payload.pornographyDays) || '—'}</p><p>Days of purity (masturbation): ${escapeHtml(payload.masturbationDays) || '—'}</p>${payload.pureThoughtsDays != null ? `<p>Days guarding thoughts: ${escapeHtml(payload.pureThoughtsDays)}</p>` : ''}<p>Urge moments logged: ${escapeHtml(payload.urgeMomentsCount) || '—'}</p>${payload.hoursReclaimed > 0 ? `<p>Hours reclaimed: ${escapeHtml(payload.hoursReclaimed)}</p>` : ''}<p><small>Last updated: ${escapeHtml(payload.lastUpdated) || '—'}</small></p></body></html>`;
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Purity Help – Partner Progress</title>
+  <style>
+    :root {
+      --bg: #000000;
+      --card-bg: #1c1c1e;
+      --text: #ffffff;
+      --secondary-text: #a1a1a6;
+      --accent: #0a84ff;
+      --danger: #ff453a;
+      --success: #32d74b;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 500px;
+      width: 100%;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .header h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 0;
+      background: linear-gradient(135deg, #ffffff, #a1a1a6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .header p {
+      color: var(--secondary-text);
+      font-size: 15px;
+      margin-top: 8px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 16px;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .card-wide {
+      grid-column: 1 / -1;
+    }
+    .stat-value {
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--secondary-text);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .text-success { color: var(--success); }
+    .text-danger { color: var(--danger); }
+    .text-accent { color: var(--accent); }
+    .footer {
+      text-align: center;
+      color: var(--secondary-text);
+      font-size: 13px;
+      margin-top: 40px;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Purity Progress</h1>
+      <p>Partner Accountability Dashboard</p>
+    </div>
+    
+    <div class="grid">
+      <div class="card card-wide">
+        <div class="stat-value text-success">${escapeHtml(payload.pornographyDays) || '0'}</div>
+        <div class="stat-label">Days Pure (Pornography)</div>
+      </div>
+      
+      <div class="card">
+        <div class="stat-value">${escapeHtml(payload.masturbationDays) || '0'}</div>
+        <div class="stat-label">Days Pure<br>(Masturbation)</div>
+      </div>
+      
+      <div class="card">
+        <div class="stat-value text-danger">${escapeHtml(payload.urgeMomentsCount) || '0'}</div>
+        <div class="stat-label">Urges<br>Defeated</div>
+      </div>
+      
+      ${payload.pureThoughtsDays != null ? `
+      <div class="card card-wide">
+        <div class="stat-value text-accent">${escapeHtml(payload.pureThoughtsDays)}</div>
+        <div class="stat-label">Days Guarding Thoughts</div>
+      </div>
+      ` : ''}
+      
+      ${payload.hoursReclaimed > 0 ? `
+      <div class="card card-wide">
+        <div class="stat-value">${escapeHtml(payload.hoursReclaimed)}</div>
+        <div class="stat-label">Hours Reclaimed</div>
+      </div>
+      ` : ''}
+    </div>
+    
+    <div class="footer">
+      Last synced: ${escapeHtml(payload.lastUpdated) || 'Never'}
+    </div>
+  </div>
+</body>
+</html>\`;
   return res.type('html').send(html);
 });
 
@@ -210,12 +346,12 @@ async function init() {
   try {
     // Check if the users table exists. If not, auto-run the schema.
     const checkRes = await pool.query(`
-      SELECT EXISTS (
-        SELECT FROM information_schema.tables 
+      SELECT EXISTS(
+    SELECT FROM information_schema.tables 
         WHERE table_schema = 'public' 
         AND table_name = 'users'
-      );
-    `);
+  );
+  `);
 
     if (!checkRes.rows[0].exists) {
       console.log('Database tables not found. Initializing schema...');
@@ -229,7 +365,7 @@ async function init() {
   } catch (e) {
     console.error('DB connection or schema initialization failed:', e.message);
   }
-  app.listen(PORT, () => console.log(`Purity Help API listening on port ${PORT}`));
+  app.listen(PORT, () => console.log(`Purity Help API listening on port ${ PORT } `));
 }
 
 init();

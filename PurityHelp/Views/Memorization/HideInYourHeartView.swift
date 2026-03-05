@@ -43,14 +43,14 @@ struct HideInYourHeartView: View {
                                         .font(.headline)
                                     Text(verse.text)
                                         .font(.caption)
-                                        .foregroundStyle(.secondary)
+                                        
                                         .lineLimit(2)
                                 }
                                 Spacer()
                                 if let p = progress, p.status != "none" {
                                     Text(p.status == "learned" ? "Learned" : "Learning")
                                         .font(.caption2)
-                                        .foregroundStyle(.secondary)
+                                        
                                 }
                             }
                         }
@@ -121,7 +121,7 @@ struct MemorizeLearnView: View {
             VStack(alignment: .leading, spacing: 20) {
                 Text("Repeat the verse slowly 2–3 times. Then try saying it without looking.")
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    
 
                 if showText {
                     Text(verse.text)
@@ -129,11 +129,11 @@ struct MemorizeLearnView: View {
                     if let translation = verse.translation {
                         Text("\(verse.reference) (\(translation))")
                             .font(.caption)
-                            .foregroundStyle(.secondary)
+                            
                     } else {
                         Text(verse.reference)
                             .font(.caption)
-                            .foregroundStyle(.secondary)
+                            
                     }
                     Button("Tap when you want to try without looking") {
                         showText = false
@@ -149,7 +149,7 @@ struct MemorizeLearnView: View {
                     }
                     Text("Say the verse from memory.")
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        
                     Button("Show verse again") {
                         showText = true
                     }

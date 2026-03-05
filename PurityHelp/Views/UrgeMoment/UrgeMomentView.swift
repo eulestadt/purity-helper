@@ -59,8 +59,8 @@ struct UrgeMomentView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(action: { dismiss() }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundStyle(.secondary)
+                        Image(systemName: "xmark").font(.headline).padding(6).background(Color(uiColor: .tertiarySystemFill), in: Circle())
+                            
                     }
                 }
             }
@@ -92,7 +92,7 @@ struct UrgeMomentView: View {
     private var theosisFraming: some View {
         Text("This struggle purifies. Resisting is part of purification—each moment you hold firm, your heart is being cleansed.")
             .font(.subheadline)
-            .foregroundStyle(.secondary)
+            
             .padding()
             .frame(maxWidth: .infinity, alignment: .leading)
             .glassCard(cornerRadius: 12)
@@ -102,7 +102,7 @@ struct UrgeMomentView: View {
         VStack(alignment: .leading, spacing: 6) {
             Text("Your why")
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                
             Text(missionText)
                 .font(.subheadline)
         }
@@ -132,7 +132,7 @@ struct UrgeMomentView: View {
             if delaySecondsRemaining > 0 {
                 Text("Stay with it. The urge will pass.")
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    
             } else {
                 Button("I made it") {
                     showDelayTimer = false
@@ -155,7 +155,7 @@ struct UrgeMomentView: View {
             VStack(alignment: .leading, spacing: 6) {
                 Text("Your plan for this situation")
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    
                 Text("When \(plan.trigger), I will \(plan.action)")
                     .font(.subheadline)
             }
@@ -220,8 +220,8 @@ struct UrgeMomentView: View {
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
                             Button(action: { showUrgeSurfing = false }) {
-                                Image(systemName: "xmark.circle.fill")
-                                    .foregroundStyle(.secondary)
+                                Image(systemName: "xmark").font(.headline).padding(6).background(Color(uiColor: .tertiarySystemFill), in: Circle())
+                                    
                             }
                         }
                     }

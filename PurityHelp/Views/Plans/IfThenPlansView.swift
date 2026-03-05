@@ -21,7 +21,7 @@ struct IfThenPlansView: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("When \(plan.trigger)")
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        
                     Text(plan.action)
                         .font(.body)
                 }
@@ -85,8 +85,8 @@ struct AddIfThenPlanView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(action: { dismiss() }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundStyle(.secondary)
+                        Image(systemName: "xmark").font(.headline).padding(6).background(Color(uiColor: .tertiarySystemFill), in: Circle())
+                            
                     }
                 }
                 ToolbarItem(placement: .confirmationAction) {

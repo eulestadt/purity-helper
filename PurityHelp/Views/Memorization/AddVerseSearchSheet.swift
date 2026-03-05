@@ -52,7 +52,7 @@ struct AddVerseSearchSheet: View {
                 // Search Bar
                 HStack {
                     Image(systemName: "magnifyingglass")
-                        .foregroundStyle(.secondary)
+                        
                     TextField("Search for a verse or keyword...", text: $query)
                         .onSubmit {
                             performSearch()
@@ -63,8 +63,8 @@ struct AddVerseSearchSheet: View {
                         Button {
                             query = ""
                         } label: {
-                            Image(systemName: "xmark.circle.fill")
-                                .foregroundStyle(.secondary)
+                            Image(systemName: "xmark").font(.headline).padding(6).background(Color(uiColor: .tertiarySystemFill), in: Circle())
+                                
                         }
                     }
                 }
@@ -88,7 +88,7 @@ struct AddVerseSearchSheet: View {
                 } else if searchResults.isEmpty && !query.isEmpty {
                     Spacer()
                     Text("No results found. Press Search to query.")
-                        .foregroundStyle(.secondary)
+                        
                         .padding()
                     Spacer()
                 } else {
@@ -103,7 +103,7 @@ struct AddVerseSearchSheet: View {
                                         .foregroundStyle(.primary)
                                     Text(verse.text)
                                         .font(.body)
-                                        .foregroundStyle(.secondary)
+                                        
                                 }
                             }
                         }
@@ -116,8 +116,8 @@ struct AddVerseSearchSheet: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(action: { dismiss() }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundStyle(.secondary)
+                        Image(systemName: "xmark").font(.headline).padding(6).background(Color(uiColor: .tertiarySystemFill), in: Circle())
+                            
                     }
                 }
                 ToolbarItem(placement: .primaryAction) {
