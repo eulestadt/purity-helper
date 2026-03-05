@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 63;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,7 @@
 		1C0192AADCE11640C8EA5351 /* MeditateOnWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C0A324E6A838B3D7A0BD57 /* MeditateOnWordView.swift */; };
 		22BDAF334D8C0B743F0D7232 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E066BF55122118DE9FD7FC1C /* HomeView.swift */; };
 		257D3214F6461A9923394EAB /* MemorizedVerse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16F3C70D8E3B830510C94E3 /* MemorizedVerse.swift */; };
+		281278C649E4F6B47B341857 /* SyncTransferModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C71F89DBB5873ADF3C2F637 /* SyncTransferModels.swift */; };
 		29B8846822321AFE95C83361 /* ScriptureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8897E312355B378357E5A48 /* ScriptureService.swift */; };
 		2CEDA066130D6614D8F5ACD7 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA9B605C52ACB91726FD730B /* Media.xcassets */; };
 		2FDEA15822360B9F998DC00C /* LogismoiSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED19F473D069CB90A5EEF88D /* LogismoiSelectorView.swift */; };
@@ -51,6 +52,7 @@
 		A7679DA9F93123B296F2671B /* Vigil.md in Resources */ = {isa = PBXBuildFile; fileRef = 5C7E3BB646D6B52FDFCE9C3A /* Vigil.md */; };
 		B3D2822805AAD9D6261986AB /* AudioSanctuaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D1012D5DB8F9292A2E8FB8 /* AudioSanctuaryView.swift */; };
 		B6065B3D7F50682C68E4B904 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF6080068FC4AC6C6EE1C4E /* AppTheme.swift */; };
+		B74A7E0C27F090569307225A /* FullSyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A34F26A6C82E2CD9BA37D5 /* FullSyncEngine.swift */; };
 		BACBC3630EA20D8CCC2713B3 /* PurityHelpApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31806D44F76B06B7BD8F048F /* PurityHelpApp.swift */; };
 		C3223DDDB75CE4A2BFED614A /* JournalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51969C29C7559CEABD7BACD2 /* JournalEntry.swift */; };
 		C484DAF6B5B896F70991A575 /* daily_scripture.json in Resources */ = {isa = PBXBuildFile; fileRef = D0E60032B79A848CEDD89C1D /* daily_scripture.json */; };
@@ -91,6 +93,7 @@
 		47FAE6AFD6E22B07F73AAB8B /* ExamenEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamenEntry.swift; sourceTree = "<group>"; };
 		51969C29C7559CEABD7BACD2 /* JournalEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntry.swift; sourceTree = "<group>"; };
 		5262377B9E30BC42AE371855 /* tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tree.png; sourceTree = "<group>"; };
+		5C71F89DBB5873ADF3C2F637 /* SyncTransferModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncTransferModels.swift; sourceTree = "<group>"; };
 		5C7E3BB646D6B52FDFCE9C3A /* Vigil.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Vigil.md; sourceTree = "<group>"; };
 		5D84DCA9DA0A5718BC221595 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		6BF6080068FC4AC6C6EE1C4E /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
@@ -102,6 +105,7 @@
 		8D377771BC07878FD7A412BE /* CloudSyncSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSyncSettingsView.swift; sourceTree = "<group>"; };
 		8E8D732DA9DCC836E90D6443 /* Gemini_Generated_Image_7dtj9d7dtj9d7dtj.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Gemini_Generated_Image_7dtj9d7dtj9d7dtj.png; sourceTree = "<group>"; };
 		90EE13183644CE4AFF896AF5 /* HideInYourHeartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideInYourHeartView.swift; sourceTree = "<group>"; };
+		91A34F26A6C82E2CD9BA37D5 /* FullSyncEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullSyncEngine.swift; sourceTree = "<group>"; };
 		92C42091C0EE1C93E4C117A0 /* sprout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sprout.png; sourceTree = "<group>"; };
 		932DED31AE54621D017DD8B2 /* ReleaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseView.swift; sourceTree = "<group>"; };
 		94C09C6C70F9D1E6A914AE97 /* BibleReferenceCleaner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleReferenceCleaner.swift; sourceTree = "<group>"; };
@@ -118,7 +122,7 @@
 		C302A35708601BD6197AF4FC /* stories.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stories.json; sourceTree = "<group>"; };
 		C9883B1E685C99CCA0AD5978 /* AddVerseSearchSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVerseSearchSheet.swift; sourceTree = "<group>"; };
 		CA9B605C52ACB91726FD730B /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
-		CAB90357455875198B30E482 /* PurityHelp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PurityHelp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAB90357455875198B30E482 /* PurityHelp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = PurityHelp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDE81B404C400168C6436037 /* AntirrhetikosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntirrhetikosView.swift; sourceTree = "<group>"; };
 		CDF44F3127ABDC9E81C107BB /* ResetRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetRecord.swift; sourceTree = "<group>"; };
 		D0E60032B79A848CEDD89C1D /* daily_scripture.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = daily_scripture.json; sourceTree = "<group>"; };
@@ -217,6 +221,7 @@
 				478F7CACFB1E0C03F664268B /* BibleAPIService.swift */,
 				94C09C6C70F9D1E6A914AE97 /* BibleReferenceCleaner.swift */,
 				AE33669696ABEE5EA2852D32 /* CloudSyncService.swift */,
+				91A34F26A6C82E2CD9BA37D5 /* FullSyncEngine.swift */,
 				5D84DCA9DA0A5718BC221595 /* KeychainHelper.swift */,
 				F8897E312355B378357E5A48 /* ScriptureService.swift */,
 				BD9F9EF46E780AC9A763F2DC /* ShareableProgressService.swift */,
@@ -243,6 +248,7 @@
 				C16F3C70D8E3B830510C94E3 /* MemorizedVerse.swift */,
 				CDF44F3127ABDC9E81C107BB /* ResetRecord.swift */,
 				D3847206ABF2157478E85C36 /* StreakRecord.swift */,
+				5C71F89DBB5873ADF3C2F637 /* SyncTransferModels.swift */,
 				E94340DA12EDFCAF96016841 /* UrgeLog.swift */,
 				A3C8B3C77A132F102CE1329B /* UserMission.swift */,
 			);
@@ -417,6 +423,7 @@
 			);
 			mainGroup = C2896707B2CF49CABE2C1077;
 			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -467,6 +474,7 @@
 				5CE5727093E785D1B2657A75 /* ExamenEntry.swift in Sources */,
 				39D7549EB145B61E4D20899B /* ExamenHistoryView.swift in Sources */,
 				5671AFED1F48E4E17CD9A0C7 /* ExamenView.swift in Sources */,
+				B74A7E0C27F090569307225A /* FullSyncEngine.swift in Sources */,
 				CACF4F095F80A245784A0A17 /* HideInYourHeartView.swift in Sources */,
 				22BDAF334D8C0B743F0D7232 /* HomeView.swift in Sources */,
 				0324DED258B3FA8C868C4C82 /* IfThenPlan.swift in Sources */,
@@ -491,6 +499,7 @@
 				9429BD710B85B237C37FDB40 /* StoriesOfHopeView.swift in Sources */,
 				854A91F4205F87A4683D3ED3 /* StreakRecord.swift in Sources */,
 				481EB0D8322C0513699E6549 /* StreakService.swift in Sources */,
+				281278C649E4F6B47B341857 /* SyncTransferModels.swift in Sources */,
 				915A59BB2C550F399608DAFD /* ThresholdView.swift in Sources */,
 				0FC2D3D907D1D489EA9744FE /* UrgeInsightsView.swift in Sources */,
 				FACFE1A189606CC26624160A /* UrgeLog.swift in Sources */,
@@ -516,9 +525,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DERIVED_FILE_DIR = "$(TEMP_DIR)/DerivedSources";
-				DEVELOPMENT_TEAM = Y9T4RA62V7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIBackgroundModes = "remote-notification";
+				INFOPLIST_KEY_UIBackgroundModes = (
+					"remote-notification",
+				);
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -543,9 +553,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DERIVED_FILE_DIR = "$(TEMP_DIR)/DerivedSources";
-				DEVELOPMENT_TEAM = Y9T4RA62V7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIBackgroundModes = "remote-notification";
+				INFOPLIST_KEY_UIBackgroundModes = (
+					"remote-notification",
+				);
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (

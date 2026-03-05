@@ -9,6 +9,8 @@ const { Pool } = require('pg');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { v4: uuidv4 } = require('uuid');
+const fs = require('fs');
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 10000;
@@ -196,9 +198,26 @@ app.get('/health', (_, res) => res.json({ ok: true }));
 
 async function init() {
   try {
-    await pool.query('SELECT 1');
+    // Check if the users table exists. If not, auto-run the schema.
+    const checkRes = await pool.query(`
+      SELECT EXISTS (
+        SELECT FROM information_schema.tables 
+        WHERE table_schema = 'public' 
+        AND table_name = 'users'
+      );
+    `);
+
+    if (!checkRes.rows[0].exists) {
+      console.log('Database tables not found. Initializing schema...');
+      const schemaPath = path.join(__dirname, 'schema.sql');
+      const schemaSql = fs.readFileSync(schemaPath, 'utf8');
+      await pool.query(schemaSql);
+      console.log('Schema initialized successfully.');
+    } else {
+      console.log('Database tables found. Skipping schema initialization.');
+    }
   } catch (e) {
-    console.error('DB connection failed:', e.message);
+    console.error('DB connection or schema initialization failed:', e.message);
   }
   app.listen(PORT, () => console.log(`Purity Help API listening on port ${PORT}`));
 }

@@ -33,6 +33,9 @@ This guide walks through hosting the **optional** Purity Help backend on [Render
 5. Wait until the instance is **Available**.
 6. Open the database and go to the **Info** tab.
 7. Copy **Internal Database URL** (use this when the API runs on Render).  
+postgresql://purity_help_db_user:5mS6GGZVcCChKmAc5YSkSWMhYYMMmXA3@dpg-d6kd36fkijhs73ffqdag-a/purity_help_db
+
+
    If you ever run the API outside Render, use **External Database URL** instead.  
    It looks like: `postgres://user:password@hostname/database?options`
 
@@ -42,38 +45,9 @@ Keep this URL secret; you’ll add it as `DATABASE_URL` in the next steps.
 
 ## Step 2: Run the database schema
 
-The backend needs tables: `users`, `sync_data`, `share_tokens`. Apply the schema once.
+**Great news!** You don't have to do anything for this step anymore. 
 
-### Option A: Render Shell (easiest)
-
-1. In the dashboard, open your **PostgreSQL** service.
-2. Go to the **Shell** tab.
-3. Render opens a `psql` session connected to your DB.
-4. Open `backend/schema.sql` in this repo and **copy its full contents**.
-5. Paste into the Render Shell and press Enter. You should see `CREATE TABLE` and `CREATE INDEX` messages.
-6. Type `\q` and Enter to exit.
-
-### Option B: Local `psql` with External URL
-
-If you have `psql` installed and use the **External Database URL**:
-
-```bash
-cd /path/to/purity-help
-export DATABASE_URL="postgres://..."   # paste External Database URL
-psql "$DATABASE_URL" -f backend/schema.sql
-```
-
-Replace the URL with your actual External Database URL (in quotes).
-
-### Verify
-
-In Render Shell (or `psql`):
-
-```sql
-\dt
-```
-
-You should see `users`, `sync_data`, `share_tokens`.
+When you deploy the Web Service in Step 3, the server will automatically check if your database is empty. If it is, the server will automatically read the `backend/schema.sql` file and set up all the required tables (`users`, `sync_data`, `share_tokens`) for you on its first boot!
 
 ---
 
@@ -173,7 +147,7 @@ Users can optionally **Create account / Log in** so their data can be restored a
 
 - **Database connection errors in Logs**  
   - Confirm `DATABASE_URL` is the **Internal** URL when the API runs on Render.  
-  - Ensure the schema was applied (Step 2).
+  - Ensure the database string is correct. You do not need to apply the schema manually; check the Web Service logs to see if it says "Initializing schema..." during boot.
 
 - **“Email already registered” (409)**  
   - Normal for signup with an existing email; use login instead.
@@ -186,10 +160,9 @@ Users can optionally **Create account / Log in** so their data can be restored a
 ## Summary checklist
 
 - [ ] PostgreSQL created on Render; **Internal Database URL** copied.
-- [ ] Schema applied (`backend/schema.sql`) in Render Shell or via `psql`.
 - [ ] Web Service created; **Root Directory** = `backend` (if repo root is the app).
 - [ ] Env vars set: `DATABASE_URL`, `API_SECRET`, `BASE_URL` (and optionally leave `PORT` unset).
-- [ ] Deploy succeeded; `/health` returns `{"ok":true}`.
+- [ ] Deploy succeeded; verify server logs say "Schema initialized successfully" or "Skipping schema initialization".
 - [ ] App **Settings → Cloud sync** has the correct **API base URL** (no trailing slash).
 
 After that, users can enable sync and optionally create an account; data is stored in your Render PostgreSQL and can be shared via the share link.
