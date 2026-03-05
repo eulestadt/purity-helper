@@ -59,7 +59,7 @@ struct UrgeMomentView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(action: { dismiss() }) {
-                        Image(systemName: "xmark").font(.headline).padding(6).background(Color(uiColor: .tertiarySystemFill), in: Circle())
+                        Image(systemName: "xmark").font(.headline).padding(6)
                             
                     }
                 }
@@ -220,7 +220,7 @@ struct UrgeMomentView: View {
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
                             Button(action: { showUrgeSurfing = false }) {
-                                Image(systemName: "xmark").font(.headline).padding(6).background(Color(uiColor: .tertiarySystemFill), in: Circle())
+                                Image(systemName: "xmark").font(.headline).padding(6)
                                     
                             }
                         }

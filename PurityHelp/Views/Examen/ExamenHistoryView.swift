@@ -12,25 +12,36 @@ struct ExamenHistoryView: View {
     @Query(sort: \ExamenEntry.date, order: .reverse) private var entries: [ExamenEntry]
 
     var body: some View {
-        List {
-            ForEach(entries) { entry in
-                NavigationLink(destination: ExamenEntryDetailView(entry: entry)) {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(entry.date.formatted(date: .abbreviated, time: .omitted))
-                            .font(.headline)
-                        if let how = entry.howWasToday, !how.isEmpty {
-                            Text(how)
-                                .font(.caption)
-                                
-                        } else if let first = entry.step1Thanks, !first.isEmpty {
-                            Text(first)
-                                .font(.caption)
-                                
-                                .lineLimit(1)
+        ZStack {
+            PurityBackground()
+            ScrollView {
+                VStack(spacing: 16) {
+                    ForEach(entries) { entry in
+                        NavigationLink(destination: ExamenEntryDetailView(entry: entry)) {
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(entry.date.formatted(date: .abbreviated, time: .omitted))
+                                    .font(.headline)
+                                    .foregroundStyle(.primary)
+
+                                if let how = entry.howWasToday, !how.isEmpty {
+                                    Text(how)
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                } else if let first = entry.step1Thanks, !first.isEmpty {
+                                    Text(first)
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                        .lineLimit(1)
+                                }
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding()
+                            .glassCard(cornerRadius: 16)
                         }
+                        .buttonStyle(.plain)
                     }
-                    .padding(.vertical, 4)
                 }
+                .padding()
             }
         }
         .navigationTitle("Past examens")
@@ -43,35 +54,46 @@ struct ExamenEntryDetailView: View {
     private let stepLabels = ["Give thanks", "Ask for light", "Examine the day", "Seek forgiveness", "Resolve to change"]
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                Text(entry.date.formatted(date: .long, time: .shortened))
-                    .font(.caption)
-                    
+        ZStack {
+            PurityBackground()
+            
+            ScrollView {
+                VStack(alignment: .leading, spacing: 16) {
+                    Text(entry.date.formatted(date: .long, time: .shortened))
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.secondary)
 
-                if let how = entry.howWasToday, !how.isEmpty {
-                    Text("How was today?")
-                        .font(.caption)
-                        
-                    Text(how)
-                        .font(.body)
-                }
+                    if let how = entry.howWasToday, !how.isEmpty {
+                        Text("How was today?")
+                            .font(.caption.weight(.bold))
+                            .foregroundStyle(.primary)
+                            
+                        Text(how)
+                            .font(.body)
+                            .foregroundStyle(.primary)
+                    }
 
-                ForEach(Array(stepLabels.enumerated()), id: \.offset) { index, label in
-                    let text = stepText(for: index)
-                    if let t = text, !t.isEmpty {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(label)
-                                .font(.caption)
-                                
-                            Text(t)
-                                .font(.body)
+                    ForEach(Array(stepLabels.enumerated()), id: \.offset) { index, label in
+                        let text = stepText(for: index)
+                        if let t = text, !t.isEmpty {
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text(label)
+                                    .font(.caption.weight(.bold))
+                                    .foregroundStyle(.primary)
+                                    
+                                Text(t)
+                                    .font(.body)
+                                    .foregroundStyle(.primary)
+                            }
+                            .padding(.top, 4)
                         }
                     }
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
+                .glassCard(cornerRadius: 16)
+                .padding()
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding()
         }
         .navigationTitle("Examen")
     }

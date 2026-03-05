@@ -58,7 +58,7 @@ struct ReciteVerseView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(action: { dismiss() }) {
-                        Image(systemName: "xmark").font(.headline).padding(6).background(Color(uiColor: .tertiarySystemFill), in: Circle())
+                        Image(systemName: "xmark").font(.headline).padding(6)
                             
                     }
                 }

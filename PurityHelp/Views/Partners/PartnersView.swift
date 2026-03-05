@@ -99,7 +99,7 @@ struct PartnersView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(action: { showAddPartner = false }) {
-                        Image(systemName: "xmark").font(.headline).padding(6).background(Color(uiColor: .tertiarySystemFill), in: Circle())
+                        Image(systemName: "xmark").font(.headline).padding(6)
                             
                     }
                 }
