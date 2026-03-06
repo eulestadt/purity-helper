@@ -16,6 +16,7 @@ struct CloudSyncSettingsView: View {
 
     @AppStorage("cloudSyncEnabled") private var syncEnabled = false
     @AppStorage("accountabilityTerm") private var accountabilityTerm = "Brotherhood"
+    private var partnersLabel: String { accountabilityTerm == "Brotherhood" ? "Brothers" : (accountabilityTerm == "Sisterhood" ? "Sisters" : "Partners") }
 
     @AppStorage("shareExamens") private var shareExamens = false
     @AppStorage("shareUrges") private var shareUrges = true
