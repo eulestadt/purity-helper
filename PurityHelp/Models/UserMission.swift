@@ -10,10 +10,12 @@ import SwiftData
 
 @Model
 final class UserMission {
+    var id: String = UUID().uuidString
     var text: String = ""
     var updatedAt: Date = Date.now
 
-    init(text: String = "", updatedAt: Date = .now) {
+    init(id: String = UUID().uuidString, text: String, updatedAt: Date = .now) {
+        self.id = id
         self.text = text
         self.updatedAt = updatedAt
     }

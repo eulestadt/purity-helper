@@ -13,6 +13,7 @@ struct HideInYourHeartView: View {
     @Query(sort: \MemorizedVerse.verseId) private var memorized: [MemorizedVerse]
 
     private let defaultVerses = ScriptureService.versesForMemorization()
+    private let dailyVerse = ScriptureService.verseForToday()
     @State private var showAddVerse = false
 
     private var allVersesCombined: [ScriptureVerse] {
@@ -27,12 +28,32 @@ struct HideInYourHeartView: View {
     }
 
     var body: some View {
-        List {
+        ZStack {
+            PurityBackground().ignoresSafeArea()
+            
+            List {
+                Section {
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text("Daily Scripture")
+                            .font(.caption)
+                            
+                        Text(dailyVerse.reference)
+                            .font(.caption)
+                            
+                        Text(dailyVerse.text)
+                            .font(.body)
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+                .listRowBackground(Color.clear)
+                
                 Section {
                     NavigationLink(destination: MemorizeReviewView()) {
                         Label("Verse to review today", systemImage: "arrow.clockwise")
                     }
                 }
+                .listRowBackground(Color.white.opacity(0.15))
+                
                 Section("Verses to memorize") {
                     ForEach(allVersesCombined) { verse in
                         let progress = memorized.first { $0.verseId == verse.id }
@@ -54,6 +75,7 @@ struct HideInYourHeartView: View {
                                 }
                             }
                         }
+                        .listRowBackground(Color.white.opacity(0.15))
                         .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                             if let p = progress {
                                 Button(role: .destructive) {
@@ -74,9 +96,11 @@ struct HideInYourHeartView: View {
                             }
                         }
                     }
-            }
-        }
-        .navigationTitle("Hide in your heart")
+                } // End Section
+            } // End List
+            .scrollContentBackground(.hidden)
+        } // End ZStack
+        //.navigationTitle(dailyVerse.reference)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button {
@@ -99,6 +123,7 @@ struct HideInYourHeartView: View {
     
     private func unlearnVerse(_ verse: MemorizedVerse) {
         verse.status = "none"
+        verse.updatedAt = Date.now
         try? modelContext.save()
         Task { @MainActor in AutoSyncManager.shared.performBackgroundSync(modelContext: modelContext) }
     }
@@ -180,6 +205,7 @@ struct MemorizeLearnView: View {
         if let p = progress {
             p.status = status
             p.lastReviewedDate = Date()
+            p.updatedAt = Date.now
         } else {
             let m = MemorizedVerse(verseId: verse.id, status: status, lastReviewedDate: Date())
             modelContext.insert(m)
@@ -265,6 +291,7 @@ struct MemorizeReviewDetailView: View {
     private func updateLastReviewed() {
         if let m = memorized.first(where: { $0.verseId == verse.id }) {
             m.lastReviewedDate = Date()
+            m.updatedAt = Date.now
             try? modelContext.save()
         }
     }

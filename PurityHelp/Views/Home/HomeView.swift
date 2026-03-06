@@ -456,10 +456,12 @@ struct StreakCard: View {
                     .fontWeight(.semibold)
             }
             Spacer()
-            Button("Begin again", role: .destructive) {
+            Button("Reset", role: .destructive) {
                 onBeginAgain()
             }
-            .font(.subheadline)
+            .font(.subheadline.bold())
+            .buttonStyle(.plain)
+            .foregroundStyle(.red)
             
             if freezesRemaining > 0, let onFreeze {
                  Button {

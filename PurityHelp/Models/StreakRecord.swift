@@ -10,6 +10,7 @@ import SwiftData
 
 @Model
 final class StreakRecord {
+    var id: String = UUID().uuidString
     var pornographyStreakDays: Int = 0
     var masturbationStreakDays: Int = 0
     var pureThoughtsStreakDays: Int = 0
@@ -24,6 +25,7 @@ final class StreakRecord {
     var updatedAt: Date = Date.now
 
     init(
+        id: String = UUID().uuidString,
         pornographyStreakDays: Int = 0,
         masturbationStreakDays: Int = 0,
         pureThoughtsStreakDays: Int = 0,
@@ -37,6 +39,7 @@ final class StreakRecord {
         createdAt: Date = .now,
         updatedAt: Date = .now
     ) {
+        self.id = id
         self.pornographyStreakDays = pornographyStreakDays
         self.masturbationStreakDays = masturbationStreakDays
         self.pureThoughtsStreakDays = pureThoughtsStreakDays

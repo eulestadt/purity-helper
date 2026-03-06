@@ -85,6 +85,7 @@ struct VigilContainerView: View {
         modelContext.insert(urgeLog)
         
         try? modelContext.save()
+        Task { @MainActor in AutoSyncManager.shared.performBackgroundSync(modelContext: modelContext) }
     }
 }
 

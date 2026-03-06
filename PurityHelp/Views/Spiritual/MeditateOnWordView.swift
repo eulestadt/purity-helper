@@ -153,11 +153,13 @@ struct MeditateOnWordView: View {
         if let p = memorized.first(where: { $0.verseId == verse.id }) {
             p.status = status
             p.lastReviewedDate = Date()
+            p.updatedAt = Date.now
         } else {
             let m = MemorizedVerse(verseId: verse.id, status: status, lastReviewedDate: Date())
             modelContext.insert(m)
         }
         try? modelContext.save()
+        Task { @MainActor in AutoSyncManager.shared.performBackgroundSync(modelContext: modelContext) }
     }
 
     private var completionCard: some View {

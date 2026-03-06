@@ -18,12 +18,23 @@ enum ResetType: String, Codable, Identifiable {
 
 @Model
 final class ResetRecord {
-    var type: String = ""
+    var id: String = UUID().uuidString
+    var updatedAt: Date = Date.now
+    var type: String = "pornography"
     var date: Date = Date.now
     var optionalNote: String?
     var triggerTag: String?
 
-    init(type: ResetType, date: Date = .now, optionalNote: String? = nil, triggerTag: String? = nil) {
+    init(
+        id: String = UUID().uuidString,
+        updatedAt: Date = .now,
+        type: ResetType,
+        date: Date = .now,
+        optionalNote: String? = nil,
+        triggerTag: String? = nil
+    ) {
+        self.id = id
+        self.updatedAt = updatedAt
         self.type = type.rawValue
         self.date = date
         self.optionalNote = optionalNote

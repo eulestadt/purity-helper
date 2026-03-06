@@ -15,6 +15,7 @@
 		14BB3CB44125B5C978ADFD6D /* liturgies.json in Resources */ = {isa = PBXBuildFile; fileRef = B8AAD5A3A510D98BAAA91F51 /* liturgies.json */; };
 		191D135D9A380B2FE486D431 /* UserMission.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C8B3C77A132F102CE1329B /* UserMission.swift */; };
 		1931B377420D0BB18C5B07C8 /* AntirrhetikosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE81B404C400168C6436037 /* AntirrhetikosView.swift */; };
+		1AFC69D8C02D5177ED438A5C /* AccountProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6263B86F6B472CEE2EFD40A8 /* AccountProfileView.swift */; };
 		1C0192AADCE11640C8EA5351 /* MeditateOnWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C0A324E6A838B3D7A0BD57 /* MeditateOnWordView.swift */; };
 		22BDAF334D8C0B743F0D7232 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E066BF55122118DE9FD7FC1C /* HomeView.swift */; };
 		257D3214F6461A9923394EAB /* MemorizedVerse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16F3C70D8E3B830510C94E3 /* MemorizedVerse.swift */; };
@@ -50,7 +51,7 @@
 		A0C6A0D971D23D99AC60DCED /* ReleaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932DED31AE54621D017DD8B2 /* ReleaseView.swift */; };
 		A0CC25616AF7D39BD4B77F71 /* sprout.png in Resources */ = {isa = PBXBuildFile; fileRef = 92C42091C0EE1C93E4C117A0 /* sprout.png */; };
 		A7679DA9F93123B296F2671B /* Vigil.md in Resources */ = {isa = PBXBuildFile; fileRef = 5C7E3BB646D6B52FDFCE9C3A /* Vigil.md */; };
-		B1B2C3D4E5F67890CAFEBABE /* BeginAgainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F67890CAFEBABE /* BeginAgainView.swift */; };
+		B1B2C3D4E5F67890CAFEBABE /* Views/Dashboard/BeginAgainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F67890CAFEBABE /* Views/Dashboard/BeginAgainView.swift */; };
 		B3D2822805AAD9D6261986AB /* AudioSanctuaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D1012D5DB8F9292A2E8FB8 /* AudioSanctuaryView.swift */; };
 		B6065B3D7F50682C68E4B904 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF6080068FC4AC6C6EE1C4E /* AppTheme.swift */; };
 		B74A7E0C27F090569307225A /* FullSyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A34F26A6C82E2CD9BA37D5 /* FullSyncEngine.swift */; };
@@ -61,6 +62,7 @@
 		CC412B73B5FEA56DAE545F17 /* VigilExtendedTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76823C5C9A6C25972CA6E7BE /* VigilExtendedTabView.swift */; };
 		CE2271124E1B35D9B11329B8 /* WisdomOfTheAgesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B018B0F23C61EE15FA880E2 /* WisdomOfTheAgesView.swift */; };
 		D1E2F3A4B5C67890CAFEBABE /* AutoSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D2E3F4A5B67890CAFEBABE /* AutoSyncManager.swift */; };
+		D962B8002F5AD5560000EFA6 /* AppNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D962B7FF2F5AD5560000EFA6 /* AppNotifications.swift */; };
 		E4C287FDEB430D0DAD2B6846 /* LitanyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4027B8FD38DF22462D6AED93 /* LitanyView.swift */; };
 		E77866F36CCF595E8BAC16C5 /* seedling.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F317652B5CACEE2C798129 /* seedling.png */; };
 		E8E3A312F1F28E753FF76FF7 /* mature.png in Resources */ = {isa = PBXBuildFile; fileRef = 1521A0854D051BAF8505CE87 /* mature.png */; };
@@ -98,6 +100,7 @@
 		5C71F89DBB5873ADF3C2F637 /* SyncTransferModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncTransferModels.swift; sourceTree = "<group>"; };
 		5C7E3BB646D6B52FDFCE9C3A /* Vigil.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Vigil.md; sourceTree = "<group>"; };
 		5D84DCA9DA0A5718BC221595 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
+		6263B86F6B472CEE2EFD40A8 /* AccountProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountProfileView.swift; sourceTree = "<group>"; };
 		6BF6080068FC4AC6C6EE1C4E /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		71A256CA21BF0CDA8699D445 /* IfThenPlansView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfThenPlansView.swift; sourceTree = "<group>"; };
 		71BDD3EB5DE9F115F1DBC5A9 /* ExamenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamenView.swift; sourceTree = "<group>"; };
@@ -112,7 +115,7 @@
 		932DED31AE54621D017DD8B2 /* ReleaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseView.swift; sourceTree = "<group>"; };
 		94C09C6C70F9D1E6A914AE97 /* BibleReferenceCleaner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleReferenceCleaner.swift; sourceTree = "<group>"; };
 		95DE081F4FCFB35EC7264981 /* sapling.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sapling.png; sourceTree = "<group>"; };
-		A1B2C3D4E5F67890CAFEBABE /* BeginAgainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Dashboard/BeginAgainView.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F67890CAFEBABE /* Views/Dashboard/BeginAgainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Dashboard/BeginAgainView.swift; sourceTree = "<group>"; };
 		A3C8B3C77A132F102CE1329B /* UserMission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMission.swift; sourceTree = "<group>"; };
 		AD85AD8B74C02D7CCE582668 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AE33669696ABEE5EA2852D32 /* CloudSyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSyncService.swift; sourceTree = "<group>"; };
@@ -131,6 +134,7 @@
 		CDF44F3127ABDC9E81C107BB /* ResetRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetRecord.swift; sourceTree = "<group>"; };
 		D0E60032B79A848CEDD89C1D /* daily_scripture.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = daily_scripture.json; sourceTree = "<group>"; };
 		D3847206ABF2157478E85C36 /* StreakRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakRecord.swift; sourceTree = "<group>"; };
+		D962B7FF2F5AD5560000EFA6 /* AppNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNotifications.swift; sourceTree = "<group>"; };
 		DEC3682EC644C986043F3287 /* ReciteVerseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReciteVerseView.swift; sourceTree = "<group>"; };
 		E017CD52AFF6F4A2452417F8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E066BF55122118DE9FD7FC1C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -223,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				C1D2E3F4A5B67890CAFEBABE /* AutoSyncManager.swift */,
+				D962B7FF2F5AD5560000EFA6 /* AppNotifications.swift */,
 				478F7CACFB1E0C03F664268B /* BibleAPIService.swift */,
 				94C09C6C70F9D1E6A914AE97 /* BibleReferenceCleaner.swift */,
 				AE33669696ABEE5EA2852D32 /* CloudSyncService.swift */,
@@ -297,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				8D377771BC07878FD7A412BE /* CloudSyncSettingsView.swift */,
+				6263B86F6B472CEE2EFD40A8 /* AccountProfileView.swift */,
 				33E9E89942E035EAA5518329 /* DangerZoneView.swift */,
 				3E376DFA36C1544518AFCEC8 /* MissionView.swift */,
 				1E8F6004D48927E5CB5F3B5A /* SettingsView.swift */,
@@ -308,7 +314,7 @@
 		A1592F506EC5D5A6BD032BDD /* PurityHelp */ = {
 			isa = PBXGroup;
 			children = (
-				A1B2C3D4E5F67890CAFEBABE /* BeginAgainView.swift */,
+				A1B2C3D4E5F67890CAFEBABE /* Views/Dashboard/BeginAgainView.swift */,
 				AD85AD8B74C02D7CCE582668 /* ContentView.swift */,
 				CA9B605C52ACB91726FD730B /* Media.xcassets */,
 				31806D44F76B06B7BD8F048F /* PurityHelpApp.swift */,
@@ -464,7 +470,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1E2F3A4B5C67890CAFEBABE /* AutoSyncManager.swift in Sources */,
-				B1B2C3D4E5F67890CAFEBABE /* BeginAgainView.swift in Sources */,
+				B1B2C3D4E5F67890CAFEBABE /* Views/Dashboard/BeginAgainView.swift in Sources */,
 				802A0CF11ACE5FBD871B2EE0 /* AddVerseSearchSheet.swift in Sources */,
 				1931B377420D0BB18C5B07C8 /* AntirrhetikosView.swift in Sources */,
 				B6065B3D7F50682C68E4B904 /* AppTheme.swift in Sources */,
@@ -474,6 +480,7 @@
 				59CE3972DEBDC8849E5A9F11 /* BreathingPacer.swift in Sources */,
 				F38A4A40DB06419FB17E3243 /* CloudSyncService.swift in Sources */,
 				46A14C75DD3DC7F2548B53D1 /* CloudSyncSettingsView.swift in Sources */,
+				1AFC69D8C02D5177ED438A5C /* AccountProfileView.swift in Sources */,
 				848FB74C60D0475721866460 /* ContentView.swift in Sources */,
 				ED5BAE0061D8578D31A848D6 /* DailyScriptureView.swift in Sources */,
 				EFA70B0762504137B428B689 /* DangerZoneView.swift in Sources */,
@@ -503,6 +510,7 @@
 				76F3A162074DF51CE039C91A /* ShareableProgressService.swift in Sources */,
 				5E2713DAF622E084D31037FF /* ShareableProgressView.swift in Sources */,
 				9429BD710B85B237C37FDB40 /* StoriesOfHopeView.swift in Sources */,
+				D962B8002F5AD5560000EFA6 /* AppNotifications.swift in Sources */,
 				854A91F4205F87A4683D3ED3 /* StreakRecord.swift in Sources */,
 				481EB0D8322C0513699E6549 /* StreakService.swift in Sources */,
 				281278C649E4F6B47B341857 /* SyncTransferModels.swift in Sources */,

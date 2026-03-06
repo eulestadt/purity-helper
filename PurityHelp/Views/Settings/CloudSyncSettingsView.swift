@@ -16,7 +16,7 @@ struct CloudSyncSettingsView: View {
 
     @AppStorage("cloudSyncEnabled") private var syncEnabled = false
     @AppStorage("accountabilityTerm") private var accountabilityTerm = "Brotherhood"
-    private var partnersLabel: String { accountabilityTerm == "Brotherhood" ? "Brothers" : (accountabilityTerm == "Sisterhood" ? "Sisters" : "Partners") }
+
     @AppStorage("shareExamens") private var shareExamens = false
     @AppStorage("shareUrges") private var shareUrges = true
     @AppStorage("shareRelapses") private var shareRelapses = false
@@ -111,23 +111,7 @@ struct CloudSyncSettingsView: View {
                                         .foregroundStyle(.secondary)
                                 }
                                 
-                                Divider().background(Color.white.opacity(0.1))
-                                
-                                NavigationLink(destination: PartnersView()) {
-                                    HStack {
-                                        Text("Walking with \(partnersLabel)")
-                                        Spacer()
-                                        Image(systemName: "chevron.right")
-                                            .foregroundStyle(.secondary)
-                                            .font(.footnote)
-                                    }
-                                    .font(.headline)
-                                    .padding()
-                                    .background(Color.white.opacity(0.1))
-                                    .clipShape(RoundedRectangle(cornerRadius: 12))
-                                }
-                                .foregroundStyle(.white)
-                                
+
                             } else {
                                 Button {
                                     generateShareLink()

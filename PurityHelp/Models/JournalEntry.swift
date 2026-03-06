@@ -19,6 +19,8 @@ enum JournalEntryType: String, Codable {
 
 @Model
 final class JournalEntry {
+    var id: String = UUID().uuidString
+    var updatedAt: Date = Date.now
     var date: Date = Date.now
     var type: String = ""
     var optionalText: String?
@@ -28,6 +30,8 @@ final class JournalEntry {
     var outcome: String?
 
     init(
+        id: String = UUID().uuidString,
+        updatedAt: Date = .now,
         date: Date = .now,
         type: JournalEntryType,
         optionalText: String? = nil,
@@ -36,6 +40,8 @@ final class JournalEntry {
         durationCompleted: TimeInterval? = nil,
         outcome: String? = nil
     ) {
+        self.id = id
+        self.updatedAt = updatedAt
         self.date = date
         self.type = type.rawValue
         self.optionalText = optionalText

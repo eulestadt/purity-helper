@@ -12,6 +12,7 @@ import SwiftData
 final class MemorizedVerse {
     /// Verse id matching ScriptureService (e.g. "prov4_23", "ps119_11").
     var verseId: String = ""
+    var updatedAt: Date = Date.now
     /// "learning" or "learned"
     var status: String = "learning"
     var lastReviewedDate: Date? = nil
@@ -19,8 +20,9 @@ final class MemorizedVerse {
     var customText: String? = nil
     var customTranslation: String? = nil
 
-    init(verseId: String = "", status: String = "learning", lastReviewedDate: Date? = nil, customReference: String? = nil, customText: String? = nil, customTranslation: String? = nil) {
+    init(verseId: String = "", updatedAt: Date = .now, status: String = "learning", lastReviewedDate: Date? = nil, customReference: String? = nil, customText: String? = nil, customTranslation: String? = nil) {
         self.verseId = verseId
+        self.updatedAt = updatedAt
         self.status = status
         self.lastReviewedDate = lastReviewedDate
         self.customReference = customReference

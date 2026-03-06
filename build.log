@@ -1,0 +1,953 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild clean build -project PurityHelp.xcodeproj -scheme PurityHelp -destination "generic/platform=iOS Simulator"
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+** CLEAN SUCCEEDED **
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (1 target)
+    Target 'PurityHelp' in project 'PurityHelp' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --print-asset-tag-combinations --output-format xml1 /Users/phoenixwang/purity-help/PurityHelp/Media.xcassets
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --version --output-format xml1
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+Build description signature: d8a3b0c1ba725ab099d9d67f9c650cd1
+Build description path: /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/XCBuildData/d8a3b0c1ba725ab099d9d67f9c650cd1.xcbuilddata
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk /Users/phoenixwang/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.2-23C57-7d00a8b37fbd7999ea79df8ebc024bf0.sdkstatcache
+    cd /Users/phoenixwang/purity-help/PurityHelp.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -o /Users/phoenixwang/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.2-23C57-7d00a8b37fbd7999ea79df8ebc024bf0.sdkstatcache
+
+CreateBuildDirectory /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products
+    cd /Users/phoenixwang/purity-help/PurityHelp.xcodeproj
+    builtin-create-build-directory /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products
+
+CreateBuildDirectory /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex
+    cd /Users/phoenixwang/purity-help/PurityHelp.xcodeproj
+    builtin-create-build-directory /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex
+
+CreateBuildDirectory /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator
+    cd /Users/phoenixwang/purity-help/PurityHelp.xcodeproj
+    builtin-create-build-directory /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator
+
+CreateBuildDirectory /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+    cd /Users/phoenixwang/purity-help/PurityHelp.xcodeproj
+    builtin-create-build-directory /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+
+CreateBuildDirectory /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/ExplicitPrecompiledModules
+    cd /Users/phoenixwang/purity-help/PurityHelp.xcodeproj
+    builtin-create-build-directory /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/ExplicitPrecompiledModules
+
+CreateBuildDirectory /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator
+    cd /Users/phoenixwang/purity-help/PurityHelp.xcodeproj
+    builtin-create-build-directory /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator
+
+WriteAuxiliaryFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp-2c7c57acd97dd63d052ebab59f95c3f2-VFS-iphonesimulator/all-product-headers.yaml
+    cd /Users/phoenixwang/purity-help/PurityHelp.xcodeproj
+    write-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp-2c7c57acd97dd63d052ebab59f95c3f2-VFS-iphonesimulator/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp.DependencyMetadataFileList (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    write-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp.DependencyMetadataFileList
+
+WriteAuxiliaryFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-all-target-headers.hmap (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    write-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-all-target-headers.hmap
+
+WriteAuxiliaryFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/empty-PurityHelp.plist (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    write-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/empty-PurityHelp.plist
+
+WriteAuxiliaryFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp.hmap (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    write-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp.hmap
+
+WriteAuxiliaryFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp.DependencyStaticMetadataFileList (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    write-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp.DependencyStaticMetadataFileList
+
+WriteAuxiliaryFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-generated-files.hmap (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    write-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-generated-files.hmap
+
+WriteAuxiliaryFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-project-headers.hmap (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    write-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-project-headers.hmap
+
+WriteAuxiliaryFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-own-target-headers.hmap (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    write-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-own-target-headers.hmap
+
+WriteAuxiliaryFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-all-non-framework-target-headers.hmap (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    write-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-DebugDylibPath-normal-x86_64.txt (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    write-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-DebugDylibPath-normal-x86_64.txt
+
+WriteAuxiliaryFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-DebugDylibPath-normal-arm64.txt (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    write-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-DebugDylibPath-normal-arm64.txt
+
+WriteAuxiliaryFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-DebugDylibInstallName-normal-x86_64.txt (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    write-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-DebugDylibInstallName-normal-x86_64.txt
+
+WriteAuxiliaryFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-DebugDylibInstallName-normal-arm64.txt (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    write-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-DebugDylibInstallName-normal-arm64.txt
+
+WriteAuxiliaryFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp_const_extract_protocols.json (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    write-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp_const_extract_protocols.json
+
+WriteAuxiliaryFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp.SwiftFileList (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    write-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp.SwiftFileList
+
+WriteAuxiliaryFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp.SwiftConstValuesFileList (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    write-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp.SwiftConstValuesFileList
+
+WriteAuxiliaryFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp.LinkFileList (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    write-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp.LinkFileList
+
+WriteAuxiliaryFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp-OutputFileMap.json (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    write-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp-OutputFileMap.json
+
+WriteAuxiliaryFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp_const_extract_protocols.json (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    write-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp_const_extract_protocols.json
+
+WriteAuxiliaryFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp.SwiftFileList (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    write-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp.SwiftFileList
+
+WriteAuxiliaryFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp.SwiftConstValuesFileList (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    write-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp.SwiftConstValuesFileList
+
+WriteAuxiliaryFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp.LinkFileList (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    write-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp.LinkFileList
+
+WriteAuxiliaryFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp-OutputFileMap.json (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    write-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp-OutputFileMap.json
+
+MkDir /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    /bin/mkdir -p /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app
+
+WriteAuxiliaryFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources/Entitlements-Simulated.plist (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    write-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources/Entitlements-Simulated.plist
+
+ProcessProductPackaging "" /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp.app-Simulated.xcent (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+    Entitlements:
+    
+    {
+    "application-identifier" = "Y9T4RA62V7.com.purityhelp.app";
+}
+    
+    builtin-productPackagingUtility -entitlements -format xml -o /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp.app-Simulated.xcent
+
+ProcessProductPackagingDER /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp.app-Simulated.xcent /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp.app-Simulated.xcent.der (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    /usr/bin/derq query -f xml -i /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp.app-Simulated.xcent -o /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp.app-Simulated.xcent.der --raw
+
+MkDir /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/assetcatalog_output/unthinned (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    /bin/mkdir -p /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/assetcatalog_output/unthinned
+
+MkDir /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/assetcatalog_output/thinned (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    /bin/mkdir -p /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/assetcatalog_output/thinned
+
+Ld /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/Binary/__preview.dylib normal arm64 (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios17.0-simulator -dynamiclib -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -O0 -L/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator -F/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator -install_name @rpath/PurityHelp.debug.dylib -dead_strip -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -dependency_info -Xlinker /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp_dependency_info.dat -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp.app-Simulated.xcent -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __ents_der -Xlinker /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp.app-Simulated.xcent.der -Xlinker -no_adhoc_codesign -o /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/Binary/__preview.dylib
+
+GenerateAssetSymbols /Users/phoenixwang/purity-help/PurityHelp/Media.xcassets (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    /Applications/Xcode.app/Contents/Developer/usr/bin/actool /Users/phoenixwang/purity-help/PurityHelp/Media.xcassets --compile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app --output-format human-readable-text --notices --warnings --export-dependency-info /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/assetcatalog_dependencies --output-partial-info-plist /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/assetcatalog_generated_info.plist --app-icon AppIcon --compress-pngs --enable-on-demand-resources YES --development-region en --target-device iphone --target-device ipad --minimum-deployment-target 17.0 --platform iphonesimulator --bundle-identifier com.purityhelp.app --generate-swift-asset-symbol-extensions NO --generate-swift-asset-symbols /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources/GeneratedAssetSymbols.swift --generate-objc-asset-symbols /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources/GeneratedAssetSymbols.h --generate-asset-symbol-index /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources/GeneratedAssetSymbols-Index.plist
+/* com.apple.actool.compilation-results */
+/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources/GeneratedAssetSymbols-Index.plist
+/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources/GeneratedAssetSymbols.h
+/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources/GeneratedAssetSymbols.swift
+
+
+Ld /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/Binary/__preview.dylib normal x86_64 (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target x86_64-apple-ios17.0-simulator -dynamiclib -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -O0 -L/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator -F/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator -install_name @rpath/PurityHelp.debug.dylib -dead_strip -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -dependency_info -Xlinker /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp_dependency_info.dat -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp.app-Simulated.xcent -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __ents_der -Xlinker /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp.app-Simulated.xcent.der -Xlinker -no_adhoc_codesign -o /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/Binary/__preview.dylib
+
+CpResource /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/stories.json /Users/phoenixwang/purity-help/PurityHelp/Resources/StoriesOfHope/stories.json (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/phoenixwang/purity-help/PurityHelp/Resources/StoriesOfHope/stories.json /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app
+
+CpResource /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/liturgies.json /Users/phoenixwang/purity-help/PurityHelp/Resources/Prayers/liturgies.json (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/phoenixwang/purity-help/PurityHelp/Resources/Prayers/liturgies.json /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app
+
+CpResource /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/daily_scripture.json /Users/phoenixwang/purity-help/PurityHelp/Resources/Scripture/daily_scripture.json (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/phoenixwang/purity-help/PurityHelp/Resources/Scripture/daily_scripture.json /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app
+
+CpResource /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/Vigil.md /Users/phoenixwang/purity-help/PurityHelp/Resources/Prayers/Vigil.md (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/phoenixwang/purity-help/PurityHelp/Resources/Prayers/Vigil.md /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app
+
+CpResource /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/README.md /Users/phoenixwang/purity-help/PurityHelp/Resources/StoriesOfHope/README.md (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/phoenixwang/purity-help/PurityHelp/Resources/StoriesOfHope/README.md /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app
+
+CopyPNGFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/tree.png /Users/phoenixwang/purity-help/PurityHelp/Resources/tree.png (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng -compress -strip-PNG-text /Users/phoenixwang/purity-help/PurityHelp/Resources/tree.png /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/tree.png
+
+CopyPNGFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/sprout.png /Users/phoenixwang/purity-help/PurityHelp/Resources/sprout.png (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng -compress -strip-PNG-text /Users/phoenixwang/purity-help/PurityHelp/Resources/sprout.png /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/sprout.png
+
+CopyPNGFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/seedling.png /Users/phoenixwang/purity-help/PurityHelp/Resources/seedling.png (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng -compress -strip-PNG-text /Users/phoenixwang/purity-help/PurityHelp/Resources/seedling.png /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/seedling.png
+
+CopyPNGFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/sapling.png /Users/phoenixwang/purity-help/PurityHelp/Resources/sapling.png (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng -compress -strip-PNG-text /Users/phoenixwang/purity-help/PurityHelp/Resources/sapling.png /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/sapling.png
+
+CopyPNGFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/mature.png /Users/phoenixwang/purity-help/PurityHelp/Resources/mature.png (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng -compress -strip-PNG-text /Users/phoenixwang/purity-help/PurityHelp/Resources/mature.png /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/mature.png
+
+CopyPNGFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/Gemini_Generated_Image_7dtj9d7dtj9d7dtj.png /Users/phoenixwang/purity-help/PurityHelp/Assets/Gemini_Generated_Image_7dtj9d7dtj9d7dtj.png (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng -compress -strip-PNG-text /Users/phoenixwang/purity-help/PurityHelp/Assets/Gemini_Generated_Image_7dtj9d7dtj9d7dtj.png /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/Gemini_Generated_Image_7dtj9d7dtj9d7dtj.png
+
+CompileAssetCatalogVariant thinned /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app /Users/phoenixwang/purity-help/PurityHelp/Media.xcassets (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    /Applications/Xcode.app/Contents/Developer/usr/bin/actool /Users/phoenixwang/purity-help/PurityHelp/Media.xcassets --compile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/assetcatalog_output/thinned --output-format human-readable-text --notices --warnings --export-dependency-info /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/assetcatalog_dependencies_thinned --output-partial-info-plist /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/assetcatalog_generated_info.plist_thinned --app-icon AppIcon --compress-pngs --enable-on-demand-resources YES --development-region en --target-device iphone --target-device ipad --minimum-deployment-target 17.0 --platform iphonesimulator
+/* com.apple.actool.compilation-results */
+/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/assetcatalog_generated_info.plist_thinned
+/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/assetcatalog_output/thinned/AppIcon60x60@2x.png
+/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/assetcatalog_output/thinned/AppIcon76x76@2x~ipad.png
+/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/assetcatalog_output/thinned/Assets.car
+
+
+CreateUniversalBinary /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/__preview.dylib normal arm64\ x86_64 (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo -create /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/Binary/__preview.dylib /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/Binary/__preview.dylib -output /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/__preview.dylib
+
+SwiftDriver PurityHelp normal arm64 com.apple.xcode.tools.swift.compiler (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name PurityHelp -Onone -enforce-exclusivity\=checked @/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp.SwiftFileList -DDEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator -F /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/phoenixwang/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.2-23C57-7d00a8b37fbd7999ea79df8ebc024bf0.sdkstatcache -output-file-map /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp_const_extract_protocols.json -Xcc -iquote -Xcc /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-generated-files.hmap -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-own-target-headers.hmap -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-all-target-headers.hmap -Xcc -iquote -Xcc /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-project-headers.hmap -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources-normal/arm64 -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources/arm64 -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp-Swift.h -working-directory /Users/phoenixwang/purity-help -experimental-emit-module-separately -disable-cmo
+
+SwiftDriver PurityHelp normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name PurityHelp -Onone -enforce-exclusivity\=checked @/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp.SwiftFileList -DDEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target x86_64-apple-ios17.0-simulator -g -module-cache-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator -F /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/phoenixwang/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.2-23C57-7d00a8b37fbd7999ea79df8ebc024bf0.sdkstatcache -output-file-map /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp_const_extract_protocols.json -Xcc -iquote -Xcc /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-generated-files.hmap -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-own-target-headers.hmap -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-all-target-headers.hmap -Xcc -iquote -Xcc /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-project-headers.hmap -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources-normal/x86_64 -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources/x86_64 -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp-Swift.h -working-directory /Users/phoenixwang/purity-help -experimental-emit-module-separately -disable-cmo
+
+SwiftCompile normal x86_64 Compiling\ BeginAgainView.swift,\ AddVerseSearchSheet.swift,\ AntirrhetikosView.swift,\ AppTheme.swift,\ AudioSanctuaryView.swift,\ BibleAPIService.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Dashboard/BeginAgainView.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Memorization/AddVerseSearchSheet.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/AntirrhetikosView.swift /Users/phoenixwang/purity-help/PurityHelp/Components/AppTheme.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/AudioSanctuaryView.swift /Users/phoenixwang/purity-help/PurityHelp/Services/BibleAPIService.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Views/Dashboard/BeginAgainView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Views/Memorization/AddVerseSearchSheet.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/AntirrhetikosView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Components/AppTheme.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/AudioSanctuaryView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Services/BibleAPIService.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 Compiling\ BibleReferenceCleaner.swift,\ BreathingPacer.swift,\ CloudSyncService.swift,\ CloudSyncSettingsView.swift,\ ContentView.swift,\ DailyScriptureView.swift /Users/phoenixwang/purity-help/PurityHelp/Services/BibleReferenceCleaner.swift /Users/phoenixwang/purity-help/PurityHelp/Components/BreathingPacer.swift /Users/phoenixwang/purity-help/PurityHelp/Services/CloudSyncService.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Settings/CloudSyncSettingsView.swift /Users/phoenixwang/purity-help/PurityHelp/ContentView.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Spiritual/DailyScriptureView.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Services/BibleReferenceCleaner.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Components/BreathingPacer.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Services/CloudSyncService.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Views/Settings/CloudSyncSettingsView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/ContentView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Views/Spiritual/DailyScriptureView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 Compiling\ HomeView.swift,\ IfThenPlan.swift,\ IfThenPlansView.swift,\ JournalEntry.swift,\ KeychainHelper.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Home/HomeView.swift /Users/phoenixwang/purity-help/PurityHelp/Models/IfThenPlan.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Plans/IfThenPlansView.swift /Users/phoenixwang/purity-help/PurityHelp/Models/JournalEntry.swift /Users/phoenixwang/purity-help/PurityHelp/Services/KeychainHelper.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Views/Home/HomeView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Models/IfThenPlan.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Views/Plans/IfThenPlansView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Models/JournalEntry.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Services/KeychainHelper.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 Compiling\ PartnersView.swift,\ PurityHelpApp.swift,\ PurityTreeView.swift,\ ReciteVerseView.swift,\ ReleaseView.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Partners/PartnersView.swift /Users/phoenixwang/purity-help/PurityHelp/PurityHelpApp.swift /Users/phoenixwang/purity-help/PurityHelp/Components/PurityTreeView.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Memorization/ReciteVerseView.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/ReleaseView.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Views/Partners/PartnersView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/PurityHelpApp.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Components/PurityTreeView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Views/Memorization/ReciteVerseView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/ReleaseView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 Compiling\ LitanyView.swift,\ LogismoiSelectorView.swift,\ MeditateOnWordView.swift,\ MemorizedVerse.swift,\ MissionView.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/LitanyView.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/LogismoiSelectorView.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Spiritual/MeditateOnWordView.swift /Users/phoenixwang/purity-help/PurityHelp/Models/MemorizedVerse.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Settings/MissionView.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/LitanyView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/LogismoiSelectorView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Views/Spiritual/MeditateOnWordView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Models/MemorizedVerse.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Views/Settings/MissionView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 Compiling\ VigilContainerView.swift,\ VigilExtendedTabView.swift,\ VigilService.swift,\ WisdomOfTheAgesView.swift,\ GeneratedAssetSymbols.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/VigilContainerView.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/VigilExtendedTabView.swift /Users/phoenixwang/purity-help/PurityHelp/Services/VigilService.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Spiritual/WisdomOfTheAgesView.swift /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/VigilContainerView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/VigilExtendedTabView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Services/VigilService.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Views/Spiritual/WisdomOfTheAgesView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 Compiling\ UrgeInsightsView.swift,\ UrgeLog.swift,\ UrgeMomentView.swift,\ UrgeSurfingGuide.swift,\ UserMission.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Settings/UrgeInsightsView.swift /Users/phoenixwang/purity-help/PurityHelp/Models/UrgeLog.swift /Users/phoenixwang/purity-help/PurityHelp/Views/UrgeMoment/UrgeMomentView.swift /Users/phoenixwang/purity-help/PurityHelp/Components/UrgeSurfingGuide.swift /Users/phoenixwang/purity-help/PurityHelp/Models/UserMission.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Views/Settings/UrgeInsightsView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+/Users/phoenixwang/purity-help/PurityHelp/Views/Settings/UrgeInsightsView.swift:267:28: warning: value 'date' was defined but never used; consider replacing with boolean test
+                    if let date = value.as(Date.self) {
+                       ~~~~^~~~~~~
+                                                      != nil
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Models/UrgeLog.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Views/UrgeMoment/UrgeMomentView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Components/UrgeSurfingGuide.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Models/UserMission.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 Compiling\ ResetRecord.swift,\ ScriptureService.swift,\ SettingsView.swift,\ ShareableProgressService.swift,\ ShareableProgressView.swift /Users/phoenixwang/purity-help/PurityHelp/Models/ResetRecord.swift /Users/phoenixwang/purity-help/PurityHelp/Services/ScriptureService.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Settings/SettingsView.swift /Users/phoenixwang/purity-help/PurityHelp/Services/ShareableProgressService.swift /Users/phoenixwang/purity-help/PurityHelp/Components/ShareableProgressView.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Models/ResetRecord.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Services/ScriptureService.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Views/Settings/SettingsView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Services/ShareableProgressService.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Components/ShareableProgressView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftEmitModule normal x86_64 Emitting\ module\ for\ PurityHelp (in target 'PurityHelp' from project 'PurityHelp')
+
+EmitSwiftModule normal x86_64 (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ PurityHelp (in target 'PurityHelp' from project 'PurityHelp')
+
+EmitSwiftModule normal arm64 (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftDriverJobDiscovery normal x86_64 Emitting module for PurityHelp (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftDriver\ Compilation\ Requirements PurityHelp normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name PurityHelp -Onone -enforce-exclusivity\=checked @/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp.SwiftFileList -DDEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target x86_64-apple-ios17.0-simulator -g -module-cache-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator -F /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/phoenixwang/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.2-23C57-7d00a8b37fbd7999ea79df8ebc024bf0.sdkstatcache -output-file-map /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp_const_extract_protocols.json -Xcc -iquote -Xcc /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-generated-files.hmap -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-own-target-headers.hmap -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-all-target-headers.hmap -Xcc -iquote -Xcc /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-project-headers.hmap -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources-normal/x86_64 -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources/x86_64 -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp-Swift.h -working-directory /Users/phoenixwang/purity-help -experimental-emit-module-separately -disable-cmo
+
+SwiftDriverJobDiscovery normal x86_64 Compiling VigilContainerView.swift, VigilExtendedTabView.swift, VigilService.swift, WisdomOfTheAgesView.swift, GeneratedAssetSymbols.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftCompile normal arm64 Compiling\ LitanyView.swift,\ LogismoiSelectorView.swift,\ MeditateOnWordView.swift,\ MemorizedVerse.swift,\ MissionView.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/LitanyView.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/LogismoiSelectorView.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Spiritual/MeditateOnWordView.swift /Users/phoenixwang/purity-help/PurityHelp/Models/MemorizedVerse.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Settings/MissionView.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/LitanyView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/LogismoiSelectorView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Views/Spiritual/MeditateOnWordView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Models/MemorizedVerse.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Views/Settings/MissionView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+Copy /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.swiftmodule/x86_64-apple-ios-simulator.swiftmodule /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp.swiftmodule (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp.swiftmodule /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.swiftmodule/x86_64-apple-ios-simulator.swiftmodule
+
+SwiftDriverJobDiscovery normal x86_64 Compiling ResetRecord.swift, ScriptureService.swift, SettingsView.swift, ShareableProgressService.swift, ShareableProgressView.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+Copy /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.swiftmodule/x86_64-apple-ios-simulator.swiftdoc /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp.swiftdoc (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp.swiftdoc /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.swiftmodule/x86_64-apple-ios-simulator.swiftdoc
+
+Copy /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.swiftmodule/x86_64-apple-ios-simulator.abi.json /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp.abi.json (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp.abi.json /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.swiftmodule/x86_64-apple-ios-simulator.abi.json
+
+Copy /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp.swiftsourceinfo (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp.swiftsourceinfo /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo
+
+SwiftCompile normal arm64 Compiling\ BeginAgainView.swift,\ AddVerseSearchSheet.swift,\ AntirrhetikosView.swift,\ AppTheme.swift,\ AudioSanctuaryView.swift,\ BibleAPIService.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Dashboard/BeginAgainView.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Memorization/AddVerseSearchSheet.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/AntirrhetikosView.swift /Users/phoenixwang/purity-help/PurityHelp/Components/AppTheme.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/AudioSanctuaryView.swift /Users/phoenixwang/purity-help/PurityHelp/Services/BibleAPIService.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Views/Dashboard/BeginAgainView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Views/Memorization/AddVerseSearchSheet.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/AntirrhetikosView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Components/AppTheme.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/AudioSanctuaryView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Services/BibleAPIService.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 Compiling\ VigilContainerView.swift,\ VigilExtendedTabView.swift,\ VigilService.swift,\ WisdomOfTheAgesView.swift,\ GeneratedAssetSymbols.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/VigilContainerView.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/VigilExtendedTabView.swift /Users/phoenixwang/purity-help/PurityHelp/Services/VigilService.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Spiritual/WisdomOfTheAgesView.swift /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/VigilContainerView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/VigilExtendedTabView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Services/VigilService.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Views/Spiritual/WisdomOfTheAgesView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftDriverJobDiscovery normal x86_64 Compiling LitanyView.swift, LogismoiSelectorView.swift, MeditateOnWordView.swift, MemorizedVerse.swift, MissionView.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftCompile normal arm64 Compiling\ BibleReferenceCleaner.swift,\ BreathingPacer.swift,\ CloudSyncService.swift,\ CloudSyncSettingsView.swift,\ ContentView.swift,\ DailyScriptureView.swift /Users/phoenixwang/purity-help/PurityHelp/Services/BibleReferenceCleaner.swift /Users/phoenixwang/purity-help/PurityHelp/Components/BreathingPacer.swift /Users/phoenixwang/purity-help/PurityHelp/Services/CloudSyncService.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Settings/CloudSyncSettingsView.swift /Users/phoenixwang/purity-help/PurityHelp/ContentView.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Spiritual/DailyScriptureView.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Services/BibleReferenceCleaner.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Components/BreathingPacer.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Services/CloudSyncService.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Views/Settings/CloudSyncSettingsView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/ContentView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Views/Spiritual/DailyScriptureView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftDriverJobDiscovery normal x86_64 Compiling PartnersView.swift, PurityHelpApp.swift, PurityTreeView.swift, ReciteVerseView.swift, ReleaseView.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftCompile normal arm64 Compiling\ HomeView.swift,\ IfThenPlan.swift,\ IfThenPlansView.swift,\ JournalEntry.swift,\ KeychainHelper.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Home/HomeView.swift /Users/phoenixwang/purity-help/PurityHelp/Models/IfThenPlan.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Plans/IfThenPlansView.swift /Users/phoenixwang/purity-help/PurityHelp/Models/JournalEntry.swift /Users/phoenixwang/purity-help/PurityHelp/Services/KeychainHelper.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Views/Home/HomeView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Models/IfThenPlan.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Views/Plans/IfThenPlansView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Models/JournalEntry.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Services/KeychainHelper.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftDriverJobDiscovery normal x86_64 Compiling BibleReferenceCleaner.swift, BreathingPacer.swift, CloudSyncService.swift, CloudSyncSettingsView.swift, ContentView.swift, DailyScriptureView.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftCompile normal arm64 Compiling\ UrgeInsightsView.swift,\ UrgeLog.swift,\ UrgeMomentView.swift,\ UrgeSurfingGuide.swift,\ UserMission.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Settings/UrgeInsightsView.swift /Users/phoenixwang/purity-help/PurityHelp/Models/UrgeLog.swift /Users/phoenixwang/purity-help/PurityHelp/Views/UrgeMoment/UrgeMomentView.swift /Users/phoenixwang/purity-help/PurityHelp/Components/UrgeSurfingGuide.swift /Users/phoenixwang/purity-help/PurityHelp/Models/UserMission.swift (in target 'PurityHelp' from project 'PurityHelp')
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Views/Settings/UrgeInsightsView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+/Users/phoenixwang/purity-help/PurityHelp/Views/Settings/UrgeInsightsView.swift:267:28: warning: value 'date' was defined but never used; consider replacing with boolean test
+                    if let date = value.as(Date.self) {
+                       ~~~~^~~~~~~
+                                                      != nil
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Models/UrgeLog.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Views/UrgeMoment/UrgeMomentView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Components/UrgeSurfingGuide.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Models/UserMission.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftDriverJobDiscovery normal x86_64 Compiling HomeView.swift, IfThenPlan.swift, IfThenPlansView.swift, JournalEntry.swift, KeychainHelper.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftCompile normal arm64 Compiling\ DangerZoneView.swift,\ ExamenEntry.swift,\ ExamenHistoryView.swift,\ ExamenView.swift,\ FullSyncEngine.swift,\ HideInYourHeartView.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Settings/DangerZoneView.swift /Users/phoenixwang/purity-help/PurityHelp/Models/ExamenEntry.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Examen/ExamenHistoryView.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Examen/ExamenView.swift /Users/phoenixwang/purity-help/PurityHelp/Services/FullSyncEngine.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Memorization/HideInYourHeartView.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Views/Settings/DangerZoneView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Models/ExamenEntry.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Views/Examen/ExamenHistoryView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Views/Examen/ExamenView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Services/FullSyncEngine.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Views/Memorization/HideInYourHeartView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for PurityHelp (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftDriverJobDiscovery normal x86_64 Compiling UrgeInsightsView.swift, UrgeLog.swift, UrgeMomentView.swift, UrgeSurfingGuide.swift, UserMission.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftDriver\ Compilation\ Requirements PurityHelp normal arm64 com.apple.xcode.tools.swift.compiler (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name PurityHelp -Onone -enforce-exclusivity\=checked @/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp.SwiftFileList -DDEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator -F /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/phoenixwang/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.2-23C57-7d00a8b37fbd7999ea79df8ebc024bf0.sdkstatcache -output-file-map /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp_const_extract_protocols.json -Xcc -iquote -Xcc /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-generated-files.hmap -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-own-target-headers.hmap -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-all-target-headers.hmap -Xcc -iquote -Xcc /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-project-headers.hmap -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources-normal/arm64 -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources/arm64 -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp-Swift.h -working-directory /Users/phoenixwang/purity-help -experimental-emit-module-separately -disable-cmo
+
+SwiftCompile normal arm64 Compiling\ ResetRecord.swift,\ ScriptureService.swift,\ SettingsView.swift,\ ShareableProgressService.swift,\ ShareableProgressView.swift /Users/phoenixwang/purity-help/PurityHelp/Models/ResetRecord.swift /Users/phoenixwang/purity-help/PurityHelp/Services/ScriptureService.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Settings/SettingsView.swift /Users/phoenixwang/purity-help/PurityHelp/Services/ShareableProgressService.swift /Users/phoenixwang/purity-help/PurityHelp/Components/ShareableProgressView.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Models/ResetRecord.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Services/ScriptureService.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Views/Settings/SettingsView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Services/ShareableProgressService.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Components/ShareableProgressView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftMergeGeneratedHeaders /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources/PurityHelp-Swift.h /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp-Swift.h /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp-Swift.h (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    builtin-swiftHeaderTool -arch arm64 /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp-Swift.h -arch x86_64 /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp-Swift.h -o /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources/PurityHelp-Swift.h
+
+SwiftDriverJobDiscovery normal arm64 Compiling VigilContainerView.swift, VigilExtendedTabView.swift, VigilService.swift, WisdomOfTheAgesView.swift, GeneratedAssetSymbols.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+Copy /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.swiftmodule/arm64-apple-ios-simulator.swiftmodule /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp.swiftmodule (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp.swiftmodule /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.swiftmodule/arm64-apple-ios-simulator.swiftmodule
+
+Copy /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.swiftmodule/arm64-apple-ios-simulator.swiftdoc /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp.swiftdoc (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp.swiftdoc /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.swiftmodule/arm64-apple-ios-simulator.swiftdoc
+
+Copy /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.swiftmodule/arm64-apple-ios-simulator.abi.json /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp.abi.json (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp.abi.json /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.swiftmodule/arm64-apple-ios-simulator.abi.json
+
+Copy /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp.swiftsourceinfo (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp.swiftsourceinfo /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo
+
+SwiftCompile normal x86_64 Compiling\ DangerZoneView.swift,\ ExamenEntry.swift,\ ExamenHistoryView.swift,\ ExamenView.swift,\ FullSyncEngine.swift,\ HideInYourHeartView.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Settings/DangerZoneView.swift /Users/phoenixwang/purity-help/PurityHelp/Models/ExamenEntry.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Examen/ExamenHistoryView.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Examen/ExamenView.swift /Users/phoenixwang/purity-help/PurityHelp/Services/FullSyncEngine.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Memorization/HideInYourHeartView.swift (in target 'PurityHelp' from project 'PurityHelp')
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Views/Settings/DangerZoneView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Models/ExamenEntry.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Views/Examen/ExamenHistoryView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Views/Examen/ExamenView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Services/FullSyncEngine.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Views/Memorization/HideInYourHeartView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling LitanyView.swift, LogismoiSelectorView.swift, MeditateOnWordView.swift, MemorizedVerse.swift, MissionView.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftCompile normal arm64 Compiling\ PartnersView.swift,\ PurityHelpApp.swift,\ PurityTreeView.swift,\ ReciteVerseView.swift,\ ReleaseView.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Partners/PartnersView.swift /Users/phoenixwang/purity-help/PurityHelp/PurityHelpApp.swift /Users/phoenixwang/purity-help/PurityHelp/Components/PurityTreeView.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Memorization/ReciteVerseView.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/ReleaseView.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Views/Partners/PartnersView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/PurityHelpApp.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Components/PurityTreeView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Views/Memorization/ReciteVerseView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/ReleaseView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 Compiling\ StoriesOfHopeView.swift,\ StreakRecord.swift,\ StreakService.swift,\ SyncTransferModels.swift,\ ThresholdView.swift /Users/phoenixwang/purity-help/PurityHelp/Views/StoriesOfHope/StoriesOfHopeView.swift /Users/phoenixwang/purity-help/PurityHelp/Models/StreakRecord.swift /Users/phoenixwang/purity-help/PurityHelp/Services/StreakService.swift /Users/phoenixwang/purity-help/PurityHelp/Models/SyncTransferModels.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/ThresholdView.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Views/StoriesOfHope/StoriesOfHopeView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Models/StreakRecord.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Services/StreakService.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Models/SyncTransferModels.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal x86_64 /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/ThresholdView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftDriverJobDiscovery normal x86_64 Compiling BeginAgainView.swift, AddVerseSearchSheet.swift, AntirrhetikosView.swift, AppTheme.swift, AudioSanctuaryView.swift, BibleAPIService.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftCompile normal arm64 Compiling\ StoriesOfHopeView.swift,\ StreakRecord.swift,\ StreakService.swift,\ SyncTransferModels.swift,\ ThresholdView.swift /Users/phoenixwang/purity-help/PurityHelp/Views/StoriesOfHope/StoriesOfHopeView.swift /Users/phoenixwang/purity-help/PurityHelp/Models/StreakRecord.swift /Users/phoenixwang/purity-help/PurityHelp/Services/StreakService.swift /Users/phoenixwang/purity-help/PurityHelp/Models/SyncTransferModels.swift /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/ThresholdView.swift (in target 'PurityHelp' from project 'PurityHelp')
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Views/StoriesOfHope/StoriesOfHopeView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Models/StreakRecord.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Services/StreakService.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Models/SyncTransferModels.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftCompile normal arm64 /Users/phoenixwang/purity-help/PurityHelp/Views/Vigil/ThresholdView.swift (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling ResetRecord.swift, ScriptureService.swift, SettingsView.swift, ShareableProgressService.swift, ShareableProgressView.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftDriverJobDiscovery normal arm64 Compiling BibleReferenceCleaner.swift, BreathingPacer.swift, CloudSyncService.swift, CloudSyncSettingsView.swift, ContentView.swift, DailyScriptureView.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftDriverJobDiscovery normal arm64 Compiling BeginAgainView.swift, AddVerseSearchSheet.swift, AntirrhetikosView.swift, AppTheme.swift, AudioSanctuaryView.swift, BibleAPIService.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftDriverJobDiscovery normal arm64 Compiling HomeView.swift, IfThenPlan.swift, IfThenPlansView.swift, JournalEntry.swift, KeychainHelper.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftDriverJobDiscovery normal arm64 Compiling DangerZoneView.swift, ExamenEntry.swift, ExamenHistoryView.swift, ExamenView.swift, FullSyncEngine.swift, HideInYourHeartView.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftDriverJobDiscovery normal arm64 Compiling PartnersView.swift, PurityHelpApp.swift, PurityTreeView.swift, ReciteVerseView.swift, ReleaseView.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+LinkAssetCatalog /Users/phoenixwang/purity-help/PurityHelp/Media.xcassets (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    builtin-linkAssetCatalog --thinned /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/assetcatalog_output/thinned --thinned-dependencies /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/assetcatalog_dependencies_thinned --thinned-info-plist-content /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/assetcatalog_generated_info.plist_thinned --unthinned /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/assetcatalog_output/unthinned --unthinned-dependencies /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/assetcatalog_dependencies_unthinned --unthinned-info-plist-content /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/assetcatalog_generated_info.plist_unthinned --output /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app --plist-output /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/assetcatalog_generated_info.plist
+note: Emplaced /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/AppIcon76x76@2x~ipad.png (in target 'PurityHelp' from project 'PurityHelp')
+note: Emplaced /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/AppIcon60x60@2x.png (in target 'PurityHelp' from project 'PurityHelp')
+note: Emplaced /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/Assets.car (in target 'PurityHelp' from project 'PurityHelp')
+
+ProcessInfoPlistFile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/Info.plist /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/empty-PurityHelp.plist (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    builtin-infoPlistUtility /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/empty-PurityHelp.plist -producttype com.apple.product-type.application -genpkginfo /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -additionalcontentfile /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/assetcatalog_generated_info.plist -o /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/Info.plist
+
+SwiftDriverJobDiscovery normal arm64 Compiling UrgeInsightsView.swift, UrgeLog.swift, UrgeMomentView.swift, UrgeSurfingGuide.swift, UserMission.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftDriverJobDiscovery normal x86_64 Compiling StoriesOfHopeView.swift, StreakRecord.swift, StreakService.swift, SyncTransferModels.swift, ThresholdView.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftDriverJobDiscovery normal x86_64 Compiling DangerZoneView.swift, ExamenEntry.swift, ExamenHistoryView.swift, ExamenView.swift, FullSyncEngine.swift, HideInYourHeartView.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftDriver\ Compilation PurityHelp normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    builtin-Swift-Compilation -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name PurityHelp -Onone -enforce-exclusivity\=checked @/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp.SwiftFileList -DDEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target x86_64-apple-ios17.0-simulator -g -module-cache-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator -F /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/phoenixwang/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.2-23C57-7d00a8b37fbd7999ea79df8ebc024bf0.sdkstatcache -output-file-map /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp_const_extract_protocols.json -Xcc -iquote -Xcc /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-generated-files.hmap -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-own-target-headers.hmap -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-all-target-headers.hmap -Xcc -iquote -Xcc /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-project-headers.hmap -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources-normal/x86_64 -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources/x86_64 -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp-Swift.h -working-directory /Users/phoenixwang/purity-help -experimental-emit-module-separately -disable-cmo
+
+Ld /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/Binary/PurityHelp.debug.dylib normal x86_64 (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target x86_64-apple-ios17.0-simulator -dynamiclib -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -O0 -L/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -L/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator -F/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -F/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator -filelist /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp.LinkFileList -install_name @rpath/PurityHelp.debug.dylib -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker @executable_path/Frameworks -dead_strip -Xlinker -object_path_lto -Xlinker /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp_lto.o -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -dependency_info -Xlinker /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp.swiftmodule @/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp-linker-args.resp -Xlinker -alias -Xlinker _main -Xlinker ___debug_main_executable_dylib_entry_point -Xlinker -no_adhoc_codesign -o /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/Binary/PurityHelp.debug.dylib
+
+SwiftDriverJobDiscovery normal arm64 Compiling StoriesOfHopeView.swift, StreakRecord.swift, StreakService.swift, SyncTransferModels.swift, ThresholdView.swift (in target 'PurityHelp' from project 'PurityHelp')
+
+SwiftDriver\ Compilation PurityHelp normal arm64 com.apple.xcode.tools.swift.compiler (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    builtin-Swift-Compilation -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name PurityHelp -Onone -enforce-exclusivity\=checked @/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp.SwiftFileList -DDEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator -F /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/phoenixwang/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.2-23C57-7d00a8b37fbd7999ea79df8ebc024bf0.sdkstatcache -output-file-map /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp_const_extract_protocols.json -Xcc -iquote -Xcc /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-generated-files.hmap -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-own-target-headers.hmap -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-all-target-headers.hmap -Xcc -iquote -Xcc /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-project-headers.hmap -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources-normal/arm64 -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources/arm64 -Xcc -I/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp-Swift.h -working-directory /Users/phoenixwang/purity-help -experimental-emit-module-separately -disable-cmo
+
+Ld /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/Binary/PurityHelp.debug.dylib normal arm64 (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios17.0-simulator -dynamiclib -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -O0 -L/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -L/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator -F/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -F/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator -filelist /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp.LinkFileList -install_name @rpath/PurityHelp.debug.dylib -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker @executable_path/Frameworks -dead_strip -Xlinker -object_path_lto -Xlinker /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp_lto.o -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -dependency_info -Xlinker /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp.swiftmodule @/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp-linker-args.resp -Xlinker -alias -Xlinker _main -Xlinker ___debug_main_executable_dylib_entry_point -Xlinker -no_adhoc_codesign -o /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/Binary/PurityHelp.debug.dylib
+
+ConstructStubExecutorLinkFileList /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-ExecutorLinkFileList-normal-x86_64.txt (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    construct-stub-executor-link-file-list /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/Binary/PurityHelp.debug.dylib /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libPreviewsJITStubExecutor_no_swift_entry_point.a /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libPreviewsJITStubExecutor.a --output /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-ExecutorLinkFileList-normal-x86_64.txt
+note: Using stub executor library with Swift entry point. (in target 'PurityHelp' from project 'PurityHelp')
+
+Ld /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/Binary/PurityHelp normal x86_64 (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target x86_64-apple-ios17.0-simulator -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -O0 -L/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator -F/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator -Xlinker -rpath -Xlinker @executable_path -Xlinker -rpath -Xlinker @executable_path/Frameworks -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -e ___debug_blank_executor_main -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_dylib -Xlinker /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-DebugDylibPath-normal-x86_64.txt -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_instlnm -Xlinker /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-DebugDylibInstallName-normal-x86_64.txt -Xlinker -filelist -Xlinker /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-ExecutorLinkFileList-normal-x86_64.txt -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp.app-Simulated.xcent -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __ents_der -Xlinker /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp.app-Simulated.xcent.der /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/Binary/PurityHelp.debug.dylib -Xlinker -no_adhoc_codesign -o /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/Binary/PurityHelp
+
+ConstructStubExecutorLinkFileList /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-ExecutorLinkFileList-normal-arm64.txt (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    construct-stub-executor-link-file-list /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/Binary/PurityHelp.debug.dylib /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libPreviewsJITStubExecutor_no_swift_entry_point.a /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libPreviewsJITStubExecutor.a --output /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-ExecutorLinkFileList-normal-arm64.txt
+note: Using stub executor library with Swift entry point. (in target 'PurityHelp' from project 'PurityHelp')
+
+CreateUniversalBinary /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/PurityHelp.debug.dylib normal arm64\ x86_64 (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo -create /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/Binary/PurityHelp.debug.dylib /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/Binary/PurityHelp.debug.dylib -output /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/PurityHelp.debug.dylib
+
+Ld /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/Binary/PurityHelp normal arm64 (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios17.0-simulator -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -O0 -L/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator -F/Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator -Xlinker -rpath -Xlinker @executable_path -Xlinker -rpath -Xlinker @executable_path/Frameworks -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -e ___debug_blank_executor_main -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_dylib -Xlinker /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-DebugDylibPath-normal-arm64.txt -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_instlnm -Xlinker /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-DebugDylibInstallName-normal-arm64.txt -Xlinker -filelist -Xlinker /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp-ExecutorLinkFileList-normal-arm64.txt -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp.app-Simulated.xcent -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __ents_der -Xlinker /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp.app-Simulated.xcent.der /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/Binary/PurityHelp.debug.dylib -Xlinker -no_adhoc_codesign -o /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/Binary/PurityHelp
+
+CreateUniversalBinary /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/PurityHelp normal arm64\ x86_64 (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo -create /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/Binary/PurityHelp /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/Binary/PurityHelp -output /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/PurityHelp
+
+CopySwiftLibs /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    builtin-swiftStdLibTool --copy --verbose --sign - --scan-executable /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/PurityHelp.debug.dylib --scan-folder /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/Frameworks --scan-folder /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/PlugIns --scan-folder /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/SystemExtensions --scan-folder /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/Extensions --platform iphonesimulator --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/Frameworks --strip-bitcode --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os --back-deploy-swift-span
+
+ExtractAppIntentsMetadata (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name PurityHelp --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk --xcode-version 17C529 --platform-family iOS --deployment-target 17.0 --bundle-identifier com.purityhelp.app --output /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app --target-triple arm64-apple-ios17.0-simulator --target-triple x86_64-apple-ios17.0-simulator --binary-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/PurityHelp --dependency-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp_dependency_info.dat --dependency-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp_dependency_info.dat --stringsdata-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --stringsdata-file /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp.SwiftFileList --source-file-list /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp.SwiftFileList --metadata-file-list /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp.DependencyMetadataFileList --static-metadata-file-list /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp.DependencyStaticMetadataFileList --swift-const-vals-list /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/arm64/PurityHelp.SwiftConstValuesFileList --swift-const-vals-list /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/Objects-normal/x86_64/PurityHelp.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-03-05 00:09:28.923 appintentsmetadataprocessor[90198:4182565] Starting appintentsmetadataprocessor export
+2026-03-05 00:09:28.929 appintentsmetadataprocessor[90198:4182565] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+AppIntentsSSUTraining (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsnltrainingprocessor --infoplist-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/Info.plist --temp-dir-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/ssu --bundle-id com.purityhelp.app --product-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app --extracted-metadata-path /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/Metadata.appintents --metadata-file-list /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Intermediates.noindex/PurityHelp.build/Debug-iphonesimulator/PurityHelp.build/PurityHelp.DependencyMetadataFileList --archive-ssu-assets
+2026-03-05 00:09:28.978 appintentsnltrainingprocessor[90199:4182570] Parsing options for appintentsnltrainingprocessor
+2026-03-05 00:09:28.979 appintentsnltrainingprocessor[90199:4182570] No AppShortcuts found - Skipping.
+
+CodeSign /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/PurityHelp.debug.dylib (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/PurityHelp.debug.dylib
+
+CodeSign /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/__preview.dylib (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app/__preview.dylib
+
+CodeSign /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app
+
+RegisterExecutionPolicyException /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    builtin-RegisterExecutionPolicyException /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app
+
+Validate /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    builtin-validationUtility /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app -shallow-bundle -infoplist-subpath Info.plist
+
+Touch /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app (in target 'PurityHelp' from project 'PurityHelp')
+    cd /Users/phoenixwang/purity-help
+    /usr/bin/touch -c /Users/phoenixwang/Library/Developer/Xcode/DerivedData/PurityHelp-duxeeqbvuykyykcgbcavdxcwhpqb/Build/Products/Debug-iphonesimulator/PurityHelp.app
+
+** BUILD SUCCEEDED **
+

@@ -8,6 +8,7 @@
 import Foundation
 
 struct TransferStreakRecord: Codable {
+    var id: String
     var pornographyStreakDays: Int
     var masturbationStreakDays: Int
     var pureThoughtsStreakDays: Int
@@ -23,6 +24,8 @@ struct TransferStreakRecord: Codable {
 }
 
 struct TransferResetRecord: Codable {
+    var id: String
+    var updatedAt: Date
     var type: String
     var date: Date
     var optionalNote: String?
@@ -30,6 +33,8 @@ struct TransferResetRecord: Codable {
 }
 
 struct TransferUrgeLog: Codable {
+    var id: String
+    var updatedAt: Date
     var date: Date
     var outcome: String
     var optionalNote: String?
@@ -39,6 +44,8 @@ struct TransferUrgeLog: Codable {
 }
 
 struct TransferExamenEntry: Codable {
+    var id: String
+    var updatedAt: Date
     var date: Date
     var step1Thanks: String?
     var step2Light: String?
@@ -49,6 +56,8 @@ struct TransferExamenEntry: Codable {
 }
 
 struct TransferIfThenPlan: Codable {
+    var id: String
+    var updatedAt: Date
     var trigger: String
     var action: String
     var reminderEnabled: Bool
@@ -57,6 +66,8 @@ struct TransferIfThenPlan: Codable {
 }
 
 struct TransferJournalEntry: Codable {
+    var id: String
+    var updatedAt: Date
     var date: Date
     var type: String
     var optionalText: String?
@@ -67,12 +78,14 @@ struct TransferJournalEntry: Codable {
 }
 
 struct TransferUserMission: Codable {
+    var id: String
     var text: String
     var updatedAt: Date
 }
 
 struct TransferMemorizedVerse: Codable {
     var verseId: String
+    var updatedAt: Date
     var status: String
     var lastReviewedDate: Date?
     var customReference: String?

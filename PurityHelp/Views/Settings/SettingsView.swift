@@ -89,6 +89,7 @@ struct SettingsView: View {
                 }
 
                 Section {
+                    NavigationLink("Account", destination: AccountProfileView())
                     NavigationLink("Walking Together", destination: CloudSyncSettingsView())
                 }
 

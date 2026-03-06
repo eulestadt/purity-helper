@@ -10,6 +10,8 @@ import SwiftData
 
 @Model
 final class UrgeLog {
+    var id: String = UUID().uuidString
+    var updatedAt: Date = Date.now
     var date: Date = Date.now
     var outcome: String = "held_firm"
     var optionalNote: String?
@@ -20,6 +22,8 @@ final class UrgeLog {
     var replaceActivityUsed: String?
 
     init(
+        id: String = UUID().uuidString,
+        updatedAt: Date = .now,
         date: Date = .now,
         outcome: String = "held_firm",
         optionalNote: String? = nil,
@@ -27,6 +31,8 @@ final class UrgeLog {
         quickActionUsed: String? = nil,
         replaceActivityUsed: String? = nil
     ) {
+        self.id = id
+        self.updatedAt = updatedAt
         self.date = date
         self.outcome = outcome
         self.optionalNote = optionalNote
