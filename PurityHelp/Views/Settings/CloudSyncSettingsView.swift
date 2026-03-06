@@ -2,7 +2,7 @@
 //  CloudSyncSettingsView.swift
 //  PurityHelp
 //
-//  Sync to cloud (optional), base URL, Create account / Log in, Link for your partner.
+//  Shared Walk settings: privacy controls & share link for your accountability partner.
 //
 
 import SwiftUI
@@ -17,15 +17,10 @@ struct CloudSyncSettingsView: View {
     @AppStorage("cloudSyncEnabled") private var syncEnabled = false
     @AppStorage("accountabilityTerm") private var accountabilityTerm = "Brotherhood"
     private var partnersLabel: String { accountabilityTerm == "Brotherhood" ? "Brothers" : (accountabilityTerm == "Sisterhood" ? "Sisters" : "Partners") }
-    @AppStorage("partnerName") private var partnerName = ""
     @AppStorage("shareExamens") private var shareExamens = false
     @AppStorage("shareUrges") private var shareUrges = true
     @AppStorage("shareRelapses") private var shareRelapses = false
     @State private var shareLink: String?
-    @State private var syncError: String?
-    @State private var showAuth = false
-    @State private var isLoggedIn = false
-    @State private var isSyncing = false
     @State private var isGeneratingLink = false
 
     private var streakRecord: StreakRecord? { streakRecords.first }
@@ -37,16 +32,8 @@ struct CloudSyncSettingsView: View {
             ScrollView {
                 VStack(spacing: 24) {
                     
-                    // MARK: - Accountability Setup
+                    // MARK: - Shared Walk Setup
                     VStack(alignment: .leading, spacing: 16) {
-                        Picker("Accountability Type", selection: $accountabilityTerm) {
-                            Text("Brotherhood").tag("Brotherhood")
-                            Text("Sisterhood").tag("Sisterhood")
-                            Text("Walk Together").tag("Walk Together")
-                        }
-                        .pickerStyle(.segmented)
-                        .padding(.bottom, 8)
-                        
                         Toggle(isOn: $syncEnabled) {
                             Text("Enable Shared Walk")
                                 .font(.headline)
@@ -56,25 +43,6 @@ struct CloudSyncSettingsView: View {
                         Text("Invite someone you trust to walk this path with you. They will be able to view a secure summary of your journey.")
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
-                        
-                        if syncEnabled {
-                            Divider().background(Color.white.opacity(0.1))
-                            
-                            VStack(alignment: .leading, spacing: 8) {
-                                Text("Walking with:")
-                                    .font(.subheadline)
-                                
-                                TextField("e.g. Felix", text: $partnerName)
-                                    .textInputAutocapitalization(.words)
-                                    .padding()
-                                    .background(Color.white.opacity(0.1))
-                                    .clipShape(RoundedRectangle(cornerRadius: 12))
-                                
-                                Text("We'll use this name throughout the app to remind you who is standing with you.")
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                            }
-                        }
                     }
                     .padding()
                     .glassCard(cornerRadius: 16)
@@ -176,164 +144,23 @@ struct CloudSyncSettingsView: View {
                         }
                         .padding()
                         .glassCard(cornerRadius: 16)
-                    }
-                    
-                    // MARK: - Cloud Backup
-                    VStack(alignment: .leading, spacing: 16) {
-                        Text("Secure Your Journey (Cloud Backup)")
-                            .font(.headline)
-                        
-                        Button {
-                            pushFullData()
-                        } label: {
-                            Label("Back up my journey", systemImage: "icloud.and.arrow.up.fill")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                        .disabled(isSyncing)
-                        
-                        Text("We'll save a snapshot of your progress to the secure cloud.")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                        
-                        Divider().background(Color.white.opacity(0.1))
-                        
-                        Button {
-                            pullFullData()
-                        } label: {
-                            Label("Restore from backup", systemImage: "arrow.clockwise.icloud.fill")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                        .disabled(isSyncing)
-                        
-                        Text("Retrieve your previous progress. This will replace your current device data with your last saved backup.")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                        
-                        if let err = syncError {
-                            Text(err)
-                                .foregroundStyle(err.contains("successful") ? .green : .red)
-                                .font(.caption)
-                        }
-                    }
-                    .padding()
-                    .glassCard(cornerRadius: 16)
-                    
-                    // MARK: - Account Access
-                    VStack(alignment: .leading, spacing: 16) {
-                        Text("Account")
-                            .font(.headline)
-                        
-                        if isLoggedIn {
-                            Button {
-                                KeychainHelper.delete(forKey: KeychainHelper.authTokenKey)
-                                isLoggedIn = false
-                            } label: {
-                                Text("Sign Out")
-                                    .foregroundStyle(.indigo.opacity(0.8))
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                            }
-                        } else {
-                            Button {
-                                showAuth = true
-                            } label: {
-                                Label("Create Account / Log In", systemImage: "person.crop.circle.badge.plus")
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                            }
-                            .sheet(isPresented: $showAuth) {
-                                CloudAuthView(isLoggedIn: $isLoggedIn)
-                            }
-                        }
-                    }
-                    .padding()
-                    .glassCard(cornerRadius: 16)
-                }
+                    } // end if syncEnabled
+                } // end VStack
                 .padding()
-            }
-        }
+            } // end ScrollView
+        } // end ZStack
         .navigationTitle(accountabilityTerm)
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            CloudSyncService.baseURL = "https://purity-helper-api.onrender.com"
-            isLoggedIn = KeychainHelper.load(forKey: KeychainHelper.authTokenKey) != nil
             if syncEnabled {
                 generateShareLink()
             }
         }
     }
 
-    private func pushFullData() {
-        CloudSyncService.baseURL = "https://purity-helper-api.onrender.com"
-        isSyncing = true
-        syncError = nil
-        do {
-            let engine = FullSyncEngine(context: modelContext)
-            var fullModels = try engine.exportFullData()
-            
-            // Apply Privacy Controls
-            if !shareExamens {
-                fullModels.examenEntries = []
-            }
-            if !shareUrges {
-                fullModels.urgeLogs = []
-            }
-            if !shareRelapses {
-                fullModels.resetRecords = []
-            }
-            
-            let r = streakRecord
-            let minutesPerDay = UserDefaults.standard.object(forKey: "minutesPerDayReclaimed") as? Int ?? 30
-            let hours = ((r?.effectiveBehavioralStreak ?? 0) * minutesPerDay) / 60
-            
-            let payload = CloudSyncService.buildPayload(
-                pornographyDays: r?.pornographyStreakDays ?? 0,
-                masturbationDays: r?.masturbationStreakDays ?? 0,
-                pureThoughtsDays: r?.pureThoughtsStreakDays ?? 0,
-                pureThoughtsEnabled: r?.pureThoughtsEnabled ?? false,
-                urgeCount: urgeLogs.count,
-                hoursReclaimed: hours > 0 ? hours : nil,
-                fullModels: fullModels
-            )
-            CloudSyncService.sync(payload: payload) { result in
-                isSyncing = false
-                switch result {
-                case .success: syncError = "Push successful!"
-                case .failure(let e): syncError = e.localizedDescription
-                }
-            }
-        } catch {
-            isSyncing = false
-            syncError = "Export failed: \(error.localizedDescription)"
-        }
-    }
-
-    private func pullFullData() {
-        CloudSyncService.baseURL = "https://purity-helper-api.onrender.com"
-        isSyncing = true
-        syncError = nil
-        
-        CloudSyncService.fetchMe { result in
-            isSyncing = false
-            switch result {
-            case .success(let payload):
-                if let models = payload.models {
-                    do {
-                        let engine = FullSyncEngine(context: modelContext)
-                        try engine.importFullData(models)
-                        syncError = "Pull successful!"
-                    } catch {
-                        syncError = "Import failed: \(error.localizedDescription)"
-                    }
-                } else {
-                    syncError = "No full data found on server."
-                }
-            case .failure(let e):
-                syncError = e.localizedDescription
-            }
-        }
-    }
+    // MARK: - Share Link Actions
 
     private func generateShareLink() {
-        CloudSyncService.baseURL = "https://purity-helper-api.onrender.com"
         isGeneratingLink = true
         CloudSyncService.createShareLink { result in
             isGeneratingLink = false
@@ -399,14 +226,11 @@ struct CloudAuthView: View {
     }
 
     private func performAuth() {
-        guard let base = CloudSyncService.baseURL, !base.isEmpty else {
-            error = "Set API base URL in Cloud sync first."
-            return
-        }
+        let base = CloudSyncService.baseEndpoint
         loading = true
         error = nil
         let path = isSignUp ? "/auth/signup" : "/auth/login"
-        guard let url = URL(string: base.trimmingCharacters(in: .whitespacesAndNewlines) + path) else {
+        guard let url = URL(string: base + path) else {
             error = "Invalid URL"
             loading = false
             return
@@ -428,6 +252,7 @@ struct CloudAuthView: View {
                 }
                 KeychainHelper.save(token, forKey: KeychainHelper.authTokenKey)
                 isLoggedIn = true
+                NotificationCenter.default.post(name: .userDidLogin, object: nil)
                 dismiss()
             }
         }.resume()

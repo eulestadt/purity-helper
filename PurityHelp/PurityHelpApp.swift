@@ -39,10 +39,24 @@ struct PurityHelpApp: App {
             ContentView()
                 .modelContainer(sharedModelContainer)
                 .onChange(of: scenePhase) { oldPhase, newPhase in
-                    if newPhase == .background {
+                    if newPhase == .active {
+                        // On foreground: pull server state first, merge, then push.
+                        // This is the multi-device safe cycle.
+                        Task { @MainActor in
+                            AutoSyncManager.shared.performPullThenSync(modelContext: sharedModelContainer.mainContext)
+                        }
+                    } else if newPhase == .background {
+                        // On background: push local state up quickly.
                         Task { @MainActor in
                             AutoSyncManager.shared.performBackgroundSync(modelContext: sharedModelContainer.mainContext)
                         }
+                    }
+                }
+                .onReceive(NotificationCenter.default.publisher(for: .userDidLogin)) { _ in
+                    // On login: immediately pull so this device gets the server's data
+                    // (e.g. from another device) before anything is overwritten.
+                    Task { @MainActor in
+                        AutoSyncManager.shared.performPullThenSync(modelContext: sharedModelContainer.mainContext)
                     }
                 }
         }

@@ -18,12 +18,7 @@ struct SharePayload: Codable {
 }
 
 struct CloudSyncService {
-    static let baseURLKey = "cloudSyncBaseURL"
-
-    static var baseURL: String? {
-        get { UserDefaults.standard.string(forKey: baseURLKey)?.trimmingCharacters(in: .whitespacesAndNewlines) }
-        set { UserDefaults.standard.set(newValue, forKey: baseURLKey) }
-    }
+    static let baseEndpoint = "https://purity.phoenix.boston"
 
     static func buildPayload(
         pornographyDays: Int,
@@ -53,8 +48,8 @@ struct CloudSyncService {
         payload: [String: Any],
         completion: @escaping (Result<Void, Error>) -> Void
     ) {
-        guard let base = baseURL, !base.isEmpty, let url = URL(string: base.trimmingCharacters(in: .whitespacesAndNewlines) + "/sync") else {
-            completion(.failure(NSError(domain: "CloudSync", code: -1, userInfo: [NSLocalizedDescriptionKey: "Base URL not set"])))
+        guard let url = URL(string: baseEndpoint + "/sync") else {
+            completion(.failure(NSError(domain: "CloudSync", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])))
             return
         }
         var request = URLRequest(url: url)
@@ -89,15 +84,19 @@ struct CloudSyncService {
         }.resume()
     }
 
-    static func fetchMe(completion: @escaping (Result<SharePayload, Error>) -> Void) {
-        guard let token = KeychainHelper.load(forKey: KeychainHelper.authTokenKey),
-              let base = baseURL, !base.isEmpty,
-              let url = URL(string: base.trimmingCharacters(in: .whitespacesAndNewlines) + "/me") else {
-            completion(.failure(NSError(domain: "CloudSync", code: -1, userInfo: [NSLocalizedDescriptionKey: "Not logged in or base URL not set"])))
+    /// Pull the latest merged payload from the server (requires Bearer token).
+    static func pull(completion: @escaping (Result<FullSyncPayload, Error>) -> Void) {
+        guard let token = KeychainHelper.load(forKey: KeychainHelper.authTokenKey) else {
+            completion(.failure(NSError(domain: "CloudSync", code: -1, userInfo: [NSLocalizedDescriptionKey: "Not logged in"])))
+            return
+        }
+        guard let url = URL(string: baseEndpoint + "/me") else {
+            completion(.failure(NSError(domain: "CloudSync", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])))
             return
         }
         var request = URLRequest(url: url)
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 DispatchQueue.main.async { completion(.failure(error)) }
@@ -105,29 +104,31 @@ struct CloudSyncService {
             }
             let code = (response as? HTTPURLResponse)?.statusCode ?? 0
             guard code >= 200 && code < 300, let data = data else {
-                DispatchQueue.main.async { completion(.failure(NSError(domain: "CloudSync", code: code, userInfo: [NSLocalizedDescriptionKey: "Fetch failed"]))) }
+                DispatchQueue.main.async {
+                    completion(.failure(NSError(domain: "CloudSync", code: code, userInfo: [NSLocalizedDescriptionKey: "Pull failed"])))
+                }
                 return
             }
+            // Server returns { payload: { ...top-level fields..., models: { ...FullSyncPayload... } } }
             do {
-                let decoded = try JSONDecoder().decode(MeResponse.self, from: data)
-                DispatchQueue.main.async { completion(.success(decoded.payload)) }
+                guard let outer = try JSONSerialization.jsonObject(with: data) as? [String: Any],
+                      let payloadDict = outer["payload"] as? [String: Any],
+                      let modelsDict = payloadDict["models"] else {
+                    // No models yet — not an error, just empty
+                    DispatchQueue.main.async { completion(.success(FullSyncPayload())) }
+                    return
+                }
+                let modelsData = try JSONSerialization.data(withJSONObject: modelsDict)
+                let decoded = try JSONDecoder().decode(FullSyncPayload.self, from: modelsData)
+                DispatchQueue.main.async { completion(.success(decoded)) }
             } catch {
                 DispatchQueue.main.async { completion(.failure(error)) }
             }
         }.resume()
     }
 
-    private struct MeResponse: Codable {
-        let payload: SharePayload
-    }
-
     static func createShareLink(completion: @escaping (Result<String, Error>) -> Void) {
-        guard let base = baseURL, !base.isEmpty else {
-            completion(.failure(NSError(domain: "CloudSync", code: -1, userInfo: [NSLocalizedDescriptionKey: "Base URL not set"])))
-            return
-        }
-        let urlString = base.trimmingCharacters(in: .whitespacesAndNewlines) + "/share"
-        guard let url = URL(string: urlString) else {
+        guard let url = URL(string: baseEndpoint + "/share") else {
             completion(.failure(NSError(domain: "CloudSync", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])))
             return
         }
@@ -167,12 +168,7 @@ struct CloudSyncService {
     }
 
     static func fetchShareSummary(token: String, completion: @escaping (Result<SharePayload, Error>) -> Void) {
-        guard let base = baseURL, !base.isEmpty else {
-            completion(.failure(NSError(domain: "CloudSync", code: -1, userInfo: [NSLocalizedDescriptionKey: "Base URL not set"])))
-            return
-        }
-        let urlString = base.trimmingCharacters(in: .whitespacesAndNewlines) + "/share/" + token
-        guard let url = URL(string: urlString) else {
+        guard let url = URL(string: baseEndpoint + "/share/" + token) else {
             completion(.failure(NSError(domain: "CloudSync", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])))
             return
         }
