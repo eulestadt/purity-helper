@@ -27,6 +27,7 @@ const pool = new Pool({
 });
 
 app.use(express.json({ limit: '256kb' }));
+app.use(express.static(path.join(__dirname, 'public')));
 
 function requireAuth(req, res, next) {
   const auth = req.headers.authorization;
@@ -179,6 +180,82 @@ app.post('/auth/confirm-reset', requireAuth, async (req, res) => {
   await pool.query('UPDATE password_reset_tokens SET used = TRUE WHERE id = $1', [tokenId]);
   const newHash = await bcrypt.hash(newPassword, 10);
   await pool.query('UPDATE users SET password_hash = $1 WHERE id = $2', [newHash, req.userId]);
+
+  return res.json({ ok: true });
+});
+
+// POST /auth/forgot-password — unauthenticated reset request
+app.post('/auth/forgot-password', async (req, res) => {
+  const email = typeof req.body?.email === 'string' ? req.body.email.trim().toLowerCase() : '';
+  if (!email) return res.status(400).json({ error: 'Email required' });
+
+  const r = await pool.query('SELECT id FROM users WHERE email = $1', [email]);
+  // Always return success to prevent email enumeration
+  if (r.rows.length === 0) return res.json({ ok: true });
+
+  const userId = r.rows[0].id;
+  const code = String(Math.floor(100000 + crypto.randomInt(900000)));
+  const codeHash = await bcrypt.hash(code, 10);
+  const expiresAt = new Date(Date.now() + 10 * 60 * 1000);
+
+  await pool.query('DELETE FROM password_reset_tokens WHERE user_id = $1', [userId]);
+  await pool.query(
+    'INSERT INTO password_reset_tokens (user_id, code_hash, expires_at) VALUES ($1, $2, $3)',
+    [userId, codeHash, expiresAt]
+  );
+
+  try {
+    await sgMail.send({
+      to: email,
+      from: { email: SENDER_EMAIL, name: 'Purity Help' },
+      subject: 'Your password reset code',
+      text: `Your Purity Help password reset code is: ${code}\n\nThis code expires in 10 minutes. If you didn't request this, you can ignore this email.`,
+      html: `
+        <div style="font-family:-apple-system,sans-serif;max-width:480px;margin:auto;padding:32px 24px">
+          <h2 style="margin:0 0 8px">Password Reset</h2>
+          <p style="color:#6b7280;margin:0 0 24px">Enter the code below to set a new password.</p>
+          <div style="background:#f3f4f6;border-radius:12px;padding:24px;text-align:center;font-size:36px;font-weight:700;letter-spacing:8px">${code}</div>
+          <p style="color:#9ca3af;font-size:13px;margin:24px 0 0">Expires in 10 minutes. If you didn't request this, ignore this email.</p>
+        </div>
+      `,
+    });
+  } catch (e) {
+    console.error('SendGrid error:', e?.response?.body || e.message);
+    // Even if it fails, don't leak that the email exists
+  }
+  return res.json({ ok: true });
+});
+
+// POST /auth/forgot-password-confirm — unauthenticated confirm + set new password
+app.post('/auth/forgot-password-confirm', async (req, res) => {
+  const email = typeof req.body?.email === 'string' ? req.body.email.trim().toLowerCase() : '';
+  const { code, newPassword } = req.body;
+
+  if (!email || !code || !newPassword || newPassword.length < 8) {
+    return res.status(400).json({ error: 'Valid email, code, and new password required' });
+  }
+
+  const u = await pool.query('SELECT id FROM users WHERE email = $1', [email]);
+  if (u.rows.length === 0) return res.status(401).json({ error: 'Invalid request' });
+  const userId = u.rows[0].id;
+
+  const r = await pool.query(
+    'SELECT id, code_hash, expires_at, used FROM password_reset_tokens WHERE user_id = $1 ORDER BY expires_at DESC LIMIT 1',
+    [userId]
+  );
+  if (r.rows.length === 0) return res.status(401).json({ error: 'No reset code found.' });
+
+  const { id: tokenId, code_hash: codeHash, expires_at: expiresAt, used } = r.rows[0];
+  if (used) return res.status(401).json({ error: 'Code already used.' });
+  if (new Date() > new Date(expiresAt)) return res.status(401).json({ error: 'Code expired.' });
+
+  const matches = await bcrypt.compare(code, codeHash);
+  if (!matches) return res.status(401).json({ error: 'Incorrect code.' });
+
+  // Mark token used and update password
+  await pool.query('UPDATE password_reset_tokens SET used = TRUE WHERE id = $1', [tokenId]);
+  const newHash = await bcrypt.hash(newPassword, 10);
+  await pool.query('UPDATE users SET password_hash = $1 WHERE id = $2', [newHash, userId]);
 
   return res.json({ ok: true });
 });
