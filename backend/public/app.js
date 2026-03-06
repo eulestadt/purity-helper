@@ -37,9 +37,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const cpNewPasswordInput = document.getElementById('cpNewPassword');
     const cpCancelBtn = document.getElementById('cpCancelBtn');
 
+    // Stats Dashboard Elements
+    const statsDashboard = document.getElementById('statsDashboard');
+    const statPorn = document.getElementById('statPorn');
+    const statMast = document.getElementById('statMast');
+    const statUrges = document.getElementById('statUrges');
+
+    const statPureThoughtsBox = document.getElementById('statPureThoughtsBox');
+    const statPureThoughts = document.getElementById('statPureThoughts');
+
+    const statHoursBox = document.getElementById('statHoursBox');
+    const statHours = document.getElementById('statHours');
+
+    const toggleExamens = document.getElementById('toggleExamens');
+    const toggleUrges = document.getElementById('toggleUrges');
+    const toggleRelapses = document.getElementById('toggleRelapses');
+
     // State
     let isLoginMode = true;
     let forgotEmailStr = ''; // Stores email during forgot password flow
+    let userPayload = null; // Stores the raw payload from /me
 
     // --- Utility ---
     function getToken() {
@@ -241,22 +258,75 @@ document.addEventListener('DOMContentLoaded', () => {
     async function fetchUserProfile() {
         const token = getToken();
         userEmailDisplay.textContent = 'Loading...';
+        statsDashboard.classList.add('hidden');
+
         try {
-            const res = await fetch('/auth/me', {
+            // First fetch the email (we need a direct /auth/me for this since /me just returns payload)
+            // Wait, the backend has /auth/me which returns { email }. Let's fetch that.
+            const userRes = await fetch('/auth/me', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
-            if (!res.ok) {
-                if (res.status === 401) clearToken();
+            if (!userRes.ok) {
+                if (userRes.status === 401) clearToken();
                 throw new Error('Failed to fetch profile');
             }
-            const data = await res.json();
-            userEmailDisplay.textContent = data.email;
-            userAvatar.textContent = data.email.charAt(0).toUpperCase();
+            const userData = await userRes.json();
+            userEmailDisplay.textContent = userData.email;
+            userAvatar.textContent = userData.email.charAt(0).toUpperCase();
+
+            // Next, fetch the sync payload from /me to build the dashboard
+            const syncRes = await fetch('/me', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (syncRes.ok) {
+                const syncData = await syncRes.json();
+                userPayload = syncData.payload || {};
+                renderStatsDashboard();
+            }
         } catch (err) {
             console.error(err);
             if (!getToken()) updateView();
         }
     }
+
+    function renderStatsDashboard() {
+        if (!userPayload || Object.keys(userPayload).length === 0) {
+            statsDashboard.classList.add('hidden');
+            return;
+        }
+
+        statsDashboard.classList.remove('hidden');
+
+        // Populate core stats
+        statPorn.textContent = userPayload.pornographyDays || 0;
+        statMast.textContent = userPayload.masturbationDays || 0;
+        statUrges.textContent = userPayload.urgeMomentsCount || 0;
+
+        // Optional stats
+        if (userPayload.pureThoughtsDays !== undefined) {
+            statPureThoughtsBox.style.display = 'block';
+            statPureThoughts.textContent = userPayload.pureThoughtsDays;
+        } else {
+            statPureThoughtsBox.style.display = 'none';
+        }
+
+        if (userPayload.hoursReclaimed !== undefined && userPayload.hoursReclaimed > 0) {
+            statHoursBox.style.display = 'block';
+            statHours.textContent = userPayload.hoursReclaimed;
+        } else {
+            statHoursBox.style.display = 'none';
+        }
+
+        // Load toggle states from localStorage or default to true
+        toggleExamens.checked = localStorage.getItem('shareExamens') !== 'false';
+        toggleUrges.checked = localStorage.getItem('shareUrges') !== 'false';
+        toggleRelapses.checked = localStorage.getItem('shareRelapses') !== 'false';
+    }
+
+    // Handle Toggle Saves
+    toggleExamens.addEventListener('change', (e) => localStorage.setItem('shareExamens', e.target.checked));
+    toggleUrges.addEventListener('change', (e) => localStorage.setItem('shareUrges', e.target.checked));
+    toggleRelapses.addEventListener('change', (e) => localStorage.setItem('shareRelapses', e.target.checked));
 
     // --- Change Password Flow (Authenticated) ---
     cpRequestForm.addEventListener('submit', async (e) => {

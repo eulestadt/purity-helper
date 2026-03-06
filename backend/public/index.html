@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Purity Help</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <header>
     <h1>Purity Help</h1>
@@ -16,8 +18,10 @@
     <!-- Marketing Section (Visible to all) -->
     <div class="glass-card">
       <h2 style="margin-top:0">Walk Together in Purity</h2>
-      <p style="color:var(--text-muted); line-height:1.6">Purity Help is an iOS app designed to help you track your spiritual journey, manage daily examens, and build accountability with your trusted brothers or sisters in Christ.</p>
-      
+      <p style="color:var(--text-muted); line-height:1.6">Purity Help is an iOS app designed to help you track your
+        spiritual journey, manage daily examens, and build accountability with your trusted brothers or sisters in
+        Christ.</p>
+
       <div class="features-grid">
         <div class="feature">
           <h3>Daily Examens</h3>
@@ -38,7 +42,7 @@
     <div id="authContainer" class="glass-card hidden">
       <h2 style="margin-top:0" id="authTitle">Log In</h2>
       <div id="authError" class="alert alert-error hidden"></div>
-      
+
       <form id="authForm">
         <div class="form-group">
           <label>Email</label>
@@ -50,7 +54,7 @@
         </div>
         <button type="submit" id="authSubmitBtn">Log In</button>
       </form>
-      
+
       <div class="flex-between">
         <button type="button" class="text-btn" id="toggleAuthModeBtn">Create an account</button>
         <button type="button" class="text-btn" id="forgotPasswordLink">Forgot password?</button>
@@ -61,7 +65,7 @@
     <div id="forgotPasswordContainer" class="glass-card hidden">
       <h2 style="margin-top:0" id="forgotTitle">Reset Password</h2>
       <div id="forgotAlert" class="alert hidden"></div>
-      
+
       <!-- Step 1: Request Code -->
       <form id="forgotRequestForm">
         <p style="margin-top:0; color:var(--text-muted)">Enter your email to receive a 6-digit reset code.</p>
@@ -74,7 +78,8 @@
 
       <!-- Step 2: Confirm Code -->
       <form id="forgotConfirmForm" class="hidden">
-        <p style="margin-top:0; color:var(--text-muted)">Check your email for the code sent to <span id="forgotDisplayEmail" style="font-weight:600"></span>.</p>
+        <p style="margin-top:0; color:var(--text-muted)">Check your email for the code sent to <span
+            id="forgotDisplayEmail" style="font-weight:600"></span>.</p>
         <div class="form-group">
           <label>6-Digit Code</label>
           <input type="text" id="forgotCode" pattern="[0-9]*" maxlength="6" required>
@@ -85,7 +90,7 @@
         </div>
         <button type="submit" id="forgotConfirmBtn">Reset Password</button>
       </form>
-      
+
       <div style="margin-top:16px; text-align:center">
         <button type="button" class="text-btn" id="backToLoginBtn">Back to Login</button>
       </div>
@@ -100,15 +105,75 @@
           <div id="userEmailDisplay" style="color:var(--text-muted)">Loading...</div>
         </div>
       </div>
-      
+
+      <!-- Purity Stats Dashboard -->
+      <div id="statsDashboard" class="hidden">
+        <hr style="border:0; border-top:1px solid rgba(0,0,0,0.1); margin:24px 0">
+        <h3 style="margin-top:0">Your Purity Stats</h3>
+        <p style="color:var(--text-muted); font-size:0.9rem; margin-top:-8px; margin-bottom:16px;">
+          This is what your accountability partners see in your Shared Walk.
+        </p>
+
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-value" id="statPorn">0</div>
+            <div class="stat-label">Pornography<br>Free Days</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value" id="statMast">0</div>
+            <div class="stat-label">Masturbation<br>Free Days</div>
+          </div>
+          <div class="stat-box" id="statPureThoughtsBox" style="display:none">
+            <div class="stat-value" id="statPureThoughts">0</div>
+            <div class="stat-label">Pure Thoughts<br>Days</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value" id="statUrges">0</div>
+            <div class="stat-label">Urges<br>Overcome</div>
+          </div>
+          <div class="stat-box" id="statHoursBox" style="display:none">
+            <div class="stat-value" id="statHours">0</div>
+            <div class="stat-label">Hours<br>Reclaimed</div>
+          </div>
+        </div>
+
+        <h4 style="margin:24px 0 12px">Sharing Settings (Preview)</h4>
+        <p style="color:var(--text-muted); font-size:0.85rem; margin-top:-8px; margin-bottom:16px;">
+          Toggle these to see how your Shared Walk looks when privacy filters are applied on your iOS app.
+        </p>
+
+        <div class="toggle-row">
+          <label class="toggle-label">
+            <span>Include Examens</span>
+            <input type="checkbox" id="toggleExamens" class="toggle-input" checked>
+            <div class="toggle-switch"></div>
+          </label>
+        </div>
+        <div class="toggle-row">
+          <label class="toggle-label">
+            <span>Include Urge Logs</span>
+            <input type="checkbox" id="toggleUrges" class="toggle-input" checked>
+            <div class="toggle-switch"></div>
+          </label>
+        </div>
+        <div class="toggle-row">
+          <label class="toggle-label">
+            <span>Include Relapses</span>
+            <input type="checkbox" id="toggleRelapses" class="toggle-input" checked>
+            <div class="toggle-switch"></div>
+          </label>
+        </div>
+      </div>
+
       <hr style="border:0; border-top:1px solid rgba(0,0,0,0.1); margin:24px 0">
-      
+
       <h3 style="margin-top:0">Change Password</h3>
       <div id="cpAlert" class="alert hidden"></div>
-      
+
       <!-- Step 1: Request Code -->
       <form id="cpRequestForm">
-        <p style="margin-top:0; color:var(--text-muted)">We'll email a 6-digit code to verify your identity before allowing a password change.</p>
+        <p style="margin-top:0; color:var(--text-muted)">We'll email a 6-digit code to verify your identity before
+          allowing a password change.</p>
         <button type="submit" id="cpRequestBtn" class="btn-secondary">Send Code</button>
       </form>
 
@@ -135,9 +200,11 @@
   </main>
 
   <footer>
-    &copy; <script>document.write(new Date().getFullYear())</script> Purity Help. Walk in the Light.
+    &copy;
+    <script>document.write(new Date().getFullYear())</script> Purity Help. Walk in the Light.
   </footer>
-  
+
   <script src="app.js"></script>
 </body>
+
 </html>
