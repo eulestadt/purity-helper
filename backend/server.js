@@ -331,8 +331,11 @@ app.post('/share', async (req, res) => {
   }
 
   const r = await pool.query(
+    // DO UPDATE SET token = share_tokens.token is a no-op UPDATE that lets RETURNING
+    // give us the existing token instead of always regenerating a new UUID.
+    // This ensures all devices on the same account get the same stable share link.
     `INSERT INTO share_tokens (user_id, token) VALUES ($1, gen_random_uuid())
-     ON CONFLICT (user_id) DO UPDATE SET token = gen_random_uuid() RETURNING token`,
+     ON CONFLICT (user_id) DO UPDATE SET token = share_tokens.token RETURNING token`,
     [userId]
   );
   const shareToken = r.rows[0].token;
@@ -356,9 +359,32 @@ app.get('/share/:token', async (req, res) => {
     return res.status(404).send('Not found');
   }
   const payload = r.rows[0].payload || {};
+
+  // Apply privacy preferences stored in the payload by the iOS app.
+  // The app sets shareExamens/shareUrges/shareRelapses = false when the
+  // user has turned those toggles off — strip those models here so the
+  // share page never shows data the user chose to keep private.
+  const filtered = { ...payload };
+  const hasModels = filtered.models && typeof filtered.models === 'object';
+  if (hasModels) {
+    filtered.models = { ...filtered.models };
+    if (filtered.shareExamens === false) {
+      filtered.models.examenEntries = [];
+    }
+    if (filtered.shareUrges === false) {
+      filtered.models.urgeLogs = [];
+    }
+    if (filtered.shareRelapses === false) {
+      filtered.models.resetRecords = [];
+    }
+  }
+  // Strip the internal prefs from what we expose publicly
+  const { shareExamens: _se, shareUrges: _su, shareRelapses: _sr, ...publicPayload } = filtered;
+  publicPayload.models = filtered.models;
+
   const wantsJson = req.headers.accept?.includes('application/json') || req.query.format === 'json';
   if (wantsJson) {
-    return res.json(payload);
+    return res.json(publicPayload);
   }
   const html = `<!DOCTYPE html>
 <html lang="en">

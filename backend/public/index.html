@@ -109,37 +109,44 @@
       <!-- Purity Stats Dashboard -->
       <div id="statsDashboard" class="hidden">
         <hr style="border:0; border-top:1px solid rgba(0,0,0,0.1); margin:24px 0">
-        <h3 style="margin-top:0">Your Purity Stats</h3>
-        <p style="color:var(--text-muted); font-size:0.9rem; margin-top:-8px; margin-bottom:16px;">
-          This is what your accountability partners see in your Shared Walk.
+        <h3 style="margin-top:0">Your Purity Progress</h3>
+        <p style="color:var(--text-muted); font-size:0.9rem; margin-top:-8px; margin-bottom:20px;">
+          This is exactly what your accountability partners see in your Shared Walk.
         </p>
 
-        <div class="stats-grid">
-          <div class="stat-box">
-            <div class="stat-value" id="statPorn">0</div>
-            <div class="stat-label">Pornography<br>Free Days</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-value" id="statMast">0</div>
-            <div class="stat-label">Masturbation<br>Free Days</div>
-          </div>
-          <div class="stat-box" id="statPureThoughtsBox" style="display:none">
-            <div class="stat-value" id="statPureThoughts">0</div>
-            <div class="stat-label">Pure Thoughts<br>Days</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-value" id="statUrges">0</div>
-            <div class="stat-label">Urges<br>Overcome</div>
-          </div>
-          <div class="stat-box" id="statHoursBox" style="display:none">
-            <div class="stat-value" id="statHours">0</div>
-            <div class="stat-label">Hours<br>Reclaimed</div>
+        <!-- Dark share-style card -->
+        <div class="share-card">
+          <div class="share-grid">
+            <div class="share-stat share-stat-wide">
+              <div class="share-value share-value-success" id="statPorn">–</div>
+              <div class="share-label">Days Pure · Pornography</div>
+            </div>
+
+            <div class="share-stat">
+              <div class="share-value" id="statMast">–</div>
+              <div class="share-label">Days Pure<br>(Masturbation)</div>
+            </div>
+
+            <div class="share-stat">
+              <div class="share-value share-value-danger" id="statUrges">–</div>
+              <div class="share-label">Urges<br>Defeated</div>
+            </div>
+
+            <div class="share-stat share-stat-wide" id="statPureThoughtsBox" style="display:none">
+              <div class="share-value share-value-accent" id="statPureThoughts">–</div>
+              <div class="share-label">Days Guarding Thoughts</div>
+            </div>
+
+            <div class="share-stat share-stat-wide" id="statHoursBox" style="display:none">
+              <div class="share-value share-value-accent" id="statHours">–</div>
+              <div class="share-label">Hours Reclaimed</div>
+            </div>
           </div>
         </div>
 
-        <h4 style="margin:24px 0 12px">Sharing Settings (Preview)</h4>
+        <h4 style="margin:24px 0 12px">Sharing Settings</h4>
         <p style="color:var(--text-muted); font-size:0.85rem; margin-top:-8px; margin-bottom:16px;">
-          Toggle these to see how your Shared Walk looks when privacy filters are applied on your iOS app.
+          These control what appears on your shared link. Changes take effect after your iOS app next syncs.
         </p>
 
         <div class="toggle-row">

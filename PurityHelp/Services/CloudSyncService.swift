@@ -27,12 +27,19 @@ struct CloudSyncService {
         pureThoughtsEnabled: Bool,
         urgeCount: Int,
         hoursReclaimed: Int?,
-        fullModels: FullSyncPayload? = nil
+        fullModels: FullSyncPayload? = nil,
+        shareExamens: Bool = true,
+        shareUrges: Bool = true,
+        shareRelapses: Bool = true
     ) -> [String: Any] {
         var p: [String: Any] = [
             "pornographyDays": pornographyDays,
             "masturbationDays": masturbationDays,
-            "urgeMomentsCount": urgeCount
+            "urgeMomentsCount": urgeCount,
+            // Store privacy prefs so the server can filter the share link view
+            "shareExamens": shareExamens,
+            "shareUrges": shareUrges,
+            "shareRelapses": shareRelapses
         ]
         if pureThoughtsEnabled { p["pureThoughtsDays"] = pureThoughtsDays }
         if let h = hoursReclaimed, h > 0 { p["hoursReclaimed"] = h }

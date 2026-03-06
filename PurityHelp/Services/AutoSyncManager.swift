@@ -26,8 +26,9 @@ final class AutoSyncManager {
             let engine = FullSyncEngine(context: modelContext)
             var fullModels = try engine.exportFullData()
 
-            // Apply privacy controls (only affects what partners can *see* in the share link;
-            // the full data is always synced to the user's own account)
+            // Privacy controls: strip data the user doesn't want visible to partners.
+            // Full unfiltered models are used for actual content sync via Pull→Merge→Push;
+            // the share link view uses the filtered payload stored in `models`.
             let shareExamens  = UserDefaults.standard.bool(forKey: "shareExamens")
             let shareUrges    = UserDefaults.standard.bool(forKey: "shareUrges")
             let shareRelapses = UserDefaults.standard.bool(forKey: "shareRelapses")
@@ -35,7 +36,6 @@ final class AutoSyncManager {
             if !shareExamens  { sharedModels.examenEntries = [] }
             if !shareUrges    { sharedModels.urgeLogs = [] }
             if !shareRelapses { sharedModels.resetRecords = [] }
-            let _ = sharedModels // reserved for share-specific payload in future
 
             let descriptor = FetchDescriptor<StreakRecord>()
             let streakRecord = try? modelContext.fetch(descriptor).first
@@ -45,13 +45,16 @@ final class AutoSyncManager {
             let urgeCount = (try? modelContext.fetch(FetchDescriptor<UrgeLog>()).count) ?? 0
 
             let payload = CloudSyncService.buildPayload(
-                pornographyDays:   streakRecord?.pornographyStreakDays  ?? 0,
-                masturbationDays:  streakRecord?.masturbationStreakDays ?? 0,
-                pureThoughtsDays:  streakRecord?.pureThoughtsStreakDays ?? 0,
-                pureThoughtsEnabled: streakRecord?.pureThoughtsEnabled ?? false,
-                urgeCount:         urgeCount,
-                hoursReclaimed:    hours > 0 ? hours : nil,
-                fullModels:        fullModels
+                pornographyDays:     streakRecord?.pornographyStreakDays  ?? 0,
+                masturbationDays:    streakRecord?.masturbationStreakDays ?? 0,
+                pureThoughtsDays:    streakRecord?.pureThoughtsStreakDays ?? 0,
+                pureThoughtsEnabled: streakRecord?.pureThoughtsEnabled   ?? false,
+                urgeCount:           urgeCount,
+                hoursReclaimed:      hours > 0 ? hours : nil,
+                fullModels:          sharedModels,   // ← privacy-filtered for the share link view
+                shareExamens:        shareExamens,
+                shareUrges:          shareUrges,
+                shareRelapses:       shareRelapses
             )
 
             CloudSyncService.sync(payload: payload) { result in
