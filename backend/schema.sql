@@ -28,3 +28,12 @@ CREATE TABLE IF NOT EXISTS share_tokens (
 CREATE INDEX IF NOT EXISTS idx_sync_data_user_id ON sync_data(user_id);
 CREATE INDEX IF NOT EXISTS idx_share_tokens_token ON share_tokens(token);
 CREATE INDEX IF NOT EXISTS idx_share_tokens_user_id ON share_tokens(user_id);
+
+CREATE TABLE IF NOT EXISTS password_reset_tokens (
+  id         UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id    UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  code_hash  TEXT NOT NULL,
+  expires_at TIMESTAMPTZ NOT NULL,
+  used       BOOLEAN NOT NULL DEFAULT FALSE
+);
+CREATE INDEX IF NOT EXISTS idx_prt_user_id ON password_reset_tokens(user_id);

@@ -9,8 +9,13 @@ const { Pool } = require('pg');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { v4: uuidv4 } = require('uuid');
+const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
+const sgMail = require('@sendgrid/mail');
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY || '');
+const SENDER_EMAIL = 'account@phoenix.boston';
 
 const app = express();
 const PORT = process.env.PORT || 10000;
@@ -98,6 +103,84 @@ app.post('/auth/login', async (req, res) => {
   if (!ok) return res.status(401).json({ error: 'Invalid email or password' });
   const token = jwt.sign({ userId }, API_SECRET, { expiresIn: '365d' });
   return res.json({ token, userId });
+});
+
+// GET /auth/me — returns current user email
+app.get('/auth/me', requireAuth, async (req, res) => {
+  const r = await pool.query('SELECT email FROM users WHERE id = $1', [req.userId]);
+  if (r.rows.length === 0) return res.status(404).json({ error: 'User not found' });
+  return res.json({ email: r.rows[0].email });
+});
+
+// POST /auth/request-reset — send 6-digit OTP to user's email (requires Bearer)
+app.post('/auth/request-reset', requireAuth, async (req, res) => {
+  const r = await pool.query('SELECT email FROM users WHERE id = $1', [req.userId]);
+  if (r.rows.length === 0) return res.status(404).json({ error: 'User not found' });
+  const email = r.rows[0].email;
+  if (!email) return res.status(400).json({ error: 'No email on this account' });
+
+  // Generate a 6-digit code, store its bcrypt hash
+  const code = String(Math.floor(100000 + crypto.randomInt(900000)));
+  const codeHash = await bcrypt.hash(code, 10);
+  const expiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
+
+  // Invalidate any existing codes for this user and insert the new one
+  await pool.query('DELETE FROM password_reset_tokens WHERE user_id = $1', [req.userId]);
+  await pool.query(
+    'INSERT INTO password_reset_tokens (user_id, code_hash, expires_at) VALUES ($1, $2, $3)',
+    [req.userId, codeHash, expiresAt]
+  );
+
+  // Send the email via SendGrid
+  try {
+    await sgMail.send({
+      to: email,
+      from: { email: SENDER_EMAIL, name: 'Purity Help' },
+      subject: 'Your password reset code',
+      text: `Your Purity Help password reset code is: ${code}\n\nThis code expires in 10 minutes. If you didn't request this, you can ignore this email.`,
+      html: `
+        <div style="font-family:-apple-system,sans-serif;max-width:480px;margin:auto;padding:32px 24px">
+          <h2 style="margin:0 0 8px">Password Reset</h2>
+          <p style="color:#6b7280;margin:0 0 24px">Enter the code below in the Purity Help app to set a new password.</p>
+          <div style="background:#f3f4f6;border-radius:12px;padding:24px;text-align:center;font-size:36px;font-weight:700;letter-spacing:8px">${code}</div>
+          <p style="color:#9ca3af;font-size:13px;margin:24px 0 0">Expires in 10 minutes. If you didn't request this, ignore this email.</p>
+        </div>
+      `,
+    });
+  } catch (e) {
+    console.error('SendGrid error:', e?.response?.body || e.message);
+    return res.status(502).json({ error: 'Failed to send email. Try again.' });
+  }
+
+  return res.json({ ok: true });
+});
+
+// POST /auth/confirm-reset — validate OTP and set new password (requires Bearer)
+app.post('/auth/confirm-reset', requireAuth, async (req, res) => {
+  const { code, newPassword } = req.body;
+  if (!code || !newPassword || newPassword.length < 8) {
+    return res.status(400).json({ error: 'Code and new password (min 8 chars) required' });
+  }
+
+  const r = await pool.query(
+    'SELECT id, code_hash, expires_at, used FROM password_reset_tokens WHERE user_id = $1 ORDER BY expires_at DESC LIMIT 1',
+    [req.userId]
+  );
+  if (r.rows.length === 0) return res.status(401).json({ error: 'No reset code found. Request a new one.' });
+
+  const { id: tokenId, code_hash: codeHash, expires_at: expiresAt, used } = r.rows[0];
+  if (used) return res.status(401).json({ error: 'Code already used. Request a new one.' });
+  if (new Date() > new Date(expiresAt)) return res.status(401).json({ error: 'Code expired. Request a new one.' });
+
+  const matches = await bcrypt.compare(code, codeHash);
+  if (!matches) return res.status(401).json({ error: 'Incorrect code.' });
+
+  // Mark token used and update password atomically
+  await pool.query('UPDATE password_reset_tokens SET used = TRUE WHERE id = $1', [tokenId]);
+  const newHash = await bcrypt.hash(newPassword, 10);
+  await pool.query('UPDATE users SET password_hash = $1 WHERE id = $2', [newHash, req.userId]);
+
+  return res.json({ ok: true });
 });
 
 // POST /sync — upsert sync data (auth by Bearer or anonymous deviceId in body)
@@ -461,7 +544,7 @@ app.get('/health', (_, res) => res.json({ ok: true }));
 
 async function init() {
   try {
-    // Check if the users table exists. If not, auto-run the schema.
+    // Check if the users table exists. If not, auto-run the full schema.
     const checkRes = await pool.query(`
       SELECT EXISTS(
                   SELECT FROM information_schema.tables 
@@ -477,7 +560,18 @@ async function init() {
       await pool.query(schemaSql);
       console.log('Schema initialized successfully.');
     } else {
-      console.log('Database tables found. Skipping schema initialization.');
+      console.log('Database tables found. Skipping full schema initialization.');
+      // Always ensure the password_reset_tokens table exists (idempotent migration)
+      await pool.query(`
+        CREATE TABLE IF NOT EXISTS password_reset_tokens (
+          id         UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+          user_id    UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+          code_hash  TEXT NOT NULL,
+          expires_at TIMESTAMPTZ NOT NULL,
+          used       BOOLEAN NOT NULL DEFAULT FALSE
+        );
+      `);
+      await pool.query(`CREATE INDEX IF NOT EXISTS idx_prt_user_id ON password_reset_tokens(user_id);`);
     }
   } catch (e) {
     console.error('DB connection or schema initialization failed:', e.message);
