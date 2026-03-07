@@ -33,7 +33,6 @@
 		4C99C56B4A9B1245047F8474 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8F6004D48927E5CB5F3B5A /* SettingsView.swift */; };
 		4D11D6FEEC680819AA44C53D /* stories.json in Resources */ = {isa = PBXBuildFile; fileRef = C302A35708601BD6197AF4FC /* stories.json */; };
 		4E25ED38610379DCDD6E50CA /* VigilService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B7DA98F8360201B1F1D6B7 /* VigilService.swift */; };
-		522CF62D9318380954452EF8 /* PartnersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCA1CEC448FA742C7E972E3 /* PartnersView.swift */; };
 		5631E1BAC56D22647EB1A6B9 /* MissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E376DFA36C1544518AFCEC8 /* MissionView.swift */; };
 		5671AFED1F48E4E17CD9A0C7 /* ExamenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BDD3EB5DE9F115F1DBC5A9 /* ExamenView.swift */; };
 		59CE3972DEBDC8849E5A9F11 /* BreathingPacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE7DFBC738E7CF8C657073 /* BreathingPacer.swift */; };
@@ -74,6 +73,7 @@
 		F83B30777BDAC7DC165C44C5 /* sapling.png in Resources */ = {isa = PBXBuildFile; fileRef = 95DE081F4FCFB35EC7264981 /* sapling.png */; };
 		F969D37A0B84ADA3ED2E81BD /* tree.png in Resources */ = {isa = PBXBuildFile; fileRef = 5262377B9E30BC42AE371855 /* tree.png */; };
 		FACFE1A189606CC26624160A /* UrgeLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94340DA12EDFCAF96016841 /* UrgeLog.swift */; };
+		D962B8022F5AF5D80000EFA6 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D962B8012F5AF5D80000EFA6 /* NotificationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,7 +86,6 @@
 		1D11B7AB74B3D5000380B34D /* VigilContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VigilContainerView.swift; sourceTree = "<group>"; };
 		1DCA456E691DD6BD72E54FB6 /* StoriesOfHopeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesOfHopeView.swift; sourceTree = "<group>"; };
 		1E8F6004D48927E5CB5F3B5A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		1FCA1CEC448FA742C7E972E3 /* PartnersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnersView.swift; sourceTree = "<group>"; };
 		31806D44F76B06B7BD8F048F /* PurityHelpApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurityHelpApp.swift; sourceTree = "<group>"; };
 		32AC13E373EF9398F3F6ED26 /* IfThenPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfThenPlan.swift; sourceTree = "<group>"; };
 		33E9E89942E035EAA5518329 /* DangerZoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerZoneView.swift; sourceTree = "<group>"; };
@@ -145,6 +144,7 @@
 		F4C0A324E6A838B3D7A0BD57 /* MeditateOnWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditateOnWordView.swift; sourceTree = "<group>"; };
 		F693F908C65C4B73D2287D45 /* StreakService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakService.swift; sourceTree = "<group>"; };
 		F8897E312355B378357E5A48 /* ScriptureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptureService.swift; sourceTree = "<group>"; };
+		D962B8012F5AF5D80000EFA6 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -226,6 +226,7 @@
 		638CF85792E231A938397DCA /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D962B8012F5AF5D80000EFA6 /* NotificationManager.swift */,
 				C1D2E3F4A5B67890CAFEBABE /* AutoSyncManager.swift */,
 				D962B7FF2F5AD5560000EFA6 /* AppNotifications.swift */,
 				478F7CACFB1E0C03F664268B /* BibleAPIService.swift */,
@@ -361,7 +362,6 @@
 		CCB3E8B724AB0DBEA4B5FD71 /* Partners */ = {
 			isa = PBXGroup;
 			children = (
-				1FCA1CEC448FA742C7E972E3 /* PartnersView.swift */,
 			);
 			path = Partners;
 			sourceTree = "<group>";
@@ -469,6 +469,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D962B8022F5AF5D80000EFA6 /* NotificationManager.swift in Sources */,
 				D1E2F3A4B5C67890CAFEBABE /* AutoSyncManager.swift in Sources */,
 				B1B2C3D4E5F67890CAFEBABE /* Views/Dashboard/BeginAgainView.swift in Sources */,
 				802A0CF11ACE5FBD871B2EE0 /* AddVerseSearchSheet.swift in Sources */,
@@ -499,7 +500,6 @@
 				1C0192AADCE11640C8EA5351 /* MeditateOnWordView.swift in Sources */,
 				257D3214F6461A9923394EAB /* MemorizedVerse.swift in Sources */,
 				5631E1BAC56D22647EB1A6B9 /* MissionView.swift in Sources */,
-				522CF62D9318380954452EF8 /* PartnersView.swift in Sources */,
 				BACBC3630EA20D8CCC2713B3 /* PurityHelpApp.swift in Sources */,
 				0E14025ECACEE4DC097F4C59 /* PurityTreeView.swift in Sources */,
 				EFF56C4B1197EE9608E971DD /* ReciteVerseView.swift in Sources */,

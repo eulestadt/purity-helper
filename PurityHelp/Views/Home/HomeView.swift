@@ -15,7 +15,7 @@ struct HomeView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var streakRecords: [StreakRecord]
     @Query private var missions: [UserMission]
-    @Query private var memorizedVerses: [MemorizedVerse]
+    @AppStorage("heartCheckDate") private var heartCheckDate: String = ""
 
     private var streakRecord: StreakRecord? { streakRecords.first }
     private var mission: UserMission? { missions.first }
@@ -46,7 +46,7 @@ struct HomeView: View {
                             missionCard
                         }
                         streakCardsSection
-                        pureThoughtsCheckInSection
+                        dailyHeartCheckSection
                     }
                     .frame(maxWidth: 500)
                     .frame(maxWidth: .infinity)
@@ -88,6 +88,11 @@ struct HomeView: View {
         }
         .onAppear {
             ensureStreakRecordExists()
+            if let record = streakRecord {
+                StreakService().recalculateStreaks(record: record)
+                try? modelContext.save()
+                Task { @MainActor in AutoSyncManager.shared.performBackgroundSync(modelContext: modelContext) }
+            }
             checkMilestone()
         }
         .alert("Milestone", isPresented: Binding(
@@ -298,79 +303,61 @@ private var treeProgressCard: some View {
         }
     }
 
-    private static let verseHeldDateKey = "verseHeldTodayDate"
-    private static let verseHeldIdKey = "verseHeldTodayVerseId"
+    // MARK: - Daily Heart Check
 
-    @ViewBuilder
-    private var pureThoughtsCheckInSection: some View {
-        if let record = streakRecord, record.pureThoughtsEnabled {
-            let service = StreakService()
-            let alreadyChecked = record.pureThoughtsLastCheckDate.map { service.isSameDay($0, Date()) } ?? false
-            let todayString = formatDateForVerseHeld(Date())
-            if !alreadyChecked {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Did you guard your thoughts today?")
-                        .font(.subheadline)
-                        
-                    HStack(spacing: 12) {
-                        Button("I guarded my thoughts today") {
-                            service.recordPureThoughtsCheck(record: record, guarded: true, modelContext: modelContext)
-                            try? modelContext.save()
-                            Task { @MainActor in AutoSyncManager.shared.performBackgroundSync(modelContext: modelContext) }
-                        }
-                        .buttonStyle(.borderedProminent)
-                        Button("No (reset)") {
-                            beginAgainType = .pureThoughts
-                        }
-                        .buttonStyle(.bordered)
-                        .tint(.red)
-                    }
-                    verseHeldPicker(todayString: todayString)
-                }
-                .padding()
-                .glassCard(cornerRadius: 16)
-            }
-        }
+    private var todayString: String {
+        let f = DateFormatter()
+        f.dateFormat = "yyyy-MM-dd"
+        return f.string(from: Date())
     }
 
     @ViewBuilder
-    private func verseHeldPicker(todayString: String) -> some View {
-        let learned = memorizedVerses.filter { $0.status == "learning" || $0.status == "learned" }
-        if !learned.isEmpty {
-            let defaultVerses = ScriptureService.versesForMemorization()
-            let customVerses = memorizedVerses.compactMap { $0.toScriptureVerse() }
-            let customIds = Set(customVerses.map { $0.id })
-            let staticVerses = defaultVerses.filter { !customIds.contains($0.id) }
-            let combinedVerses = customVerses + staticVerses
-            
-            let binding = Binding<String>(
-                get: {
-                    let savedDate = UserDefaults.standard.string(forKey: Self.verseHeldDateKey)
-                    guard savedDate == todayString else { return "none" }
-                    return UserDefaults.standard.string(forKey: Self.verseHeldIdKey) ?? "none"
-                },
-                set: { newValue in
-                    UserDefaults.standard.set(todayString, forKey: Self.verseHeldDateKey)
-                    UserDefaults.standard.set(newValue, forKey: Self.verseHeldIdKey)
-                }
-            )
-            Picker("Which verse did you hold onto today?", selection: binding) {
-                Text("None / didn't use one").tag("none")
-                ForEach(learned, id: \.verseId) { mv in
-                    if let v = combinedVerses.first(where: { $0.id == mv.verseId }) {
-                        Text(v.reference).tag(v.id)
+    private var dailyHeartCheckSection: some View {
+        if heartCheckDate != todayString {
+            VStack(alignment: .leading, spacing: 14) {
+                Text("How is your heart today?")
+                    .font(.headline)
+
+                HStack(spacing: 10) {
+                    ForEach([("Peaceful", "✦", "peaceful"),
+                             ("Holding firm", "⚔", "held_firm"),
+                             ("Weary", "🌙", "weary")], id: \.0) { label, symbol, value in
+                        Button {
+                            logHeartCheck(value)
+                        } label: {
+                            VStack(spacing: 4) {
+                                Text(symbol).font(.title2)
+                                Text(label).font(.caption2).multilineTextAlignment(.center)
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 10)
+                            .background(.ultraThinMaterial)
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                            .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.white.opacity(0.35), lineWidth: 1))
+                        }
+                        .buttonStyle(.plain)
                     }
                 }
+
+                NavigationLink(destination: ExamenView()) {
+                    Text("Take it deeper — do your daily Examen →")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
             }
-            .pickerStyle(.menu)
+            .padding()
+            .glassCard(cornerRadius: 16)
         }
     }
 
-    private func formatDateForVerseHeld(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter.string(from: date)
+    private func logHeartCheck(_ mood: String) {
+        let entry = JournalEntry(type: .examen, moodOutcome: mood)
+        modelContext.insert(entry)
+        try? modelContext.save()
+        heartCheckDate = todayString
+        Task { @MainActor in AutoSyncManager.shared.performBackgroundSync(modelContext: modelContext) }
     }
+
 
     private var urgeButton: some View {
         Button {

@@ -575,11 +575,10 @@ app.get('/share/:token', async (req, res) => {
         .slice(0, 10)
         .map(log => {
           const d = new Date(log.date * 1000).toLocaleString(undefined, { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
-          const outcomeBadge = '<span class="badge badge-success">Defeated</span>';
           return `
           <div class="item-card">
             <div class="item-date">${d}</div>
-            <div class="item-title">${escapeHtml(log.replaceActivityUsed || log.quickActionUsed || 'Fought Urge')} ${outcomeBadge}</div>
+            <div class="item-title">${escapeHtml(log.replaceActivityUsed || log.quickActionUsed || 'Fought Urge')}</div>
             ${log.optionalNote ? `<div class="item-body"><em>"${escapeHtml(log.optionalNote)}"</em></div>` : ''}
           </div>
           `;
@@ -612,18 +611,21 @@ app.get('/share/:token', async (req, res) => {
     
     ${payload.models?.resetRecords?.length > 0 ? `
     <div class="list-section">
-      <div class="list-header">Begin Again (Timers Reset)</div>
+      <div class="list-header">Timers Reset</div>
       ${payload.models.resetRecords
         .sort((a, b) => b.date - a.date)
         .slice(0, 10)
         .map(reset => {
           const d = new Date(reset.date * 1000).toLocaleString(undefined, { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
           let capType = reset.type ? reset.type.charAt(0).toUpperCase() + reset.type.slice(1) : 'Unknown';
+          if (capType === 'PureThoughts') capType = 'Impure Thoughts';
+
+          const relapsedBadge = '<span class="badge badge-danger">Relapsed</span>';
 
           return `
           <div class="item-card">
             <div class="item-date">${d}</div>
-            <div class="item-title">Begin Again: ${escapeHtml(capType)}</div>
+            <div class="item-title">Begin Again: ${escapeHtml(capType)} ${relapsedBadge}</div>
             <div class="item-body" style="opacity: 0.9;">
               ${reset.triggerTag ? `<strong>Autopsy:</strong> ${escapeHtml(reset.triggerTag)}<br>` : ''}
               ${reset.optionalNote ? `<strong>Confession:</strong> <em>"${escapeHtml(reset.optionalNote)}"</em>` : ''}

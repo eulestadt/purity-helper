@@ -14,7 +14,6 @@ struct MeditateOnWordView: View {
     @Query(sort: \MemorizedVerse.verseId) private var memorized: [MemorizedVerse]
     @State private var step = 0
     @State private var showMemorizeStep = false
-    @State private var memorizeShowText = true
 
     private let steps: [(title: String, prompt: String)] = [
         ("Read", "Read the verse slowly. Let it sink in."),
@@ -23,6 +22,21 @@ struct MeditateOnWordView: View {
         ("Rest", "Rest in his presence. No words needed.")
     ]
     
+    enum TextDisplayMode: String, CaseIterable, Identifiable {
+        case full = "Full"
+        case firstLetters = "Letters"
+        case hidden = "Hidden"
+        var id: String { rawValue }
+    }
+    
+    @State private var displayMode: TextDisplayMode = .full
+
+    private var firstLettersText: String {
+        verse.text.split(separator: " ").map { word in
+            guard let firstChar = word.first(where: { $0.isLetter || $0.isNumber }) else { return String(word) }
+            return String(firstChar) + String(repeating: "_", count: max(0, word.count - 1))
+        }.joined(separator: " ")
+    }
 
     var body: some View {
         ZStack {
@@ -106,33 +120,39 @@ struct MeditateOnWordView: View {
                     .font(.title2)
                     .fontWeight(.semibold)
             }
-            Text("Repeat the verse slowly 2–3 times; then try saying it without looking.")
+            Text("Use these modes to help you memorize. First Letters mode helps train your brain to recall.")
                 .font(.subheadline)
                 
+            Picker("Display Mode", selection: $displayMode) {
+                ForEach(TextDisplayMode.allCases) { mode in
+                    Text(mode.rawValue).tag(mode)
+                }
+            }
+            .pickerStyle(.segmented)
 
-            if memorizeShowText {
-                Text(verse.text)
-                    .font(.system(size: 18, weight: .medium, design: .serif))
-                    .multilineTextAlignment(.leading)
+            VStack(alignment: .leading, spacing: 10) {
+                switch displayMode {
+                case .full:
+                    Text(verse.text)
+                        .font(.system(size: 18, weight: .medium, design: .serif))
+                case .firstLetters:
+                    Text(firstLettersText)
+                        .font(.system(size: 18, weight: .medium, design: .serif))
+                case .hidden:
+                    Text("Say the verse from memory.")
+                        .font(.subheadline)
+                        .italic()
+                        .foregroundStyle(.secondary)
+                }
+                
                 Text(verse.reference)
                     .font(.caption)
-                    
-                Button("Tap when you want to try without looking") {
-                    memorizeShowText = false
-                    saveMemorizationProgress(status: "learning")
-                }
-                .buttonStyle(.bordered)
-            } else {
-                Text(verse.reference)
-                    .font(.headline)
-                Text("Say the verse from memory.")
-                    .font(.subheadline)
-                    
-                Button("Show verse again") {
-                    memorizeShowText = true
-                }
-                .buttonStyle(.bordered)
+                    .foregroundStyle(.secondary)
             }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color.white.opacity(0.1))
+            .clipShape(RoundedRectangle(cornerRadius: 12))
 
             HStack(spacing: 12) {
                 Button("Back") { step = steps.count - 1 }

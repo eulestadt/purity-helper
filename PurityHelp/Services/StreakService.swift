@@ -110,6 +110,26 @@ final class StreakService {
         record.updatedAt = .now
     }
 
+    /// Recompute all streak day counts from their reset dates.
+    /// Call this every time the app comes to the foreground so that
+    /// the count is always accurate regardless of whether the user
+    /// opened the app on any given day.
+    func recalculateStreaks(record: StreakRecord) {
+        let today = calendar.startOfDay(for: Date())
+
+        func daysSince(_ date: Date?) -> Int {
+            let from = calendar.startOfDay(for: date ?? record.createdAt)
+            return max(0, calendar.dateComponents([.day], from: from, to: today).day ?? 0)
+        }
+
+        record.pornographyStreakDays  = daysSince(record.pornographyLastResetDate)
+        record.masturbationStreakDays = daysSince(record.masturbationLastResetDate)
+        if record.pureThoughtsEnabled {
+            record.pureThoughtsStreakDays = daysSince(record.pureThoughtsLastResetDate)
+        }
+        record.updatedAt = .now
+    }
+
     /// Tree stage from days of purity (effective behavioral streak).
     func treeStage(days: Int) -> PurityTreeStage {
         switch days {

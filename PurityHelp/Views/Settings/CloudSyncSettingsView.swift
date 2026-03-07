@@ -58,6 +58,9 @@ struct CloudSyncSettingsView: View {
                                 Text("Share Examen Details")
                             }
                             .tint(.blue)
+                            .onChange(of: shareExamens) { _, _ in
+                                AutoSyncManager.shared.performBackgroundSync(modelContext: modelContext)
+                            }
                             Text("When ON, your \(accountabilityTerm) can read the written reflections of your Daily Examens.")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
@@ -68,6 +71,9 @@ struct CloudSyncSettingsView: View {
                                 Text("Share Urge Log Details")
                             }
                             .tint(.blue)
+                            .onChange(of: shareUrges) { _, _ in
+                                AutoSyncManager.shared.performBackgroundSync(modelContext: modelContext)
+                            }
                             Text("When ON, they can see exactly what triggers you faced and the tools you used to fight them off.")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
@@ -78,6 +84,9 @@ struct CloudSyncSettingsView: View {
                                 Text("Share Relapse Reflections")
                             }
                             .tint(.blue)
+                            .onChange(of: shareRelapses) { _, _ in
+                                AutoSyncManager.shared.performBackgroundSync(modelContext: modelContext)
+                            }
                             Text("Note: Your \(accountabilityTerm) will always see your current \"Days of Purity\" count. Turning this ON allows them to read your private \"Begin Again\" recovery notes when a reset occurs.")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)

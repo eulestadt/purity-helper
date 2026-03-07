@@ -9,7 +9,14 @@ import SwiftUI
 import SwiftData
 
 struct ExamenView: View {
+    /// When launched from the home heart-check card, the mood is pre-filled.
+    var prefilledMoodOutcome: String? = nil
+    /// Called (and sheet dismissed) after the examen saves — used by the heart-check card.
+    var onDone: (() -> Void)? = nil
+
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
+
     @State private var step: Int = 0
     @State private var step1Thanks: String = ""
     @State private var step2Light: String = ""
@@ -51,40 +58,43 @@ struct ExamenView: View {
                 .fontWeight(.semibold)
             Text(prompt)
                 .font(.body)
-                
 
             textFieldForStep(step)
 
             if step == 2 {
-                Picker("How was today?", selection: $howWasToday) {
-                    Text("Struggled").tag("struggled")
-                    Text("Held firm").tag("held_firm")
-                    Text("Peaceful").tag("peaceful")
+                if let prefilled = prefilledMoodOutcome {
+                    // Mood already chosen from the heart-check card — show read-only
+                    HStack(spacing: 6) {
+                        Text(moodLabel(prefilled))
+                            .font(.subheadline)
+                        Text("(from your heart check)")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                } else {
+                    Picker("How was today?", selection: $howWasToday) {
+                        Text("Struggled").tag("struggled")
+                        Text("Held firm").tag("held_firm")
+                        Text("Peaceful").tag("peaceful")
+                    }
+                    .pickerStyle(.segmented)
                 }
-                .pickerStyle(.segmented)
             }
 
             Spacer()
 
             HStack {
                 if step > 0 {
-                    Button("Back") {
-                        step -= 1
-                    }
-                    .buttonStyle(.bordered)
+                    Button("Back") { step -= 1 }
+                        .buttonStyle(.bordered)
                 }
                 Spacer()
                 if step < 4 {
-                    Button("Next") {
-                        step += 1
-                    }
-                    .buttonStyle(.borderedProminent)
+                    Button("Next") { step += 1 }
+                        .buttonStyle(.borderedProminent)
                 } else {
-                    Button("Finish Examen") {
-                        saveExamen()
-                        saved = true
-                    }
-                    .buttonStyle(.borderedProminent)
+                    Button("Finish Examen") { saveExamen() }
+                        .buttonStyle(.borderedProminent)
                 }
             }
             .padding(.top)
@@ -145,19 +155,39 @@ struct ExamenView: View {
     }
 
     private func saveExamen() {
+        let mood = prefilledMoodOutcome ?? howWasToday
         let entry = ExamenEntry(
             step1Thanks: step1Thanks.isEmpty ? nil : step1Thanks,
             step2Light: step2Light.isEmpty ? nil : step2Light,
             step3Examine: step3Examine.isEmpty ? nil : step3Examine,
             step4Forgiveness: step4Forgiveness.isEmpty ? nil : step4Forgiveness,
             step5Resolve: step5Resolve.isEmpty ? nil : step5Resolve,
-            howWasToday: howWasToday
+            howWasToday: mood
         )
         modelContext.insert(entry)
-        let journal = JournalEntry(type: .examen, moodOutcome: howWasToday)
-        modelContext.insert(journal)
+        // When launched from the heart-check card, the JournalEntry was already
+        // created for the mood log — don't create a duplicate.
+        if prefilledMoodOutcome == nil {
+            let journal = JournalEntry(type: .examen, moodOutcome: mood)
+            modelContext.insert(journal)
+        }
         try? modelContext.save()
         Task { @MainActor in AutoSyncManager.shared.performBackgroundSync(modelContext: modelContext) }
+        if let onDone {
+            onDone()
+            dismiss()
+        } else {
+            saved = true
+        }
+    }
+
+    private func moodLabel(_ mood: String) -> String {
+        switch mood {
+        case "peaceful": return "Peaceful ✦"
+        case "held_firm": return "Holding firm ⚔"
+        case "weary": return "Weary 🌙"
+        default: return mood
+        }
     }
 }
 

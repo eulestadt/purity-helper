@@ -49,7 +49,23 @@ struct HideInYourHeartView: View {
                 
                 Section {
                     NavigationLink(destination: MemorizeReviewView()) {
-                        Label("Verse to review today", systemImage: "arrow.clockwise")
+                        HStack {
+                            let dueCount = memorized.filter { ($0.status == "learning" || $0.status == "learned") && $0.nextReviewDate <= Date.now }.count
+                            Label("Review verses", systemImage: "arrow.clockwise")
+                            Spacer()
+                            if dueCount > 0 {
+                                Text("\(dueCount)")
+                                    .font(.caption.bold())
+                                    .foregroundColor(.white)
+                                    .padding(.horizontal, 8)
+                                    .padding(.vertical, 4)
+                                    .background(Color.red)
+                                    .clipShape(Capsule())
+                            } else {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .foregroundColor(.green)
+                            }
+                        }
                     }
                 }
                 .listRowBackground(Color.white.opacity(0.15))
@@ -134,7 +150,15 @@ struct MemorizeLearnView: View {
     let progress: MemorizedVerse?
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
-    @State private var showText = true
+    
+    enum TextDisplayMode: String, CaseIterable, Identifiable {
+        case full = "Full Text"
+        case firstLetters = "First Letters"
+        case hidden = "Hidden"
+        var id: String { rawValue }
+    }
+    
+    @State private var displayMode: TextDisplayMode = .full
     @State private var status: String
 
     init(verse: ScriptureVerse, progress: MemorizedVerse?) {
@@ -142,47 +166,66 @@ struct MemorizeLearnView: View {
         self.progress = progress
         _status = State(initialValue: progress?.status ?? "learning")
     }
+    
+    private var firstLettersText: String {
+        // Keep punctuation but replace word characters
+        verse.text.split(separator: " ").map { word in
+            guard let firstChar = word.first(where: { $0.isLetter || $0.isNumber }) else { return String(word) }
+            return String(firstChar) + String(repeating: "_", count: max(0, word.count - 1))
+        }.joined(separator: " ")
+    }
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                Text("Repeat the verse slowly 2–3 times. Then try saying it without looking.")
+                Text("Use the modes below to help you memorize. First Letters mode is a powerful tool to train your brain.")
                     .font(.subheadline)
                     
 
-                if showText {
-                    Text(verse.text)
-                        .font(.title3)
-                    if let translation = verse.translation {
-                        Text("\(verse.reference) (\(translation))")
-                            .font(.caption)
-                            
-                    } else {
-                        Text(verse.reference)
-                            .font(.caption)
-                            
+                Picker("Display Mode", selection: $displayMode) {
+                    ForEach(TextDisplayMode.allCases) { mode in
+                        Text(mode.rawValue).tag(mode)
                     }
-                    Button("Tap when you want to try without looking") {
-                        showText = false
-                    }
-                    .buttonStyle(.bordered)
-                } else {
-                    if let translation = verse.translation {
-                        Text("\(verse.reference) (\(translation))")
-                            .font(.headline)
-                    } else {
-                        Text(verse.reference)
-                            .font(.headline)
-                    }
-                    Text("Say the verse from memory.")
-                        .font(.subheadline)
-                        
-                    Button("Show verse again") {
-                        showText = true
-                    }
-                    .buttonStyle(.bordered)
                 }
+                .pickerStyle(.segmented)
+                .padding(.bottom, 10)
 
+                VStack(alignment: .leading, spacing: 10) {
+                    if let translation = verse.translation {
+                        Text("\(verse.reference) (\(translation))")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    } else {
+                        Text(verse.reference)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                    
+                    switch displayMode {
+                    case .full:
+                        Text(verse.text)
+                            .font(.title3)
+                    case .firstLetters:
+                        Text(firstLettersText)
+                            .font(.title3)
+                            .lineSpacing(4)
+                    case .hidden:
+                        Text("Say the verse from memory.")
+                            .font(.title3)
+                            .foregroundStyle(.secondary)
+                            .italic()
+                    }
+                }
+                .padding()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color(UIColor.secondarySystemBackground).opacity(0.5))
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .padding(.bottom, 10)
+
+                Text("How well do you know this?")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    
                 Picker("Status", selection: $status) {
                     Text("Learning").tag("learning")
                     Text("Learned").tag("learned")
@@ -196,6 +239,7 @@ struct MemorizeLearnView: View {
             .padding()
         }
         .navigationTitle(verse.reference)
+        .navigationBarTitleDisplayMode(.inline)
         .onDisappear {
             saveProgress(status: status)
         }
@@ -216,84 +260,207 @@ struct MemorizeLearnView: View {
 }
 
 struct MemorizeReviewView: View {
-    @Query(sort: \MemorizedVerse.lastReviewedDate) private var memorized: [MemorizedVerse]
+    @Query private var memorized: [MemorizedVerse]
     @Environment(\.modelContext) private var modelContext
-
     private let defaultVerses = ScriptureService.versesForMemorization()
+    @State private var sessionCompletedIds: Set<String> = []
+
+    private var reviewQueue: [MemorizedVerse] {
+        memorized
+            .filter { $0.status == "learning" || $0.status == "learned" }
+            .sorted { $0.nextReviewDate < $1.nextReviewDate }
+    }
+    
+    private var activeQueue: [MemorizedVerse] {
+        reviewQueue.filter { !sessionCompletedIds.contains($0.verseId) }
+    }
+    
+    private var dueCount: Int {
+        activeQueue.filter { $0.nextReviewDate <= Date.now }.count
+    }
 
     var body: some View {
         Group {
-            let toReview = verseToReviewToday()
-            if let v = toReview {
-                MemorizeReviewDetailView(verse: v)
+            if let mv = activeQueue.first, let verse = getScriptureVerse(for: mv) {
+                MemorizeReviewDetailView(verse: verse, memorizedVerse: mv) {
+                    withAnimation {
+                        sessionCompletedIds.insert(mv.verseId)
+                    }
+                }
+            } else if !reviewQueue.isEmpty {
+                VStack(spacing: 20) {
+                    ContentAvailabilityView(
+                        title: "Session complete!",
+                        systemImage: "party.popper.fill",
+                        description: "You've gone through all your verses for this round."
+                    )
+                    
+                    Button("Practice again") {
+                        withAnimation {
+                            sessionCompletedIds.removeAll()
+                        }
+                    }
+                    .buttonStyle(.bordered)
+                }
             } else {
                 ContentUnavailableView(
-                    "No verse to review",
-                    systemImage: "checkmark.circle",
-                    description: Text("Add verses in \"Hide in your heart\" and mark some as Learning or Learned to get a verse to review each day.")
+                    "No verses yet",
+                    systemImage: "book.closed",
+                    description: Text("Add verses in \"Hide in your heart\" and mark them as Learning or Learned to start reviewing.")
                 )
             }
         }
-        .navigationTitle("Review")
+        .navigationTitle(navTitle)
+        .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    private var navTitle: String {
+        if dueCount > 0 {
+            return "Review (\(dueCount) due)"
+        } else if !activeQueue.isEmpty {
+            return "Practicing ahead"
+        } else {
+            return "Review"
+        }
     }
 
-    /// One verse per day from learned set: pick by day-of-year % count of learned/learning verses.
-    private func verseToReviewToday() -> ScriptureVerse? {
-        let learningOrLearned = memorized.filter { $0.status == "learning" || $0.status == "learned" }
-        guard !learningOrLearned.isEmpty else { return nil }
-        let dayOfYear = Calendar.current.ordinality(of: .day, in: .year, for: Date()) ?? 1
-        let index = dayOfYear % learningOrLearned.count
-        let mv = learningOrLearned[index]
-        
-        if let custom = mv.toScriptureVerse() {
-            return custom
-        }
+    private func getScriptureVerse(for mv: MemorizedVerse) -> ScriptureVerse? {
+        if let custom = mv.toScriptureVerse() { return custom }
         return defaultVerses.first { $0.id == mv.verseId }
     }
 }
 
 struct MemorizeReviewDetailView: View {
     let verse: ScriptureVerse
+    let memorizedVerse: MemorizedVerse
+    var onComplete: () -> Void
     @Environment(\.modelContext) private var modelContext
-    @Query private var memorized: [MemorizedVerse]
     @State private var revealed = false
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            if let translation = verse.translation {
-                Text("\(verse.reference) (\(translation))")
-                    .font(.title2)
-            } else {
-                Text(verse.reference)
-                    .font(.title2)
+        VStack(spacing: 30) {
+            Spacer()
+            
+            VStack(spacing: 8) {
+                if let translation = verse.translation {
+                    Text("\(verse.reference) (\(translation))")
+                        .font(.title)
+                        .fontWeight(.bold)
+                } else {
+                    Text(verse.reference)
+                        .font(.title)
+                        .fontWeight(.bold)
+                }
             }
+            
             if revealed {
                 Text(verse.text)
-                    .font(.body)
+                    .font(.title2)
+                    .multilineTextAlignment(.center)
+                    .padding()
+                    .background(Color(UIColor.secondarySystemBackground).opacity(0.8))
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    .padding(.horizontal)
+                    
+                Spacer()
+                
+                Text("How did you do?")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                
+                HStack(spacing: 16) {
+                    Button(action: { processReview(success: false) }) {
+                        VStack {
+                            Image(systemName: "brain")
+                                .font(.title2)
+                            Text("Still Learning")
+                                .font(.headline)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.orange.opacity(0.2))
+                        .foregroundColor(.orange)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                    }
+                    
+                    Button(action: { processReview(success: true) }) {
+                        VStack {
+                            Image(systemName: "checkmark.seal")
+                                .font(.title2)
+                            Text("Learned!")
+                                .font(.headline)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.green.opacity(0.2))
+                        .foregroundColor(.green)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                    }
+                }
+                .padding(.horizontal)
             } else {
-                Button("I'll say it from memory") {
-                    revealed = true
+                Spacer()
+                
+                Button(action: {
+                    withAnimation { revealed = true }
+                }) {
+                    Text("Reveal Verse")
+                        .font(.headline)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.accentColor)
+                        .foregroundColor(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
-                .buttonStyle(.borderedProminent)
-                Button("Show verse") {
-                    revealed = true
-                }
-                .buttonStyle(.bordered)
+                .padding(.horizontal)
             }
+            
+            Spacer()
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding()
-        .onAppear {
-            updateLastReviewed()
-        }
+        .frame(maxWidth: .infinity)
+        // Reset state when the verse changes
+        .id(verse.id)
     }
 
-    private func updateLastReviewed() {
-        if let m = memorized.first(where: { $0.verseId == verse.id }) {
-            m.lastReviewedDate = Date()
-            m.updatedAt = Date.now
+    private func processReview(success: Bool) {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(success ? .success : .warning)
+        
+        withAnimation {
+            memorizedVerse.processReview(success: success)
             try? modelContext.save()
+            Task { @MainActor in AutoSyncManager.shared.performBackgroundSync(modelContext: modelContext) }
+            
+            // Trigger session completion UI update
+            onComplete()
+            
+            // Auto hide for the next verse
+            revealed = false
         }
+    }
+}
+
+// Simple helper because ContentUnavailableView isn't available in all versions or contexts identically
+struct ContentAvailabilityView: View {
+    let title: String
+    let systemImage: String
+    let description: String
+    
+    var body: some View {
+        VStack(spacing: 8) {
+            Image(systemName: systemImage)
+                .font(.system(size: 48))
+                .foregroundStyle(.secondary)
+                .padding(.bottom, 8)
+            Text(title)
+                .font(.title2)
+                .fontWeight(.bold)
+            Text(description)
+                .font(.body)
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+        }
+        .padding()
     }
 }
 

@@ -19,6 +19,7 @@ struct SettingsView: View {
     @AppStorage("dailyPauseReminderMinute") private var dailyPauseReminderMinute: Int = 0
     @State private var reminderTime: Date = Calendar.current.date(from: DateComponents(hour: 9, minute: 0)) ?? Date()
     @AppStorage("accountabilityPartnerPhone") private var accountabilityPartnerPhone: String = ""
+    @AppStorage("accountabilityTerm") private var accountabilityTerm = "Brotherhood"
 
     private var streakRecord: StreakRecord? { streakRecords.first }
 
@@ -52,6 +53,8 @@ struct SettingsView: View {
                         Text("30 min").tag(30)
                         Text("45 min").tag(45)
                         Text("60 min").tag(60)
+                        Text("90 min").tag(90)
+                        Text("2 hours").tag(120)
                     }
                     .onChange(of: hoursPerDayEstimate) { _, _ in
                         UserDefaults.standard.set(hoursPerDayEstimate, forKey: "minutesPerDayReclaimed")
@@ -64,12 +67,28 @@ struct SettingsView: View {
 
                 Section {
                     Toggle("Daily pause for your heart", isOn: $dailyPauseReminderEnabled)
+                        .onChange(of: dailyPauseReminderEnabled) { _, newValue in
+                            if newValue {
+                                NotificationManager.shared.requestAuthorization()
+                            }
+                            NotificationManager.shared.updateDailyPauseReminder(
+                                isEnabled: newValue,
+                                hour: dailyPauseReminderHour,
+                                minute: dailyPauseReminderMinute
+                            )
+                        }
                     if dailyPauseReminderEnabled {
                         DatePicker("Reminder time", selection: $reminderTime, displayedComponents: .hourAndMinute)
                             .onChange(of: reminderTime) { _, newValue in
                                 let c = Calendar.current.dateComponents([.hour, .minute], from: newValue)
                                 dailyPauseReminderHour = c.hour ?? 9
                                 dailyPauseReminderMinute = c.minute ?? 0
+                                
+                                NotificationManager.shared.updateDailyPauseReminder(
+                                    isEnabled: true,
+                                    hour: dailyPauseReminderHour,
+                                    minute: dailyPauseReminderMinute
+                                )
                             }
                     }
                     NavigationLink("Wisdom of the Ages", destination: WisdomOfTheAgesView())
@@ -90,7 +109,7 @@ struct SettingsView: View {
 
                 Section {
                     NavigationLink("Account", destination: AccountProfileView())
-                    NavigationLink("Walking Together", destination: CloudSyncSettingsView())
+                    NavigationLink(accountabilityTerm, destination: CloudSyncSettingsView())
                 }
 
                 Section {

@@ -291,6 +291,7 @@ struct UrgeMomentView: View {
         }
         sessionLog?.quickActionUsed = title
         try? modelContext.save()
+        Task { @MainActor in AutoSyncManager.shared.performBackgroundSync(modelContext: modelContext) }
     }
 
     private func recordReplaceActivity(_ title: String) {
@@ -301,6 +302,7 @@ struct UrgeMomentView: View {
         }
         sessionLog?.replaceActivityUsed = title
         try? modelContext.save()
+        Task { @MainActor in AutoSyncManager.shared.performBackgroundSync(modelContext: modelContext) }
     }
 }
 
