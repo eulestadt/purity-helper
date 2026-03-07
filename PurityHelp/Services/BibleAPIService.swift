@@ -55,10 +55,10 @@ final class BibleAPIService {
                         .replacingOccurrences(of: "<p class=\"s.+?>.*?</p>", with: "", options: .regularExpression)
                         .replacingOccurrences(of: "<div class=\"s.+?>.*?</div>", with: "", options: .regularExpression)
                     
-                    let noNumbers = noHeaders.replacingOccurrences(of: "<span[^>]*class=\"v\"[^>]*>.*?</span>", with: "", options: .regularExpression)
+                    let noNumbers = noHeaders.replacingOccurrences(of: "<span[^>]*class=\"v\"[^>]*>.*?</span>", with: " ", options: .regularExpression)
                     
                     let cleanText = noNumbers
-                        .replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
+                        .replacingOccurrences(of: "<[^>]+>", with: " ", options: .regularExpression)
                         .replacingOccurrences(of: "&#182;", with: "")
                         .replacingOccurrences(of: "¶", with: "")
                         .replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
@@ -84,10 +84,10 @@ final class BibleAPIService {
                         .replacingOccurrences(of: "<p class=\"s.+?>.*?</p>", with: "", options: .regularExpression)
                         .replacingOccurrences(of: "<div class=\"s.+?>.*?</div>", with: "", options: .regularExpression)
                         
-                    let noNumbers = noHeaders.replacingOccurrences(of: "<span[^>]*class=\"v\"[^>]*>.*?</span>", with: "", options: .regularExpression)
+                    let noNumbers = noHeaders.replacingOccurrences(of: "<span[^>]*class=\"v\"[^>]*>.*?</span>", with: " ", options: .regularExpression)
                     
                     let cleanText = noNumbers
-                        .replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
+                        .replacingOccurrences(of: "<[^>]+>", with: " ", options: .regularExpression)
                         .replacingOccurrences(of: "&#182;", with: "")
                         .replacingOccurrences(of: "¶", with: "")
                         .replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
