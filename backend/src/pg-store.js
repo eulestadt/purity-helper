@@ -4,7 +4,7 @@ const path = require('path');
 
 function sslFor(connectionString) {
   if (!connectionString) return false;
-  if (/localhost|127\.0\.0\.1/.test(connectionString)) return false;
+  if (/localhost|127\.0\.0\.1|railway\.internal/.test(connectionString)) return false;
   return { rejectUnauthorized: false };
 }
 
