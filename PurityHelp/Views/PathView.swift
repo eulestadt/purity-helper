@@ -11,6 +11,13 @@ struct PathView: View {
     @State private var action = ""
     @State private var stories: [HopeStory] = []
 
+    private let practices: [(String, String)] = [
+        ("Jay Stringer", "The urge is a signpost. Ask what hunger it points to, and do not obey it."),
+        ("Michael Cusick", "The pull is often a search for a real passion. Return to the joy you actually want."),
+        ("William Struthers", "A different path is worn by repetition. Give the body a true reward: move, cold water, prayer, a person."),
+        ("Nate Larkin", "Solitary heroism fails. One honest sentence, said to one safe person, is enough of a meeting."),
+        ("Heath Lambert", "Grace is not passivity. Tell the truth, make the old path harder, and put a verse where the image was.")
+    ]
     private let wisdom: [(String, String)] = [
         ("Thomas à Kempis", "A pure heart can see God. Keep the heart, and the eyes follow."),
         ("Augustine", "Our heart is restless until it rests in you."),
@@ -98,6 +105,10 @@ struct PathView: View {
                     Text("Urges and relapses will draw this picture as you record them.")
                         .foregroundStyle(PurityColor.muted)
                 }
+                if let thirst = day.danger.commonThirst {
+                    Text("The thirst underneath, most often: \(thirst).")
+                        .foregroundStyle(PurityColor.muted)
+                }
                 let peak = max(day.danger.hours.max() ?? 1, 1)
                 HStack(alignment: .bottom, spacing: 3) {
                     ForEach(0..<24, id: \.self) { hour in
@@ -159,11 +170,16 @@ struct PathView: View {
     }
 
     private var wisdomList: some View {
-        ForEach(wisdom, id: \.0) { item in
-            GlassPanel {
-                VStack(alignment: .leading, spacing: 6) {
-                    Text(item.1).font(.system(.body, design: .serif))
-                    Text(item.0).font(.caption).foregroundStyle(PurityColor.gold)
+        VStack(alignment: .leading, spacing: 16) {
+            Text("What has helped, distilled in our words. The names mark the counsel. They are not quotations.")
+                .font(.footnote)
+                .foregroundStyle(PurityColor.muted)
+            ForEach(practices + wisdom, id: \.0) { item in
+                GlassPanel {
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text(item.1).font(.system(.body, design: .serif))
+                        Text(item.0).font(.caption).foregroundStyle(PurityColor.gold)
+                    }
                 }
             }
         }

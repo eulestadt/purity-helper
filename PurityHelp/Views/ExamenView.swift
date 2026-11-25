@@ -18,7 +18,7 @@ struct ExamenView: View {
     private let prompts = [
         "Give thanks for one concrete thing.",
         "Ask for light. Where was God in this day?",
-        "Walk the day. Where did you turn away?",
+        "Walk the day. Where did a smaller comfort take the place of God?",
         "Ask forgiveness, and let it be given.",
         "Choose one resolution for tomorrow."
     ]

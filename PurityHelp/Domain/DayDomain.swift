@@ -43,6 +43,7 @@ struct DangerPattern: Equatable {
     var hours: [Int]
     var weekdays: [Int]
     var busiestHour: Int?
+    var commonThirst: String?
 }
 
 struct PlanItem: Identifiable, Equatable {
@@ -113,12 +114,17 @@ enum DayDomain {
         let perDay = double(profile["hoursPerDay"]) ?? 1
         var hours = Array(repeating: 0, count: 24)
         var weekdays = Array(repeating: 0, count: 7)
+        var thirsts: [String: Int] = [:]
         for event in events {
             let kind = string(event["kind"])
             guard kind == "relapse" || kind == "urge" else { continue }
             if let hour = integer(event["hour"]), (0...23).contains(hour) { hours[hour] += 1 }
             if let weekday = integer(event["weekday"]), (0...6).contains(weekday) { weekdays[weekday] += 1 }
+            if let thirst = string(event["thirst"])?.trimmingCharacters(in: .whitespacesAndNewlines), !thirst.isEmpty {
+                thirsts[thirst, default: 0] += 1
+            }
         }
+        let commonThirst = thirsts.max { $0.value < $1.value }?.key
         var busiest: Int?
         var busiestCount = 0
         for (hour, count) in hours.enumerated() where count > busiestCount {
@@ -145,7 +151,7 @@ enum DayDomain {
             treeId: tree.id,
             hoursReclaimed: (Double(streaks.clear) * perDay * 10).rounded() / 10,
             nextMilestone: milestones.first { $0 > streaks.clear },
-            danger: DangerPattern(hours: hours, weekdays: weekdays, busiestHour: busiest),
+            danger: DangerPattern(hours: hours, weekdays: weekdays, busiestHour: busiest, commonThirst: commonThirst),
             plans: plans,
             practice: TodayPractice(
                 intention: todayEvents.contains { string($0["kind"]) == "prayer" && string($0["form"]) == "intention" },

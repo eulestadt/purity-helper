@@ -26,6 +26,11 @@ struct TodayView: View {
                         Text("\(day.streaks.clear) clear days")
                             .font(.title3)
                             .foregroundStyle(PurityColor.muted)
+                        Text(day.streaks.clear < 90
+                             ? "A different path is worn by repetition. The early months do the most."
+                             : "The path is worn. Keep walking it.")
+                            .font(.footnote)
+                            .foregroundStyle(PurityColor.muted)
                         Text(day.mission.isEmpty ? "Name why this day matters in Settings." : day.mission)
                             .font(.body)
                             .foregroundStyle(PurityColor.ink)

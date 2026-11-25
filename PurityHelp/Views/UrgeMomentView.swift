@@ -9,6 +9,7 @@ struct UrgeMomentView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var step = 0
     @State private var trigger = "Habit"
+    @State private var thirst: String?
     @State private var activity = "Walk"
     @State private var note = ""
     @State private var relapseType = "pornography"
@@ -16,6 +17,7 @@ struct UrgeMomentView: View {
     @State private var timing = false
 
     private let triggers = ["Habit", "Loneliness", "Stress", "Boredom", "Night", "Anger"]
+    private let thirsts = ["Comfort", "Being wanted", "Control", "Escape", "Numbness"]
     private let activities = ["Walk", "Cold water", "Pray out loud", "Leave the room", "Text a friend"]
     private let verse = ScriptureLibrary.verseForToday(ScriptureLibrary.load())
 
@@ -25,7 +27,7 @@ struct UrgeMomentView: View {
                 PurityBackground()
                 ScrollView {
                     VStack(alignment: .leading, spacing: 18) {
-                        Text("This urge is a wave. You do not have to obey it.")
+                        Text("This urge is a wave. You are in the ritual, and it can still turn.")
                             .font(.system(.title3, design: .serif))
                             .foregroundStyle(PurityColor.ink)
                         if !store.derived.mission.isEmpty {
@@ -64,10 +66,21 @@ struct UrgeMomentView: View {
             GlassPanel {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Name it, without feeding it.").font(.headline)
+                    Text("What set it off")
+                        .font(.caption)
+                        .foregroundStyle(PurityColor.muted)
                     ForEach(triggers, id: \.self) { item in
                         Button(item) { trigger = item }
                             .buttonStyle(.bordered)
                             .tint(trigger == item ? PurityColor.green : PurityColor.muted)
+                    }
+                    Text("What you were actually thirsty for")
+                        .font(.caption)
+                        .foregroundStyle(PurityColor.muted)
+                    ForEach(thirsts, id: \.self) { item in
+                        Button(item) { thirst = item }
+                            .buttonStyle(.bordered)
+                            .tint(thirst == item ? PurityColor.green : PurityColor.muted)
                     }
                     Button("Wait ten minutes") { step = 2 }
                         .buttonStyle(.borderedProminent)
@@ -127,12 +140,12 @@ struct UrgeMomentView: View {
                     TextField("A note, if it helps", text: $note, axis: .vertical)
                         .textFieldStyle(.roundedBorder)
                     Button("Record and close") {
-                        store.logEvent([
+                        store.logEvent(eventFields([
                             "kind": "relapse",
                             "type": relapseType,
                             "trigger": trigger,
                             "note": note
-                        ])
+                        ]))
                         dismiss()
                     }
                     .buttonStyle(.borderedProminent)
@@ -157,13 +170,19 @@ struct UrgeMomentView: View {
         }
     }
 
+    private func eventFields(_ fields: [String: Any]) -> [String: Any] {
+        var value = fields
+        if let thirst { value["thirst"] = thirst }
+        return value
+    }
+
     private func finish(surfed: Bool) {
-        store.logEvent([
+        store.logEvent(eventFields([
             "kind": "urge",
             "outcome": surfed ? "surfed" : "acted",
             "trigger": trigger,
             "activity": activity
-        ])
+        ]))
         store.logEvent(["kind": "prayer", "form": "vigil"])
         dismiss()
     }

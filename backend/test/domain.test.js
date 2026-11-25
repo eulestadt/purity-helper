@@ -33,6 +33,7 @@ test('a full spiritual day closes four rings without touching the clear streak',
   assert.equal(derived.hoursReclaimed, 2);
   assert.equal(derived.tree.id, 'seedling');
   assert.equal(derived.danger.busiestHour, 22);
+  assert.equal(derived.danger.commonThirst, null);
 });
 
 test('a body relapse empties the clear ring and the streak, and a thought relapse empties watch', () => {
@@ -48,6 +49,18 @@ test('a body relapse empties the clear ring and the streak, and a thought relaps
   assert.equal(derived.streaks.clear, 0);
   assert.equal(derived.streaks.pornography, 0);
   assert.equal(derived.streaks.masturbation, 24);
+});
+
+test('the thirst under the urge is counted without changing the rings', () => {
+  const docs = [
+    event('profile', { journeyStart: today }),
+    event('event/a', { kind: 'urge', day: today, at: '2026-11-24T22:00:00Z', outcome: 'surfed', thirst: 'Escape' }),
+    event('event/b', { kind: 'relapse', day: '2026-11-20', at: '2026-11-20T22:00:00Z', type: 'pornography', thirst: 'Escape' }),
+    event('event/c', { kind: 'urge', day: today, at: '2026-11-24T21:00:00Z', outcome: 'surfed', thirst: 'Comfort' }),
+  ];
+  const derived = derive(docs, { today });
+  assert.equal(derived.danger.commonThirst, 'Escape');
+  assert.equal(derived.rings.watch, 1);
 });
 
 test('share projection hides journals unless the person opts in', () => {

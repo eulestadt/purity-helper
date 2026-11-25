@@ -86,6 +86,9 @@ struct SettingsView: View {
                         GlassPanel {
                             VStack(alignment: .leading, spacing: 8) {
                                 Text("What a partner sees").font(.headline)
+                                Text("One honest sentence to one safe person does more than a private streak.")
+                                    .font(.subheadline)
+                                    .foregroundStyle(PurityColor.muted)
                                 toggle("Rings", key: "shareRings", value: day.shareRings)
                                 toggle("Streaks", key: "shareStreaks", value: day.shareStreaks)
                                 toggle("Mission", key: "shareMission", value: day.shareMission)

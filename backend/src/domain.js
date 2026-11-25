@@ -147,12 +147,23 @@ function derive(documents, options = {}) {
   const perDay = Number.isFinite(hoursPerDay) ? hoursPerDay : 1;
   const hours = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   const weekdays = [0, 0, 0, 0, 0, 0, 0];
+  const thirsts = new Map();
   for (const event of events) {
     if (event.kind !== 'relapse' && event.kind !== 'urge') continue;
     const hour = Number(event.hour);
     const weekday = Number(event.weekday);
     if (Number.isInteger(hour) && hour >= 0 && hour <= 23) hours[hour] += 1;
     if (Number.isInteger(weekday) && weekday >= 0 && weekday <= 6) weekdays[weekday] += 1;
+    const thirst = typeof event.thirst === 'string' ? event.thirst.trim() : '';
+    if (thirst) thirsts.set(thirst, (thirsts.get(thirst) || 0) + 1);
+  }
+  let commonThirst = null;
+  let thirstCount = 0;
+  for (const [name, count] of thirsts) {
+    if (count > thirstCount) {
+      thirstCount = count;
+      commonThirst = name;
+    }
   }
   let busiestHour = null;
   let busiestCount = 0;
@@ -176,7 +187,7 @@ function derive(documents, options = {}) {
     hoursReclaimed: Math.round(streaks.clear * perDay * 10) / 10,
     milestones: reached,
     nextMilestone: MILESTONES.find((day) => day > streaks.clear) ?? null,
-    danger: { hours, weekdays, busiestHour },
+    danger: { hours, weekdays, busiestHour, commonThirst },
     recentRelapses: recent(events, 'relapse', (e) => ({
       day: e.day, at: e.at || null, type: e.type || null, trigger: e.trigger || null, note: e.note || null,
     })),
