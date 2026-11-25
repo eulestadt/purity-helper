@@ -1,5 +1,7 @@
 # How to set up the Purity Help server on Render
 
+The current deployment target is Railway. See [HOSTING_RAILWAY.md](HOSTING_RAILWAY.md). This Render guide is kept for an existing service only.
+
 This guide walks through hosting the **optional** Purity Help backend on [Render](https://render.com). The iOS app works **fully offline** without any server. The backend is only used when users turn on **Sync to cloud** or use **Share with partner** in Settings.
 
 ---

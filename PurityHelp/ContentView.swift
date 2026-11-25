@@ -1,61 +1,28 @@
 //
 //  ContentView.swift
-//  PurityHelp
-//
-//  Root view: Tab-based navigation (Home, Reflect, Settings); Urge accessible from Home.
 //
 
 import SwiftUI
-import SwiftData
 
 struct ContentView: View {
-    @State private var selectedTab = 0
-    @State private var showUrgeMoment = false
+    @State private var showUrge = false
 
     var body: some View {
-        TabView(selection: $selectedTab) {
-            HomeView(showUrgeMoment: $showUrgeMoment)
-                .tabItem {
-                    Label("Home", systemImage: "leaf.fill")
-                }
-                .tag(0)
-
-            NavigationStack {
-                HideInYourHeartView()
-            }
-            .tabItem {
-                Label("Memorize", systemImage: "book.closed.fill")
-            }
-            .tag(1)
-
+        TabView {
+            TodayView(showUrge: $showUrge)
+                .tabItem { Label("Today", systemImage: "sun.max") }
+            WordView()
+                .tabItem { Label("Word", systemImage: "book") }
             ExamenView()
-                .tabItem {
-                    Label("Examen", systemImage: "heart.text.square.fill")
-                }
-                .tag(2)
-
-            NavigationStack {
-                StoriesOfHopeView()
-            }
-            .tabItem {
-                Label("Stories", systemImage: "book.fill")
-            }
-            .tag(3)
-
+                .tabItem { Label("Examen", systemImage: "moon.stars") }
+            PathView()
+                .tabItem { Label("Path", systemImage: "signpost.right") }
             SettingsView()
-                .tabItem {
-                    Label("Settings", systemImage: "gearshape.fill")
-                }
-                .tag(4)
+                .tabItem { Label("Settings", systemImage: "gearshape") }
         }
-        .tint(.accentColor)
-        .fullScreenCover(isPresented: $showUrgeMoment) {
+        .tint(PurityColor.green)
+        .fullScreenCover(isPresented: $showUrge) {
             UrgeMomentView()
         }
     }
-}
-
-#Preview {
-    ContentView()
-        .modelContainer(for: [StreakRecord.self, ResetRecord.self, UserMission.self], inMemory: true)
 }

@@ -1,0 +1,12 @@
+{
+  "name": "purity-help",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm install --prefix backend",
+    "start": "node backend/server.js",
+    "test": "npm test --prefix backend"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

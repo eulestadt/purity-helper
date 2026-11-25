@@ -1,217 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Purity Help</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/style.css">
 </head>
-
 <body>
-  <header>
-    <h1>Purity Help</h1>
-    <p>Your companion for accountability and spiritual tracking</p>
-  </header>
+  <main class="wrap">
+    <header class="mast">
+      <p class="eyebrow">Matthew 5:8</p>
+      <h1>Purity Help</h1>
+      <p class="lede">A day ordered toward a pure heart: a clear body, a watched mind, prayer, and the Word. The account page shows the same rings as the phone.</p>
+    </header>
 
-  <main>
-    <!-- Marketing Section (Visible to all) -->
-    <div class="glass-card">
-      <h2 style="margin-top:0">Walk Together in Purity</h2>
-      <p style="color:var(--text-muted); line-height:1.6">Purity Help is an iOS app designed to help you track your
-        spiritual journey, manage daily examens, and build accountability with your trusted brothers or sisters in
-        Christ.</p>
-
-      <div class="features-grid">
-        <div class="feature">
-          <h3>Daily Examens</h3>
-          <p>Reflect on your day, express gratitude, and resolve to walk cleanly tomorrow.</p>
+    <section id="signed-out" class="grid split">
+      <article class="glass panel">
+        <p class="eyebrow">The day</p>
+        <h2>Four rings, one clear streak</h2>
+        <p>Clear stays whole until a relapse is recorded. Watch, Prayer, and Word fill as the day is actually lived. Nothing here is a counter two phones can overwrite.</p>
+        <div class="rings" aria-hidden="true">
+          <div class="ring" style="--p:1"><div class="ring-hole"><b>100</b><span>Clear</span></div></div>
+          <div class="ring" style="--p:.35"><div class="ring-hole"><b>35</b><span>Watch</span></div></div>
+          <div class="ring" style="--p:.4"><div class="ring-hole"><b>40</b><span>Prayer</span></div></div>
+          <div class="ring" style="--p:.7"><div class="ring-hole"><b>70</b><span>Word</span></div></div>
         </div>
-        <div class="feature">
-          <h3>Urge Tracking</h3>
-          <p>Log your moments of temptation and the tools you used to defeat them.</p>
-        </div>
-        <div class="feature">
-          <h3>Shared Walk</h3>
-          <p>Securely sync your progress and generate share links for your accountability partner.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Auth Container (Logged Out) -->
-    <div id="authContainer" class="glass-card hidden">
-      <h2 style="margin-top:0" id="authTitle">Log In</h2>
-      <div id="authError" class="alert alert-error hidden"></div>
-
-      <form id="authForm">
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" id="authEmail" required autocomplete="email">
-        </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input type="password" id="authPassword" required autocomplete="current-password">
-        </div>
-        <button type="submit" id="authSubmitBtn">Log In</button>
-      </form>
-
-      <div class="flex-between">
-        <button type="button" class="text-btn" id="toggleAuthModeBtn">Create an account</button>
-        <button type="button" class="text-btn" id="forgotPasswordLink">Forgot password?</button>
-      </div>
-    </div>
-
-    <!-- Forgot Password Container (Logged Out) -->
-    <div id="forgotPasswordContainer" class="glass-card hidden">
-      <h2 style="margin-top:0" id="forgotTitle">Reset Password</h2>
-      <div id="forgotAlert" class="alert hidden"></div>
-
-      <!-- Step 1: Request Code -->
-      <form id="forgotRequestForm">
-        <p style="margin-top:0; color:var(--text-muted)">Enter your email to receive a 6-digit reset code.</p>
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" id="forgotEmail" required>
-        </div>
-        <button type="submit" id="forgotRequestBtn">Send Code</button>
-      </form>
-
-      <!-- Step 2: Confirm Code -->
-      <form id="forgotConfirmForm" class="hidden">
-        <p style="margin-top:0; color:var(--text-muted)">Check your email for the code sent to <span
-            id="forgotDisplayEmail" style="font-weight:600"></span>.</p>
-        <div class="form-group">
-          <label>6-Digit Code</label>
-          <input type="text" id="forgotCode" pattern="[0-9]*" maxlength="6" required>
-        </div>
-        <div class="form-group">
-          <label>New Password</label>
-          <input type="password" id="forgotNewPassword" minlength="8" required>
-        </div>
-        <button type="submit" id="forgotConfirmBtn">Reset Password</button>
-      </form>
-
-      <div style="margin-top:16px; text-align:center">
-        <button type="button" class="text-btn" id="backToLoginBtn">Back to Login</button>
-      </div>
-    </div>
-
-    <!-- Account Container (Logged In) -->
-    <div id="accountContainer" class="glass-card hidden">
-      <div class="account-header">
-        <div class="avatar" id="userAvatar">U</div>
-        <div>
-          <h2 style="margin:0">Your Account</h2>
-          <div id="userEmailDisplay" style="color:var(--text-muted)">Loading...</div>
-        </div>
-      </div>
-
-      <!-- Purity Stats Dashboard -->
-      <div id="statsDashboard" class="hidden">
-        <hr style="border:0; border-top:1px solid rgba(0,0,0,0.1); margin:24px 0">
-        <h3 style="margin-top:0">Your Purity Progress</h3>
-        <p style="color:var(--text-muted); font-size:0.9rem; margin-top:-8px; margin-bottom:20px;">
-          This is exactly what your accountability partners see in your Shared Walk.
-        </p>
-
-        <!-- Dark share-style card -->
-        <div class="share-card">
-          <div class="share-grid">
-            <div class="share-stat share-stat-wide">
-              <div class="share-value share-value-success" id="statPorn">–</div>
-              <div class="share-label">Days Pure · Pornography</div>
-            </div>
-
-            <div class="share-stat">
-              <div class="share-value" id="statMast">–</div>
-              <div class="share-label">Days Pure<br>(Masturbation)</div>
-            </div>
-
-            <div class="share-stat">
-              <div class="share-value share-value-danger" id="statUrges">–</div>
-              <div class="share-label">Urges<br>Defeated</div>
-            </div>
-
-            <div class="share-stat share-stat-wide" id="statPureThoughtsBox" style="display:none">
-              <div class="share-value share-value-accent" id="statPureThoughts">–</div>
-              <div class="share-label">Days Guarding Thoughts</div>
-            </div>
-
-            <div class="share-stat share-stat-wide" id="statHoursBox" style="display:none">
-              <div class="share-value share-value-accent" id="statHours">–</div>
-              <div class="share-label">Hours Reclaimed</div>
-            </div>
+      </article>
+      <article class="glass panel">
+        <h2 id="auth-title">Log in</h2>
+        <div id="auth-alert" class="alert hidden"></div>
+        <form id="auth-form">
+          <label for="email">Email</label>
+          <input id="email" type="email" autocomplete="username" required>
+          <label for="password">Password</label>
+          <input id="password" type="password" autocomplete="current-password" minlength="8" required>
+          <div class="row" style="margin-top:16px">
+            <button class="primary" id="auth-submit" type="submit">Log in</button>
+            <button class="text" id="toggle-mode" type="button">Create an account</button>
           </div>
-        </div>
+        </form>
+        <button class="text" id="show-forgot" type="button">Forgot password</button>
+        <form id="forgot-form" class="hidden">
+          <div id="forgot-alert" class="alert hidden"></div>
+          <label for="forgot-email">Email</label>
+          <input id="forgot-email" type="email" required>
+          <div class="row" style="margin-top:12px">
+            <button class="primary" type="submit">Send a code</button>
+          </div>
+          <label for="forgot-code">Code</label>
+          <input id="forgot-code" inputmode="numeric" autocomplete="one-time-code">
+          <label for="forgot-password">New password</label>
+          <input id="forgot-password" type="password" minlength="8">
+          <button class="quiet" id="forgot-confirm" type="button">Set new password</button>
+        </form>
+      </article>
+    </section>
 
-        <h4 style="margin:24px 0 12px">Sharing Settings</h4>
-        <p style="color:var(--text-muted); font-size:0.85rem; margin-top:-8px; margin-bottom:16px;">
-          These control what appears on your shared link. Changes take effect after your iOS app next syncs.
-        </p>
-
-        <div class="toggle-row">
-          <label class="toggle-label">
-            <span>Include Examens</span>
-            <input type="checkbox" id="toggleExamens" class="toggle-input" checked>
-            <div class="toggle-switch"></div>
-          </label>
+    <section id="signed-in" class="hidden">
+      <article class="glass hero">
+        <p class="eyebrow" id="tree-name">Seed</p>
+        <p class="display" id="clear-days">0 <span>clear days</span></p>
+        <p class="mission" id="mission-line"></p>
+        <div class="rings" id="rings"></div>
+        <p class="meta" id="sync-line">On this account</p>
+      </article>
+      <section class="stats" id="stats"></section>
+      <article class="glass panel">
+        <h2>What a partner can see</h2>
+        <p class="lede">Rings and streaks are shared. Notes, relapses, urges, and examens stay private until you open them.</p>
+        <div id="toggles"></div>
+        <div class="row">
+          <button class="primary" id="copy-link" type="button">Copy share link</button>
+          <button class="quiet" id="regen-link" type="button">New link</button>
         </div>
-        <div class="toggle-row">
-          <label class="toggle-label">
-            <span>Include Urge Logs</span>
-            <input type="checkbox" id="toggleUrges" class="toggle-input" checked>
-            <div class="toggle-switch"></div>
-          </label>
-        </div>
-        <div class="toggle-row">
-          <label class="toggle-label">
-            <span>Include Relapses</span>
-            <input type="checkbox" id="toggleRelapses" class="toggle-input" checked>
-            <div class="toggle-switch"></div>
-          </label>
-        </div>
+        <p class="meta" id="share-link"></p>
+      </article>
+      <div class="row">
+        <button class="text" id="sign-out" type="button">Sign out</button>
+        <span class="meta" id="who"></span>
       </div>
-
-      <hr style="border:0; border-top:1px solid rgba(0,0,0,0.1); margin:24px 0">
-
-      <h3 style="margin-top:0">Change Password</h3>
-      <div id="cpAlert" class="alert hidden"></div>
-
-      <!-- Step 1: Request Code -->
-      <form id="cpRequestForm">
-        <p style="margin-top:0; color:var(--text-muted)">We'll email a 6-digit code to verify your identity before
-          allowing a password change.</p>
-        <button type="submit" id="cpRequestBtn" class="btn-secondary">Send Code</button>
-      </form>
-
-      <!-- Step 2: Confirm Code -->
-      <form id="cpConfirmForm" class="hidden">
-        <div class="form-group">
-          <label>6-Digit Code</label>
-          <input type="text" id="cpCode" pattern="[0-9]*" maxlength="6" required>
-        </div>
-        <div class="form-group">
-          <label>New Password</label>
-          <input type="password" id="cpNewPassword" minlength="8" required>
-        </div>
-        <button type="submit" id="cpConfirmBtn">Change Password</button>
-        <div style="margin-top:12px; text-align:center">
-          <button type="button" class="text-btn" id="cpCancelBtn">Cancel</button>
-        </div>
-      </form>
-
-      <hr style="border:0; border-top:1px solid rgba(0,0,0,0.1); margin:24px 0">
-
-      <button id="signOutBtn" class="btn-danger">Sign Out</button>
-    </div>
+    </section>
   </main>
-
-  <footer>
-    &copy;
-    <script>document.write(new Date().getFullYear())</script> Purity Help. Walk in the Light.
-  </footer>
-
-  <script src="app.js"></script>
+  <script src="/app.js"></script>
 </body>
-
 </html>
