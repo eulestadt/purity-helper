@@ -1,46 +1,47 @@
 # Purity Help
 
-iOS 26 recovery app: zero pornography, zero masturbation, journey toward a pure heart (Mt 5:8).
+A recovery companion for a pure heart (Matthew 5:8): zero pornography, zero masturbation, and a day that also includes watchfulness, prayer, and Scripture.
 
-## Requirements
+The phone is the journal. Clear days, rings, and hours are calculated from events, so two devices cannot overwrite each other's counters.
 
-- Xcode 26 (or later)
-- iOS 26.0+ (Simulator or device)
+## A full day
 
-## Build and run
+Four rings on Today:
 
-1. Open `PurityHelp.xcodeproj` in Xcode.
-2. Select an iOS Simulator (e.g. iPhone 17) or a device.
-3. Run (⌘R).
+- **Clear** stays whole until a pornography or masturbation relapse is recorded. The tree grows from consecutive clear days.
+- **Watch** closes when an urge is surfed or the heart is deliberately guarded. An entertained thought opens it again.
+- **Prayer** fills with a morning offering and closes with the evening examen.
+- **Word** fills by reading the day's verse and reviewing it from memory.
 
-To regenerate the Xcode project from the spec:
+An urge opens a pause: breathe, name the trigger, wait, answer with Scripture, then either let it pass or begin again without destroying the history.
+
+## Run the iOS app
+
+1. Open `PurityHelp.xcodeproj` in Xcode 26.
+2. Choose an iPhone simulator or a device.
+3. Run.
+
+The app works with no account. Settings → Sync takes the Railway URL when you want another device or a partner link.
+
+Old on-device SwiftData from version 1 is left behind. Version 2 opens a new store named `PurityHelpV2`.
+
+## API
 
 ```bash
-xcodegen generate
+npm test
+npm start
 ```
 
-## Features (from plan)
+`npm start` expects `DATABASE_URL`. For the account pages on this machine without Postgres:
 
-- **Streak tracking**: Pornography, masturbation, optional pure thoughts ("days guarding thoughts") with compassionate reset and optional streak freeze.
-- **Seedling → tree**: Growth visualization by days of purity (Seedling, Sprout, Sapling, Young tree, Mature tree).
-- **Urge Moment**: Theosis framing, 4-4-8 breathing, 10-minute delay, urge surfing guide, replace activity, if-then plan reminder, Stories of Hope link.
-- **Daily Examen**: 5-step Jesuit Examen with journaling.
-- **Mission / Why**: Personal mission shown on Home and at top of Urge Moment.
-- **Hours reclaimed**: Configurable daily estimate and running total.
-- **If–Then plans**: Implementation intentions; reminder in Urge Moment.
-- **Danger zone**: Pattern insights from reset history.
-- **Spiritual**: Daily Scripture, Wisdom of the Ages (Kempis, Bunyan, Lewis, Augustine, Francis de Sales), sacrament reminder toggle.
-- **Stories of Hope**: Curated recovery examples (historical and modern).
-- **Shareable progress**: Read-only summary and export for accountability partner.
-- **Liquid Glass**: `.glassEffect()` on key cards (iOS 26).
-- **Milestone celebrations**: 3, 7, 14, 30, 90 days.
+```bash
+node backend/dev-server.js
+```
 
-All data is stored locally (SwiftData). No account required.
+Hosting steps are in [docs/HOSTING_RAILWAY.md](docs/HOSTING_RAILWAY.md).
 
-## Optional backend (Render)
+Sync is push and pull of idempotent mutations (`POST /sync/push`, `POST /sync/pull`). A relapse, an urge, an examen, and a verse review are separate events. Replaying a mutation does not apply it twice.
 
-For **optional** cloud sync and shareable progress links (e.g. for accountability partners), a small Node.js + PostgreSQL API is included. The app works fully without it.
+## Share links
 
-- **Backend**: `backend/` — Express server; endpoints: `POST /sync`, `GET /me`, `POST /share`, `GET /share/:token`, `POST /auth/signup`, `POST /auth/login`.
-- **Hosting**: See [docs/HOSTING_RENDER.md](docs/HOSTING_RENDER.md) for creating a PostgreSQL database and Web Service on Render, setting `DATABASE_URL`, `API_SECRET`, and `BASE_URL`, and running the schema.
-- **Security**: Passwords hashed with bcrypt; JWT for auth; store tokens in Keychain in the app; share links use UUID tokens with optional "Regenerate link."
+Rings and streaks are visible to a partner. Mission, relapses, urges, and examens stay off the link until those toggles are turned on in Settings or on the account page.

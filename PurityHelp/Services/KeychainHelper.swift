@@ -1,8 +1,5 @@
 //
 //  KeychainHelper.swift
-//  PurityHelp
-//
-//  Store auth token and device ID in Keychain (not UserDefaults).
 //
 
 import Foundation
@@ -10,23 +7,23 @@ import Security
 
 enum KeychainHelper {
     private static let service = "com.purityhelp.app"
+    static let authTokenKey = "authToken"
 
     static func save(_ value: String, forKey key: String) {
         guard let data = value.data(using: .utf8) else { return }
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: service,
-            kSecAttrAccount as String: key,
-            kSecValueData as String: data
+            kSecAttrAccount as String: key
         ]
         SecItemDelete(query as CFDictionary)
-        let status = SecItemAdd(query as CFDictionary, nil)
-        
-        // Fallback to UserDefaults if Keychain fails (common in Simulator without entitlements)
-        if status != errSecSuccess {
-            UserDefaults.standard.set(value, forKey: "fallback_\(key)")
-        } else {
+        var insert = query
+        insert[kSecValueData as String] = data
+        let status = SecItemAdd(insert as CFDictionary, nil)
+        if status == errSecSuccess {
             UserDefaults.standard.removeObject(forKey: "fallback_\(key)")
+        } else {
+            UserDefaults.standard.set(value, forKey: "fallback_\(key)")
         }
     }
 
@@ -40,12 +37,9 @@ enum KeychainHelper {
         ]
         var result: AnyObject?
         let status = SecItemCopyMatching(query as CFDictionary, &result)
-        
-        if status == errSecSuccess, let data = result as? Data, let str = String(data: data, encoding: .utf8) {
-            return str
+        if status == errSecSuccess, let data = result as? Data, let text = String(data: data, encoding: .utf8) {
+            return text
         }
-        
-        // Fallback wrapper
         return UserDefaults.standard.string(forKey: "fallback_\(key)")
     }
 
@@ -58,7 +52,4 @@ enum KeychainHelper {
         SecItemDelete(query as CFDictionary)
         UserDefaults.standard.removeObject(forKey: "fallback_\(key)")
     }
-
-    static let authTokenKey = "authToken"
-    static let deviceIdKey = "deviceId"
 }
